@@ -19588,7 +19588,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { className: "dre5-phone", href: "tel:+201210304060", dir: "ltr", children: "+20 121 030 4060" })
         ] })
       ] }),
-      (0, import_jsx_runtime31.jsx)("figure", {className:"dre-gateway-closing",children:(0, import_jsx_runtime31.jsx)("img",{src:"./assets/UW2MGOG6.jpg",alt:ar2?"بوابتك الرقمية للتجميل والتعافي":"Your digital gateway to aesthetics and recovery",loading:"lazy"})}),
       /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dre5-social", children: [
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.instagram.com/dr.ahmed_elnajar", target: "_blank", rel: "noreferrer", children: "Instagram \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.facebook.com/share/1CfAqiRg42/?mibextid=wwXIfr", target: "_blank", rel: "noreferrer", children: "Facebook \u2197" }),
@@ -20187,7 +20186,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var recovery_01_default = "./assets/6SKFFXOF.jpg";
 
   // src/photos/src-extract/index-01.jpg
-  var index_01_default = "./assets/UW2MGOG6.jpg";
 
   // src/Identity.tsx
   var import_jsx_runtime34 = __toESM(require_jsx_runtime());
@@ -20240,7 +20238,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     assessment: { src: test_01_default, alt: "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631 \u0628\u062C\u0648\u0627\u0631 \u0634\u0628\u0643\u0629 \u0627\u0644\u0646\u0633\u0628\u0629 \u0627\u0644\u0630\u0647\u0628\u064A\u0629 \u0627\u0644\u062A\u062D\u0644\u064A\u0644\u064A\u0629", title: "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u062A\u062C\u0645\u064A\u0644\u064A \u0627\u0644\u0630\u0643\u064A", pos: "50% 30%" },
     body: { src: tummy_01_default, alt: "\u062F\u0644\u064A\u0644 \u062A\u062C\u062F\u064A\u062F \u062D\u064A\u0648\u064A\u0629 \u0627\u0644\u062C\u0633\u0645 \u0648\u0627\u0644\u062C\u0645\u0627\u0644 \u0628\u0639\u062F \u0627\u0644\u0623\u0645\u0648\u0645\u0629", title: "\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0642\u0648\u0627\u0645", pos: "50% 25%" },
     recovery: { src: recovery_01_default, alt: "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631 \u0623\u0645\u0627\u0645 \u0639\u0644\u0645 \u0645\u0635\u0631", title: "\u0631\u062D\u0644\u0629 \u0627\u0644\u062A\u0639\u0627\u0641\u064A", pos: "50% 20%" },
-    library: { src: index_01_default, alt: "\u0627\u0644\u0628\u0648\u0627\u0628\u0629 \u0627\u0644\u0631\u0642\u0645\u064A\u0629 \u0627\u0644\u0634\u0627\u0645\u0644\u0629 \u0644\u0644\u062A\u062C\u0645\u064A\u0644 \u0648\u0627\u0644\u062A\u0639\u0627\u0641\u064A", title: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0627\u0644\u0637\u0628\u064A\u0629", pos: "50% 18%" }
   };
   var ROUTE_IDS = { assessment: "01 \xB7 ASSESSMENT", face: "02 \xB7 FACE & NECK", body: "03 \xB7 BODY", rhino: "04 \xB7 RHINOPLASTY", travel: "05 \xB7 CAIRO JOURNEY", recovery: "06 \xB7 RECOVERY", consultation: "PRIVATE CONSULTATION", library: "THE PATIENT LIBRARY" };
   function RoutePanel({ id: id2, children }) {
