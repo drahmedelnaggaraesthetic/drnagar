@@ -19588,6 +19588,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { className: "dre5-phone", href: "tel:+201210304060", dir: "ltr", children: "+20 121 030 4060" })
         ] })
       ] }),
+      (0, import_jsx_runtime31.jsx)("figure", {className:"dre-gateway-closing",children:(0, import_jsx_runtime31.jsx)("img",{src:"./assets/UW2MGOG6.jpg",alt:ar2?"بوابتك الرقمية للتجميل والتعافي":"Your digital gateway to aesthetics and recovery",loading:"lazy"})}),
       /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dre5-social", children: [
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.instagram.com/dr.ahmed_elnajar", target: "_blank", rel: "noreferrer", children: "Instagram \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.facebook.com/share/1CfAqiRg42/?mibextid=wwXIfr", target: "_blank", rel: "noreferrer", children: "Facebook \u2197" }),
