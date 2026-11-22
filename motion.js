@@ -78,6 +78,35 @@
     cover.insertAdjacentElement('afterend', buildMarquee(lang));
   };
 
+  /* standalone explore-journeys pill below the hero photo (his ask) */
+  const ensureExplore = () => {
+    const d5 = document.querySelector('.dre5');
+    const cover = d5 && d5.querySelector(':scope > .dre7-cover');
+    if (!cover) return;
+    const lang = isEN() ? 'en' : 'ar';
+    const existing = d5.querySelector(':scope > .dre-mo-explore');
+    if (existing && existing.dataset.lang === lang) return;
+    const d = document.createElement('div');
+    d.className = 'dre-mo-explore';
+    d.dataset.lang = lang;
+    const a = document.createElement('a');
+    a.href = '#journeys';
+    a.className = 'dre5-btn';
+    const label = lang === 'ar' ? 'استكشف الرحلات' : 'Explore the journeys';
+    const sp = document.createElement('span');
+    sp.textContent = label;
+    const b = document.createElement('b');
+    b.setAttribute('aria-hidden', 'true');
+    b.textContent = '↓';
+    a.appendChild(sp);
+    a.appendChild(b);
+    d.appendChild(a);
+    const mq = d5.querySelector(':scope > .dre-mo-mq');
+    if (mq) d5.insertBefore(d, mq);
+    else cover.insertAdjacentElement('afterend', d);
+    if (existing) existing.remove();
+  };
+
   /* 3. before/after handle invite (once per slider, stops on touch) */
   const hinted = new WeakSet();
   const baIO = new IntersectionObserver((entries) => {
@@ -98,7 +127,7 @@
   /* 6. magnetic gold CTAs (fine pointer only) */
   const bootMagnetic = (root) => {
     if (!finePointer || reduced) return;
-    root.querySelectorAll('.dre5-btn-gold, .dre-brandcta a, .dre-brandcta button').forEach((el) => {
+    root.querySelectorAll('.dre5-btn-gold, .dre-brandcta a, .dre-brandcta button, .dre-mo-explore .dre5-btn').forEach((el) => {
       if (el.dataset.moMag) return;
       el.dataset.moMag = '1';
       el.addEventListener('pointermove', (ev) => {
@@ -115,7 +144,7 @@
     });
   };
 
-  /* 7. hero parallax (rAF-throttled, capped 38px) */
+  /* 7. hero parallax: gentle whole-card drift (caption strip is gone; 30px margins absorb travel) */
   let parallaxArmed = false;
   const bootParallax = () => {
     if (reduced || parallaxArmed) return;
@@ -126,12 +155,13 @@
       ticking = false;
       const f = document.querySelector('.dre7-cover-frame');
       if (!f) return;
-      const y = Math.min(38, Math.max(0, window.scrollY * 0.07));
+      const y = Math.min(10, Math.max(0, window.scrollY * 0.03));
       f.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
     };
     window.addEventListener('scroll', () => {
       if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
     }, { passive: true });
+    update();
   };
 
   const boot = () => {
@@ -139,6 +169,7 @@
     if (!root || !root.hasChildNodes()) return;
     if (!reduced) root.querySelectorAll('.dre7-title').forEach(buildMask);
     ensureMarquee();
+    ensureExplore();
     root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
     bootMagnetic(root);
     bootParallax();

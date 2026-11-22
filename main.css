@@ -14785,3 +14785,80 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .dre-root .dre5-hero-ctas .dre5-btn-gold::after { animation: none; }
 }
+
+
+
+/* hero photo caption strip removed at his direction - photo + parallax stay */
+.dre7-cover-figure figcaption { display: none; }
+
+/* hero photo integration: no rigid frame, edges melt into the obsidian wall */
+.dre-root .dre7-cover-frame {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 90%, rgb(0 0 0 / .45) 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 90%, rgb(0 0 0 / .45) 100%);
+  mask-composite: intersect;
+}
+
+/* standalone explore-journeys pill: hairline gold, Cairo, divider arrow, interactive */
+.dre-mo-explore { display: flex; justify-content: center; margin: 30px 0 0; }
+.dre-mo-explore .dre5-btn {
+  font-family: "Cairo", var(--dre-font);
+  font-weight: 400;
+  border: 1px solid rgb(216 183 106 / .55);
+  border-radius: 999px;
+  padding: 13px 34px;
+  min-height: 46px;
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: #e0cda8;
+  background: transparent;
+  text-decoration: none;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, background-color .3s, box-shadow .3s;
+}
+.dre-mo-explore .dre5-btn b {
+  display: inline-block;
+  color: #d3af6d;
+  font-size: 13px;
+  border-inline-start: 1px solid rgb(216 183 106 / .3);
+  padding-inline-start: 16px;
+  margin-inline-start: 2px;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.dre-mo-explore .dre5-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(100deg, transparent 38%, rgb(246 231 195 / .14) 50%, transparent 62%);
+  background-size: 250% 100%;
+  transition: opacity .3s;
+}
+.dre-mo-explore .dre5-btn:hover {
+  border-color: rgb(216 183 106 / .9);
+  background: rgb(216 183 106 / .06);
+}
+.dre-mo-explore .dre5-btn:hover b { transform: translateY(3px); }
+.dre-mo-explore .dre5-btn:hover::after { opacity: 1; animation: ctaSheen 1.6s ease-in-out 1; }
+.dre-mo-explore .dre5-btn:active { transform: scale(.96); }
+@media (prefers-reduced-motion: reduce) {
+  .dre-mo-explore .dre5-btn, .dre-mo-explore .dre5-btn b { transition: none; }
+  .dre-mo-explore .dre5-btn:hover::after { animation: none; }
+}
+
+/* hero meta strip (areas + phone above the photo) removed at his direction - phone stays in header + footer, full branch addresses in the branches section */
+.dre5-hero-meta { display: none; }
+
+/* phone line under the WhatsApp CTA removed at his direction - number stays in the footer */
+.dre5-contact .dre5-phone { display: none; }
