@@ -14741,3 +14741,47 @@ body {
   .dre7-disc { animation: none !important; }
   .dre-mo-in { animation: none !important; transform: none !important; }
 }
+
+/* === CTA premium pass (his pick: variant A + Cairo) === */
+.dre-root .dre5-hero-ctas .dre5-btn {
+  font-family: "Cairo", var(--dre-font);
+  font-weight: 400;
+}
+.dre-root .dre5-hero-ctas .dre5-btn-gold {
+  background: linear-gradient(115deg, #d9c198, #ab8c58);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 11px 30px;
+  font-size: 10.5px;
+  letter-spacing: .07em;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .38), 0 10px 24px rgb(0 0 0 / .28);
+  position: relative;
+  overflow: hidden;
+}
+.dre-root .dre5-hero-ctas .dre5-btn-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 38%, rgb(255 248 230 / .5) 50%, transparent 62%);
+  background-size: 250% 100%;
+  animation: ctaSheen 7.5s ease-in-out infinite;
+}
+@keyframes ctaSheen {
+  0%, 55% { background-position: 210% 0; }
+  85%, 100% { background-position: -90% 0; }
+}
+.dre-root .dre5-hero-ctas .dre5-btn-line {
+  border: 1px solid rgb(216 183 106 / .4);
+  border-radius: 999px;
+  padding: 11px 30px;
+  min-height: 44px;
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  color: #dcc9a5;
+  background: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dre-root .dre5-hero-ctas .dre5-btn-gold::after { animation: none; }
+}
