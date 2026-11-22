@@ -25490,3 +25490,10 @@ react-router/dist/development/index.mjs:
  }
  if(!customElements.get('dre-patient-experiences'))customElements.define('dre-patient-experiences',PatientExperiences);
 })();
+/* Localize displayed tool numerals without changing input values or React node structure. */
+(() => {
+ const originals=new WeakMap();let pending=false;
+ const localize=s=>s.replace(/[A-Za-z]+[A-Za-z0-9+_.:/-]*|\b\d+[A-Za-z][A-Za-z0-9+_.:/-]*/g,m=>m.replace(/[0-9]/g,d=>String.fromCharCode(0xE000+Number(d)))).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]).replace(/[\uE000-\uE009]/g,d=>String(d.charCodeAt(0)-0xE000));
+ const scan=()=>{pending=false;const ar=document.documentElement.lang!=='en';document.querySelectorAll('.dre-instrument').forEach(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(n.parentElement.closest('script,style,textarea'))continue;let r=originals.get(n);if(!r||n.data!==r.last)r={original:n.data,last:n.data};const next=ar?localize(r.original):r.original;if(n.data!==next)n.data=next;r.last=next;originals.set(n,r);}});};
+ new MutationObserver(()=>{if(!pending){pending=true;requestAnimationFrame(scan);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true,characterData:true});scan();
+})();
