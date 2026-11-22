@@ -12575,8 +12575,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       desc ? /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "dre-opt-desc", children: desc }) : null
     ] });
   }
-  function Chip({ selected, children, onClick }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("button", { type: "button", className: "dre-chip", "aria-pressed": selected, onClick, children });
+  function Chip({ selected, children, onClick, className }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("button", { type: "button", className: "dre-chip" + (className ? " " + className : ""), "aria-pressed": selected, onClick, children });
   }
   function CheckItem({ checked, children, onClick }) {
     return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("button", { type: "button", className: "dre-checkitem", "aria-pressed": checked, onClick, children: [
@@ -23188,6 +23188,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return n === 1 ? "\u064A\u0648\u0645" : n <= 10 ? "\u0623\u064A\u0627\u0645" : "\u064A\u0648\u0645\u0627\u064B";
   }
   function Recovery() {
+    const toAr = (v) => String(v).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[Number(d)]);
     const [procedureId, setProcedureId] = (0, import_react43.useState)("vaser");
     const [stageIndex, setStageIndex] = (0, import_react43.useState)(0);
     const [surgeryDate, setSurgeryDate] = (0, import_react43.useState)("");
@@ -23208,6 +23209,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       if (idx === -1) idx = STAGES_META.length - 1;
       return { mode: "elapsed", op, diffDays, matchedIdx: idx };
     }, [surgeryDate]);
+    (0, import_react43.useEffect)(() => {
+      if (calc && calc.mode === "elapsed") setStageIndex(calc.matchedIdx);
+    }, [surgeryDate]);
     const jumpToMine = () => {
       if (calc && calc.mode === "elapsed") setStageIndex(calc.matchedIdx);
     };
@@ -23226,15 +23230,16 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-guide-hint", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Link, { to: "/library", children: "\u0627\u0628\u062D\u062B \u0641\u064A \u0646\u0635\u0627\u0626\u062D \u0627\u0644\u062A\u0639\u0627\u0641\u064A \u0643\u0644\u0647\u0627 \u2197" }) }),
       /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel dre-instrument", children: [
         /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h3", { className: "dre-h3", children: "\u0627\u062E\u062A\u0631 \u0627\u0644\u0625\u062C\u0631\u0627\u0621" }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-grid dre-grid-2", children: Object.values(RECOVERY_PROCEDURES).map((p) => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Opt, { selected: procedureId === p.id, title: p.title, desc: `${p.subtitle} \u2022 ${p.hint}`, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-procedure-rail", children: Object.values(RECOVERY_PROCEDURES).map((p) => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Opt, { selected: procedureId === p.id, title: p.title, desc: p.subtitle, onClick: () => {
           setProcedureId(p.id);
           setStageIndex(0);
-        } }, p.id)) })
+        } }, p.id)) }),
+        (0, import_jsx_runtime44.jsx)("p", {className:"dre-procedure-hint", children:proc.hint})
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel dre-instrument", children: [
         /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h3", { className: "dre-h3", children: "\u062D\u0627\u0633\u0628\u0629 \u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u062A\u0639\u0627\u0641\u064A" }),
         /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { display: "flex", gap: 8, flexWrap: "wrap" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("input", { className: "dre-input", type: "date", value: surgeryDate, onChange: (e2) => setSurgeryDate(e2.target.value), style: { flex: 1, minWidth: 180 } }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("input", { className: "dre-input", type: "date", "aria-label": "تاريخ العملية", value: surgeryDate, onChange: (e2) => setSurgeryDate(e2.target.value), style: { flex: 1, minWidth: 180 } }),
           surgeryDate && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => {
             setSurgeryDate("");
             setStageIndex(0);
@@ -23266,7 +23271,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             const td2 = new Date(calc.op);
             td2.setDate(td2.getDate() + mst.days);
             const reached = calc.mode === "elapsed" && calc.diffDays >= mst.days;
-            return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-kv-item", style: reached ? { borderColor: "var(--dre-teal)" } : void 0, children: [
+            return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: reached ? "dre-kv-item dre-kv-reached" : "dre-kv-item", children: [
               /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-kv-k", children: mst.label }),
               /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-kv-v", children: formatDateLong(td2, "ar") }),
               /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-small", children: [
@@ -23301,11 +23306,43 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             toAr(STAGES_META.length)
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-chips", style: { marginTop: 10 }, children: STAGES_META.map((m, idx) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Chip, { selected: stageIndex === idx, onClick: () => setStageIndex(idx), children: [
-          m.shortLabel,
-          calc && calc.mode === "elapsed" && calc.matchedIdx === idx ? " \u2022 \u0645\u0631\u062D\u0644\u062A\u0643" : ""
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-chips", style: { marginTop: 10 }, children: STAGES_META.map((m, idx) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Chip, { selected: stageIndex === idx, className: idx < stageIndex ? "dre-chip-past" : "", onClick: () => setStageIndex(idx), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-chip-num", children: toAr(idx + 1) }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-chip-txt", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-chip-title", children: m.shortLabel }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-chip-range", children: toAr(m.rangeLabel) })
+          ] }),
+          calc && calc.mode === "elapsed" && calc.matchedIdx === idx ? /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-chip-mine", children: "\u0645\u0631\u062D\u0644\u062A\u0643 \u0627\u0644\u062D\u0627\u0644\u064A\u0629" }) : null
         ] }, m.id)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-dark", style: { marginTop: 14 }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-meters", style: { marginTop: 14 }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-meterbox", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-meter-head", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-meter-label", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("i", { className: "dre-meter-led", "aria-hidden": "true" }),
+                  "\u0645\u0633\u062A\u0648\u0649 \u0627\u0644\u062A\u0648\u0631\u0645 \u0627\u0644\u0645\u062A\u0648\u0642\u0639"
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-meter-val", children: [
+                  toAr(stage.swelling),
+                  "\u066A"
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter-fill", style: { width: `${Math.max(stage.swelling, 2)}%` } }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-meterbox", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-meter-head", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-meter-label", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("i", { className: "dre-meter-led", "aria-hidden": "true" }),
+                  "\u062C\u0627\u0647\u0632\u064A\u0629 \u0627\u0644\u0639\u0648\u062F\u0629 \u0644\u0644\u0623\u0646\u0634\u0637\u0629"
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-meter-val", children: [
+                  toAr(stage.readiness),
+                  "\u066A"
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter-fill", style: { width: `${stage.readiness}%` } }) })
+            ] })
+          ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-dark dre-stage-in", key: "banner" + stageIndex, style: { marginTop: 14 }, children: [
           /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-kicker", children: [
             "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 ",
             toAr(stageIndex + 1),
@@ -23314,34 +23351,32 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             " \u2022 ",
             proc.title
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h3", { className: "dre-h3", style: { marginTop: 4 }, children: meta.shortLabel }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "dre-sub", style: { marginTop: 4 }, children: stage.summary }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-grid dre-grid-2", style: { marginTop: 12 }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-kv-k", children: "\u0645\u0633\u062A\u0648\u0649 \u0627\u0644\u062A\u0648\u0631\u0645 \u0627\u0644\u0645\u062A\u0648\u0642\u0639" }),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter", style: { marginTop: 6 }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter-fill", style: { width: `${Math.max(stage.swelling, 2)}%` } }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-small", style: { marginTop: 4 }, children: [
-                toAr(stage.swelling),
-                "%"
-              ] })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-kv-k", children: "\u062C\u0627\u0647\u0632\u064A\u0629 \u0627\u0644\u0639\u0648\u062F\u0629 \u0644\u0644\u0623\u0646\u0634\u0637\u0629" }),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter", style: { marginTop: 6 }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-meter-fill", style: { width: `${stage.readiness}%` } }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-small", style: { marginTop: 4 }, children: [
-                toAr(stage.readiness),
-                "%"
-              ] })
-            ] })
-          ] })
+          calc && calc.mode === "elapsed" && calc.matchedIdx === stageIndex ? /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-badge-mine", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("i", { className: "dre-badge-mine-dot", "aria-hidden": "true" }),
+            "\u0645\u0631\u062D\u0644\u062A\u0643 \u0627\u0644\u062D\u0627\u0644\u064A\u0629"
+          ] }) : null,
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h3", { className: "dre-h3", style: { marginTop: 10 }, children: meta.shortLabel }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "dre-sub", style: { marginTop: 4 }, children: stage.summary })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-soft", style: { marginTop: 12 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h4", { className: "dre-h3", style: { fontSize: "1.05rem" }, children: "\u0645\u0627 \u0647\u0648 \u0637\u0628\u064A\u0639\u064A \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0645\u0631\u062D\u0644\u0629\u061F" }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-soft dre-stage-in", key: "nrm" + stageIndex, style: { marginTop: 12 }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-cardhead", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-cardhead-ico", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("svg", { className: "dre-ico", fill: "none", stroke: "currentColor", strokeWidth: 1.9, viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-cardhead-txt", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h4", { className: "dre-h3", children: "\u0645\u0627 \u0647\u0648 \u0637\u0628\u064A\u0639\u064A \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0645\u0631\u062D\u0644\u0629\u061F" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "dre-cardhead-sub", children: "\u0623\u0639\u0631\u0627\u0636 \u0648\u062A\u063A\u064A\u0631\u0627\u062A \u0645\u062A\u0648\u0642\u0639\u0629 \u062E\u0644\u0627\u0644 \u0627\u0644\u0634\u0641\u0627\u0621 \u0627\u0644\u0637\u0628\u064A\u0639\u064A" })
+            ] })
+          ] }),
           /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("ul", { className: "dre-bullets", children: stage.normal.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("li", { children: t }, i)) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-soft", style: { marginTop: 12 }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h4", { className: "dre-h3", style: { fontSize: "1.05rem" }, children: "\u062D\u0627\u0644\u0629 \u0627\u0644\u0623\u0646\u0634\u0637\u0629" }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-stack", children: stage.activities.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "flex-start" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-soft dre-stage-in", key: "act" + stageIndex, style: { marginTop: 12 }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-cardhead", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-cardhead-ico", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("svg", { className: "dre-ico", fill: "none", stroke: "currentColor", strokeWidth: 1.9, viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", d: "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" }) }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "dre-cardhead-txt", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h4", { className: "dre-h3", children: "\u062D\u0627\u0644\u0629 \u0627\u0644\u0623\u0646\u0634\u0637\u0629" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "dre-cardhead-sub", children: "\u0627\u0644\u0623\u0646\u0634\u0637\u0629 \u0627\u0644\u064A\u0648\u0645\u064A\u0629 \u0648\u0627\u0644\u0639\u0648\u062F\u0629 \u0627\u0644\u062A\u062F\u0631\u064A\u062C\u064A\u0629 \u0644\u0644\u0639\u0645\u0644 \u0648\u0627\u0644\u0631\u064A\u0627\u0636\u0629" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-stack", children: stage.activities.map((row, i) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-act dre-act-" + row.status, style: { display: "flex", justifyContent: "space-between", gap: 10, alignItems: "flex-start" }, children: [
             /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { style: { fontWeight: 800 }, children: row.label }),
               /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-small", style: { marginTop: 2 }, children: row.note })
@@ -23352,7 +23387,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             ] })
           ] }, i)) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-grid dre-grid-2", style: { marginTop: 12 }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-grid dre-grid-2 dre-stage-in", key: "pro" + stageIndex, style: { marginTop: 12 }, children: [
           /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-panel-soft", children: [
             /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "dre-badge dre-badge-gold", children: stage.protocolPrimary[1] }),
             /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { style: { fontWeight: 800, marginTop: 6 }, children: stage.protocolPrimary[0] }),
@@ -23364,7 +23399,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-small", style: { marginTop: 4 }, children: stage.protocolSecondary[2] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-alert dre-alert-ok", style: { marginTop: 12 }, children: stage.pearl }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "dre-alert dre-alert-ok dre-stage-in", key: "prl" + stageIndex, style: { marginTop: 12 }, children: stage.pearl }),
         /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "dre-actions", style: { marginTop: 12 }, children: [
           /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("button", { className: "dre-btn dre-btn-ghost", disabled: stageIndex === 0, onClick: () => setStageIndex(stageIndex - 1), children: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629" }),
           /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("button", { className: "dre-btn dre-btn-ghost", disabled: stageIndex === STAGES_META.length - 1, onClick: () => setStageIndex(stageIndex + 1), children: "\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u062A\u0627\u0644\u064A\u0629" })

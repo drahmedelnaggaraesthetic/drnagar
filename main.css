@@ -15175,155 +15175,532 @@ body {
   letter-spacing: .03em;
 }
 
-/* === recovery timeline v2: snap phase rail, fluid meters, activity status cards === */
-.dre-root .dre-route-recovery .dre-instrument .dre-chips {
-  counter-reset: dreph;
+/* === interactive tools v3: reference-fidelity pass (Cairo/Tajawal type, snap pill rail, thin fluid meters, status cards, stage reveal) === */
+
+/* fonts: Tajawal display + Cairo variable full range (arabic subsets, self-hosted) */
+@font-face {
+  font-family: "Tajawal";
+  src: url("/assets/tajawal-ar-1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+0660-066C;
+}
+@font-face {
+  font-family: "Tajawal";
+  src: url("/assets/tajawal-ar-2.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+0660-066C;
+}
+@font-face {
+  font-family: "Tajawal";
+  src: url("/assets/tajawal-ar-3.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+0660-066C;
+}
+@font-face {
+  font-family: "Tajawal";
+  src: url("/assets/tajawal-ar-4.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+0660-066C;
+}
+@font-face {
+  font-family: "Cairo";
+  src: url("/assets/cairo-ar-var.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+0660-066C;
+}
+
+/* instrument typography (all interactive tools): Cairo body, Tajawal 800 headings */
+.dre-root .dre-ivory .dre-instrument { font-family: "Cairo", var(--dre-font); }
+.dre-root .dre-ivory .dre-instrument h1,
+.dre-root .dre-ivory .dre-instrument h2,
+.dre-root .dre-ivory .dre-instrument .dre-h3,
+.dre-root .dre-ivory .dre-instrument h4 {
+  font-family: "Tajawal", "Cairo", var(--dre-font);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+/* shared micro-interactions (all interactive tools): press feedback + focus rings + disabled */
+.dre-root .dre-ivory .dre-instrument .dre-btn:not(:disabled):active { transform: scale(.97); }
+.dre-root .dre-ivory .dre-instrument .dre-btn:disabled { opacity: .35; cursor: not-allowed; }
+.dre-root .dre-ivory .dre-instrument .dre-chip:not([aria-pressed=true]):active { transform: scale(.96); }
+.dre-root .dre-ivory .dre-instrument .dre-btn:focus-visible,
+.dre-root .dre-ivory .dre-instrument .dre-chip:focus-visible,
+.dre-root .dre-ivory .dre-instrument .dre-opt:focus-visible {
+  outline: 2px solid rgb(211 175 109 / .55);
+  outline-offset: 2px;
+}
+
+/* stage reveal (reference timing: .3s cubic-bezier(.22,1,.36,1), translateY(8px)) */
+@keyframes dreStageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dre-root .dre-route-recovery .dre-stage-in { animation: dreStageIn .3s cubic-bezier(.22, 1, .36, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .dre-root .dre-route-recovery .dre-stage-in { animation: none; }
+}
+
+/* === recovery: numbered two-line phase pill rail (snap scroll, 3 states + my-stage badge) === */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   scroll-snap-type: x proximity;
   gap: 8px;
-  padding: 4px 2px 10px;
+  padding: 2px 2px 10px;
   scrollbar-width: none;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-chips::-webkit-scrollbar { display: none; }
-.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip {
-  counter-increment: dreph;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips::-webkit-scrollbar { display: none; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip {
   scroll-snap-align: center;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  min-height: 52px;
-  padding: 8px 16px;
-  border-radius: 14px;
-  font-family: "Plex Arabic Display", var(--dre-font);
-  font-size: 13.5px;
-  font-weight: 500;
+  min-height: 54px;
+  padding: 9px 14px;
+  border-radius: 16px;
+  background: rgb(0 0 0 / .35);
+  border: 1px solid rgb(255 255 255 / .08);
+  color: #a1a1aa;
+  font-family: "Cairo", var(--dre-font);
+  text-align: start;
   white-space: nowrap;
-  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .15s ease;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip::before {
-  content: counter(dreph, arabic-indic);
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip:hover {
+  border-color: rgb(211 175 109 / .4);
+  color: #f1e9da;
+  transform: none;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-num {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  flex: 0 0 26px;
-  border-radius: 50%;
-  border: 1px solid rgb(211 175 109 / .5);
-  color: #d3af6d;
-  font-family: var(--dre-font);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 800;
+  background: rgb(255 255 255 / .07);
+  color: #a1a1aa;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip[aria-pressed=true] {
-  background: linear-gradient(140deg, #e3c78c, #c19a58);
-  border-color: #d3af6d;
-  color: #1a130a;
-  font-weight: 700;
-  box-shadow: 0 8px 22px -10px rgb(211 175 109 / .55);
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip[aria-pressed=true]::before {
-  background: #1a130a;
-  border-color: #1a130a;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-title { font-size: 12px; font-weight: 700; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-range { font-size: 10px; opacity: .75; margin-top: 1px; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-past {
+  border-color: rgb(211 175 109 / .3);
+  color: #efe7d7;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-past .dre-chip-num {
+  background: rgb(211 175 109 / .2);
   color: #e3c78c;
 }
-/* meters: thick track, fluid animation, label + % on one row */
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div {
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] {
+  background: #d3af6d;
+  border-color: #e3c78c;
+  color: #1a130a;
+  box-shadow: 0 0 26px -6px rgb(211 175 109 / .5);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] .dre-chip-num {
+  background: rgb(26 19 10 / .2);
+  color: #1a130a;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] .dre-chip-range {
+  color: rgb(26 19 10 / .8);
+  opacity: 1;
+  font-weight: 600;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chip-mine {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #d3af6d;
+  color: #1a130a;
+  align-self: center;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] .dre-chip-mine {
+  background: #1a130a;
+  color: #e3c78c;
+}
+
+/* === recovery: meters — label row + thin gradient bars, 500ms ease-out (reference timing) === */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meters {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  column-gap: 10px;
+  gap: 14px;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-meter {
-  grid-column: 1 / -1;
-  grid-row: 2;
+.dre-root .dre-route-recovery.dre-ivory .dre-meter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-kv-k {
+.dre-root .dre-route-recovery.dre-ivory .dre-meter-label {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a1a1aa;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-kv-k::after {
-  content: "";
-  width: 7px;
-  height: 7px;
+.dre-root .dre-route-recovery.dre-ivory .dre-meter-led {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #d3af6d;
-  box-shadow: 0 0 7px rgb(211 175 109 / .9);
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(2) .dre-kv-k::after {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #8fc79b;
-  box-shadow: 0 0 7px rgb(143 199 155 / .9);
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-led {
+  background: #e3c78c;
+  box-shadow: 0 0 8px rgb(227 199 140 / .8);
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-small {
-  font-family: Cairo, var(--dre-font);
-  font-size: 15px;
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:last-child .dre-meter-led {
+  background: #34d399;
+  box-shadow: 0 0 8px rgb(52 211 153 / .8);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-meter-val {
+  font-family: "Cairo", var(--dre-font);
+  font-size: 12.5px;
+  font-weight: 800;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-val { color: #e3c78c; }
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:last-child .dre-meter-val { color: #efe7d7; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meter {
+  height: 8px;
+  overflow: hidden;
+  background: rgb(0 0 0 / .55);
+  border: 1px solid rgb(255 255 255 / .06);
+  border-radius: 999px;
+  box-shadow: none;
+  cursor: default;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meter-fill {
+  transition: width .5s cubic-bezier(0, 0, .2, 1);
+  box-shadow: none;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meter-fill::after { display: none; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meter:hover .dre-meter-fill { filter: none; }
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-fill {
+  background: linear-gradient(to left, #e3c78c, #c19a58);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:last-child .dre-meter-fill {
+  background: linear-gradient(to left, #34d399, #2dd4bf, #38bdf8);
+}
+
+/* === recovery: stage banner === */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark {
+  background: linear-gradient(to left, #1c1712, #12100c 55%, #0b0908);
+  border: 1px solid rgb(211 175 109 / .3);
+  border-radius: 24px;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark .dre-kicker {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Cairo", var(--dre-font);
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgb(211 175 109 / .15);
+  border: 1px solid rgb(211 175 109 / .3);
+  color: #e3c78c;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-meter {
-  height: 10px;
-  background: rgb(255 255 255 / .09);
-  box-shadow: inset 0 1px 3px rgb(0 0 0 / .55);
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark .dre-h3 {
+  font-family: "Tajawal", "Cairo", var(--dre-font);
+  font-weight: 800;
+  font-size: 20px;
+  color: #f8f8fa;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-meter-fill {
-  transition: width 1s cubic-bezier(.22, .75, .25, 1);
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark .dre-sub {
+  font-size: 12.5px;
+  color: #a1a1aa;
+  line-height: 1.7;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter-fill {
-  background: linear-gradient(90deg, #a8823f, #e3c78c);
-  box-shadow: 0 0 14px rgb(211 175 109 / .35);
+.dre-root .dre-route-recovery .dre-badge-mine {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-inline-start: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #d3af6d;
+  color: #1a130a;
+  font-family: "Cairo", var(--dre-font);
+  font-size: 11px;
+  font-weight: 800;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter-fill::after {
-  background: radial-gradient(circle at 35% 30%, #fffdf6, #e3c78c 55%, #a8823f);
+.dre-root .dre-route-recovery .dre-badge-mine-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a130a;
+  animation: dreMinePulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
 }
-.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter + .dre-small {
-  color: #e3c78c !important;
+@keyframes dreMinePulse { 50% { opacity: .5; } }
+
+/* === recovery: cards, card heads, activity status cards === */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft { border-radius: 24px; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-item {
+  background: rgb(0 0 0 / .4);
+  border: 1px solid rgb(255 255 255 / .07);
+  border-radius: 16px;
 }
-/* activity status cards */
-.dre-root .dre-route-recovery .dre-panel-soft:has(> .dre-stack) > .dre-stack {
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-item .dre-kv-k {
+  font-size: 11px;
+  font-weight: 500;
+  color: #a1a1aa;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-item .dre-kv-v {
+  font-family: "Cairo", var(--dre-font);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #e3c78c;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-reached {
+  border-color: rgb(52 211 153 / .35);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-reached .dre-kv-v { color: #6ee7b7; }
+
+.dre-root .dre-route-recovery .dre-cardhead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgb(255 255 255 / .07);
+}
+.dre-root .dre-route-recovery .dre-cardhead-ico {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / .45);
+  border: 1px solid rgb(211 175 109 / .3);
+  color: #e3c78c;
+}
+.dre-root .dre-route-recovery .dre-cardhead-ico .dre-ico { width: 16px; height: 16px; }
+.dre-root .dre-route-recovery .dre-cardhead .dre-h3 {
+  margin: 0;
+  font-family: "Cairo", var(--dre-font);
+  font-size: 15px;
+  font-weight: 800;
+  color: #f8f8fa;
+}
+.dre-root .dre-route-recovery .dre-cardhead-sub {
+  font-size: 11px;
+  color: #a1a1aa;
+  margin-top: 2px;
+}
+
+/* activity rows -> status cards (override legacy stack dividers + Concept-3 rails) */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack:has(> .dre-act) {
   display: grid;
   gap: 10px;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft:has(> .dre-stack) > .dre-stack > div {
-  background: rgb(255 246 224 / .045);
-  border: 1px solid rgb(236 229 216 / .12);
-  border-radius: 14px;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > div.dre-act {
+  position: relative;
+  padding-block: 12px;
   padding: 12px 14px;
-  padding-inline-start: 18px;
+  padding-inline-start: 30px;
+  background: rgb(0 0 0 / .4);
+  border: 1px solid var(--act-br, rgb(255 255 255 / .08));
+  border-radius: 16px;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status {
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > div.dre-act + div.dre-act {
+  border-top: 1px solid var(--act-br, rgb(255 255 255 / .08));
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > div.dre-act::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 13px;
+  top: 17px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--act-dot, #8d8471);
+  box-shadow: 0 0 8px var(--act-dot, transparent);
+}
+.dre-root .dre-route-recovery .dre-act-available { --act-dot: #34d399; --act-br: rgb(52 211 153 / .16); }
+.dre-root .dre-route-recovery .dre-act-partial { --act-dot: #fbbf24; --act-br: rgb(245 158 11 / .16); }
+.dre-root .dre-route-recovery .dre-act-rest { --act-dot: #fb7185; --act-br: rgb(244 63 94 / .15); }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-small {
+  color: #a1a1aa;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-status {
   border-radius: 999px !important;
-  padding: 4px 11px !important;
-  letter-spacing: .04em !important;
+  padding: 4px 10px !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  gap: 0 !important;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-ok {
-  background: rgb(95 157 118 / .16) !important;
-  border: 1px solid rgb(95 157 118 / .5) !important;
-  color: #b7dcbc;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-status-dot { display: none !important; }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-status-ok {
+  background: rgb(52 211 153 / .15) !important;
+  border: 1px solid rgb(52 211 153 / .35) !important;
+  color: #6ee7b7 !important;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-partial {
-  background: rgb(211 175 109 / .14) !important;
-  border: 1px solid rgb(211 175 109 / .5) !important;
-  color: #e3cf9f;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-status-partial {
+  background: rgb(245 158 11 / .15) !important;
+  border: 1px solid rgb(251 191 36 / .35) !important;
+  color: #fcd34d !important;
 }
-.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-rest {
-  background: rgb(201 138 124 / .14) !important;
-  border: 1px solid rgb(201 138 124 / .5) !important;
-  color: #e0a99d;
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-status-rest {
+  background: rgb(244 63 94 / .15) !important;
+  border: 1px solid rgb(251 113 133 / .3) !important;
+  color: #fda4af !important;
 }
-/* phase navigation: next = gold primary */
-.dre-root .dre-route-recovery .dre-actions .dre-btn:last-child {
+
+/* === recovery: option cards, alerts, phase nav === */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-opt {
+  border-radius: 16px;
+  background: rgb(0 0 0 / .35);
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-opt:active { transform: scale(.98); }
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-opt[aria-pressed=true] {
+  background: linear-gradient(to left, #241d12, #16110a);
+  border-color: rgb(211 175 109 / .8);
+  box-shadow: 0 0 26px -6px rgb(211 175 109 / .34);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-alert { border-radius: 16px; }
+.dre-root .dre-route-recovery.dre-ivory .dre-actions .dre-btn:last-child {
   background: linear-gradient(140deg, #e3c78c, #c19a58);
   border-color: #d3af6d;
   color: #1a130a;
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: 0 10px 24px -10px rgb(211 175 109 / .5);
 }
-.dre-root .dre-route-recovery .dre-actions .dre-btn:disabled {
+.dre-root .dre-route-recovery.dre-ivory .dre-actions .dre-btn:last-child:hover {
+  background: linear-gradient(140deg, #eed9a8, #cba763);
+}
+.dre-root .dre-route-recovery.dre-ivory .dre-actions .dre-btn:disabled {
   opacity: .35;
+  box-shadow: none;
 }
+/* recovery section titles: small bold Cairo kickers (reference rhythm) */
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument > .dre-h3,
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument > div > .dre-h3 {
+  font-family: "Cairo", var(--dre-font);
+  font-size: 14px;
+  font-weight: 800;
+  color: #e3c78c;
+}
+
+/* Reference palette, density and type across every interactive model. */
+.dre-root .dre-route.dre-ivory .dre-instrument {
+  --dre-font: "Cairo", "Tajawal", system-ui, sans-serif;
+  --dre-gold: #c89d7c;
+  background: #0e0f14;
+  color: #f8f8fa;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-panel,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-panel-soft {
+  background: #0e0f14;
+  border: 1px solid rgb(255 255 255 / .08);
+  border-radius: 24px;
+  padding: 16px;
+}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-panel-dark {
+  background: linear-gradient(to left,#151720,#0e0f14,#050507);
+  border-color: rgb(200 157 124 / .3);
+  border-radius: 24px;
+  padding: 16px;
+}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-kv-item {
+  background: #050507;
+  border: 1px solid rgb(255 255 255 / .08);
+  border-radius: 16px;
+  padding: 12px;
+  font-family: "Cairo",sans-serif;
+}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt[aria-pressed=true] {
+  background: linear-gradient(to left,#151720,#0e0f14,#050507);
+  border-color: rgb(200 157 124 / .8);
+  box-shadow: 0 0 26px -6px rgb(200 157 124 / .34);
+}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-title {font-family:"Cairo",sans-serif;font-size:12px;font-weight:700;color:#f8f8fa;line-height:1.5}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-desc {font-family:"Cairo",sans-serif;font-size:11px;font-weight:400;color:#a1a1aa;line-height:1.625}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-sub,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-small {font-family:"Cairo",sans-serif;font-size:12px;font-weight:400;line-height:1.625;color:#a1a1aa;letter-spacing:0}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-h3 {font-size:18px;line-height:1.5;color:#f8f8fa}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-chip {font-family:"Cairo",sans-serif;font-size:12px;font-weight:700;letter-spacing:0;min-height:44px;border-radius:16px;background:#050507;color:#a1a1aa;border-color:rgb(255 255 255 / .08)}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-chip[aria-pressed=true] {background:#c89d7c;color:#050507;border-color:#dfb99b;box-shadow:0 0 26px -6px rgb(200 157 124 / .34)}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-btn {font-family:"Cairo",sans-serif;font-size:12px;font-weight:800;min-height:46px;border-radius:16px;letter-spacing:0;transition:transform .15s ease,background .2s ease,border-color .2s ease}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-btn-gold,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-btn-primary {background:#c89d7c;color:#050507;border-color:#dfb99b}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-input {font-family:"Cairo",sans-serif;background:#050507;color:#f8f8fa;border-radius:12px;min-height:46px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-fill {background:linear-gradient(to left,#dfb99b,#c89d7c);transition:width .5s cubic-bezier(0,0,.2,1)}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-bullets {font-family:"Cairo",sans-serif;font-size:12px;font-weight:400;line-height:1.625;color:rgb(248 248 250 / .9)}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-alert {border-radius:16px;font-family:"Cairo",sans-serif;font-size:12px;line-height:1.625}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument {padding:20px 16px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument > .dre-h3,
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument > div > .dre-h3 {font-size:12px;color:#dfb99b}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-item .dre-kv-v {color:#dfb99b;font-size:12px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-kv-item .dre-kv-k {font-size:11px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark .dre-h3 {font-size:18px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-dark .dre-kicker {color:#dfb99b;background:rgb(200 157 124 / .15);border-color:rgb(200 157 124 / .3)}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] {background:#c89d7c;border-color:#dfb99b;color:#050507}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meters {gap:14px}
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-fill {background:linear-gradient(to left,#dfb99b,#c89d7c)}
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-val {color:#dfb99b}
+.dre-root .dre-route-recovery.dre-ivory .dre-meter-led {box-shadow:none!important}
+.dre-root .dre-route-recovery.dre-ivory .dre-meterbox:first-child .dre-meter-led {background:#dfb99b}
+.dre-root .dre-route-recovery.dre-ivory .dre-cardhead .dre-h3 {font-family:"Cairo",sans-serif;font-size:14px;font-weight:700}
+.dre-root .dre-route-recovery.dre-ivory .dre-cardhead-sub {font-size:11px;font-weight:400;line-height:1.625}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > .dre-act {padding:12px;padding-inline-start:30px;background:#050507}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > .dre-act::before {box-shadow:none}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act > div > div:first-child {font-family:"Cairo",sans-serif;font-size:12px;font-weight:700!important;line-height:1.5}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act .dre-small {font-size:11px;line-height:1.625}
+.dre-root .dre-route-recovery.dre-ivory .dre-actions .dre-btn:last-child {background:#c89d7c;border-color:#dfb99b;color:#050507;box-shadow:none}
+.dre-root .dre-route-recovery.dre-ivory .dre-procedure-rail {display:flex;overflow-x:auto;gap:8px;scroll-snap-type:x proximity;scrollbar-width:none;padding:2px 0 10px}
+.dre-root .dre-route-recovery.dre-ivory .dre-procedure-rail .dre-opt {min-width:178px;flex:0 0 178px;scroll-snap-align:center;padding:10px 14px;text-align:start}
+.dre-root .dre-route-recovery.dre-ivory .dre-procedure-hint {font-size:11px;color:#a1a1aa;font-weight:400;line-height:1.625;margin-top:4px}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-route.dre-ivory .dre-instrument *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-grid-2 {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-panel-soft .dre-stack > div.dre-act::before {box-shadow:none}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-chips .dre-chip[aria-pressed=true] {box-shadow:0 0 26px -6px rgb(200 157 124 / .34)}
+
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-meters {background:#0e0f14;border:1px solid rgb(255 255 255 / .08);border-radius:16px;padding:16px;display:grid;gap:14px}
+.dre-root .dre-route-recovery.dre-ivory .dre-instrument .dre-act-available {--act-dot:#34d399;--act-br:rgb(52 211 153 / .15)}
+.dre-root .dre-route.dre-ivory .dre-tabbar {display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;gap:8px;scrollbar-width:none}
+.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab {font-family:"Cairo",sans-serif;font-weight:700;font-size:12px;letter-spacing:0;border-radius:16px;min-height:50px;flex:0 0 auto;scroll-snap-align:center;transition:background .2s ease,color .2s ease,transform .15s ease}
+.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab.on {background:#c89d7c;color:#050507;border-color:#dfb99b}
+.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab:active {transform:scale(.97)}
+.dre-root .dre-route.dre-ivory .dre-instrument:not([hidden]):not(.dre-panel) {animation:dreStageIn .3s cubic-bezier(.22,1,.36,1) both}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt:active {transform:scale(.98)}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt {transition:border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .15s ease}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-route.dre-ivory .dre-instrument:not([hidden]){animation:none}}
+/* Keep clinical alert copy readable on the darker reference surfaces. */
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-alert-ok,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-alert-ok :is(strong,b,p,span) {color:#bbdfcb}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-alert-warn,
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-alert-warn :is(strong,b,p,span) {color:#e5c386}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt[aria-pressed=true] .dre-opt-check {background:#c89d7c;color:#050507;border-color:#dfb99b}
+.dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument :is(.dre-h1,.dre-h2,.dre-h3) {font-family:"Tajawal","Cairo",sans-serif;font-weight:800;letter-spacing:0}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-h2 {font-size:20px;line-height:1.4}
