@@ -19491,6 +19491,11 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { "aria-hidden": "true", children: "\u2197" })
           ] }) })
         ] }),
+      (0, import_jsx_runtime31.jsx)("dre-patient-experiences",{lang,key:lang}),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("section", { className: "dre7-team-sec", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("figure", { className: "dre7-team", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "dre7-photoframe", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("img", { src: TEAM_PHOTO, alt: ar2 ? "\u0627\u0644\u0641\u0631\u064A\u0642 \u0627\u0644\u062C\u0631\u0627\u062D\u064A \u0644\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631 \u062F\u0627\u062E\u0644 \u063A\u0631\u0641\u0629 \u0627\u0644\u0639\u0645\u0644\u064A\u0627\u062A" : "Dr. Ahmed Elnagar's surgical team in the operating room", loading: "lazy" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("figcaption", { children: ar2 ? "\u0627\u0644\u0641\u0631\u064A\u0642 \u0627\u0644\u062C\u0631\u0627\u062D\u064A \u0627\u0644\u0643\u0627\u0645\u0644 \u062E\u0644\u0641 \u0643\u0644 \u0639\u0645\u0644\u064A\u0629 \xB7 \u063A\u0631\u0641\u0629 \u0627\u0644\u0639\u0645\u0644\u064A\u0627\u062A" : "The full surgical team behind every procedure \xB7 the OR" })
+        ] }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "dre7-faq-sec", children: [
           /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("header", { className: "dre7-sechead", children: [
             /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dre7-seclabel", children: ar2 ? "04 \xB7 \u0623\u0633\u0626\u0644\u0629 \u0642\u0628\u0644 \u0627\u0644\u0627\u0633\u062A\u0634\u0627\u0631\u0629" : "04 \xB7 BEFORE YOU ASK" }),
@@ -19507,10 +19512,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "dre-faq-body", children: ar2 ? f2.arA : f2.enA })
           ] }, i)) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("section", { className: "dre7-team-sec", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("figure", { className: "dre7-team", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "dre7-photoframe", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("img", { src: TEAM_PHOTO, alt: ar2 ? "\u0627\u0644\u0641\u0631\u064A\u0642 \u0627\u0644\u062C\u0631\u0627\u062D\u064A \u0644\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631 \u062F\u0627\u062E\u0644 \u063A\u0631\u0641\u0629 \u0627\u0644\u0639\u0645\u0644\u064A\u0627\u062A" : "Dr. Ahmed Elnagar's surgical team in the operating room", loading: "lazy" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("figcaption", { children: ar2 ? "\u0627\u0644\u0641\u0631\u064A\u0642 \u0627\u0644\u062C\u0631\u0627\u062D\u064A \u0627\u0644\u0643\u0627\u0645\u0644 \u062E\u0644\u0641 \u0643\u0644 \u0639\u0645\u0644\u064A\u0629 \xB7 \u063A\u0631\u0641\u0629 \u0627\u0644\u0639\u0645\u0644\u064A\u0627\u062A" : "The full surgical team behind every procedure \xB7 the OR" })
-        ] }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "dre7-branches-sec", children: [
           /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("header", { className: "dre7-sechead", children: [
             /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dre7-seclabel", children: ar2 ? "05 \xB7 \u0639\u064A\u0627\u062F\u0627\u062A \u0627\u0644\u0642\u0627\u0647\u0631\u0629" : "05 \xB7 CAIRO CLINICS" }),
@@ -19556,7 +19557,6 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { className: "dre5-phone", href: "tel:+201210304060", dir: "ltr", children: "+20 121 030 4060" })
         ] })
       ] }),
-      (0, import_jsx_runtime31.jsx)("dre-patient-experiences",{lang,key:lang}),
       /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dre5-social", children: [
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.instagram.com/dr.ahmed_elnajar", target: "_blank", rel: "noreferrer", children: "Instagram \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { href: "https://www.facebook.com/share/1CfAqiRg42/?mibextid=wwXIfr", target: "_blank", rel: "noreferrer", children: "Facebook \u2197" }),
