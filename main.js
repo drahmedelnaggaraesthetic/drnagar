@@ -25388,8 +25388,8 @@ react-router/dist/development/index.mjs:
   if(!(e instanceof HTMLInputElement)||e.type!=='range'||!e.closest('.dre-instrument'))return;
   const min=Number(e.min||0),max=Number(e.max||100),p=max>min?Math.max(0,Math.min(1,(Number(e.value)-min)/(max-min))):0;
   const width=e.getBoundingClientRect().width;if(!width)return;
-  const rtl=getComputedStyle(e).direction==='rtl',x=9+p*Math.max(0,width-18);
-  const fill=`linear-gradient(to ${rtl?'left':'right'},#34d399 0px,#2dd4bf ${x/2}px,#38bdf8 ${x}px,#050507 ${x}px,#050507 100%)`;
+  const rtl=getComputedStyle(e).direction==='rtl',x=7+p*Math.max(0,width-14);
+  const fill=`linear-gradient(to ${rtl?'left':'right'},#dfb99b 0px,#c89d7c ${x}px,#050507 ${x}px,#050507 100%)`;
   if(e.style.getPropertyValue('--range-fill')!==fill)e.style.setProperty('--range-fill',fill);
   const pct=(p*100)+'%';if(e.style.getPropertyValue('--range-progress')!==pct)e.style.setProperty('--range-progress',pct);
  };
