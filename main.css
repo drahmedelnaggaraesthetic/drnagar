@@ -14864,20 +14864,20 @@ body {
 .dre5-contact .dre5-phone { display: none; }
 
 
-/* === recovery route: instrument panels bleed edge-to-edge (no ivory gutters) === */
-.dre-root .dre-route-recovery.dre-ivory { overflow-x: clip; }
-.dre-root .dre-route-recovery.dre-ivory .dre-panel.dre-instrument {
+/* === route sheets: instrument panels bleed edge-to-edge (no ivory gutters), all routes === */
+.dre-root .dre-route.dre-ivory { overflow-x: clip; }
+.dre-root .dre-route.dre-ivory .dre-instrument {
   margin-inline: calc(-1 * clamp(16px, 4vw, 44px) - 1px);
   border-inline: 0;
   border-radius: 0;
   padding-inline: calc(clamp(16px, 4vw, 44px) + 14px);
 }
-.dre-root .dre-route-recovery .dre-stack > .dre-panel.dre-instrument + .dre-panel.dre-instrument {
+.dre-root .dre-route .dre-instrument + .dre-instrument {
   margin-top: 0;
   border-top: 1px solid rgb(211 175 109 / .14);
 }
 
-/* === recovery meters: pearl-champagne, slider thumb, interactive affordance === */
+/* === meters in dark instruments: emerald, slider thumb, interactive affordance === */
 .dre-root .dre-ivory .dre-instrument .dre-meter {
   height: 12px;
   overflow: visible;
@@ -14911,7 +14911,7 @@ body {
   letter-spacing: .04em;
 }
 
-.dre-root .dre-route-recovery { --mc1: #5f9d76; --mc2: #b7dcbc; --mglow: rgb(150 210 165 / .35); }
+.dre-root { --mc1: #5f9d76; --mc2: #b7dcbc; --mglow: rgb(150 210 165 / .35); }
 /* C3: status rail on each row + minimal LED text tag */
 .dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div { position: relative; padding-inline-start: 16px; }
 .dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div::before {
@@ -14925,3 +14925,10 @@ body {
 .dre-root .dre-ivory .dre-instrument .dre-status-ok .dre-status-dot { background: #8fc79b !important; box-shadow: 0 0 7px rgb(143 199 155 / .9) !important; }
 .dre-root .dre-ivory .dre-instrument .dre-status-partial .dre-status-dot { background: #d3af6d !important; box-shadow: 0 0 7px rgb(211 175 109 / .9) !important; }
 .dre-root .dre-ivory .dre-instrument .dre-status-rest .dre-status-dot { background: #c98a7c !important; box-shadow: 0 0 7px rgb(201 138 124 / .9) !important; }
+
+/* === emerald accent for real sliders and gauges inside dark instruments (site-wide meter treatment) === */
+.dre-root .dre-ivory .dre-instrument input[type=range] { accent-color: #6fae85; }
+.dre-root .dre-ivory .dre-instrument .dre-gauge-pin {
+  background: linear-gradient(140deg, #b7dcbc, #5f9d76);
+  box-shadow: 0 0 10px rgb(150 210 165 / .7);
+}
