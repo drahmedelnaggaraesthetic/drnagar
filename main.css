@@ -15988,3 +15988,43 @@ body {
 .dre-root .dre-route-library .dre-library-content :is(.dre-sub,.dre-small,.dre-field-lbl,.dre-input,.dre-panel){font-size:16px!important;line-height:1.85!important}
 .dre-root .dre-route-library .dre-library-content :is(.dre-chip,.dre-btn-ghost){font-size:16px!important;line-height:1.7!important;min-height:48px!important}
 }
+
+/* Reviewed audit refinement: preserve full desktop artwork, live caption beside it. */
+@media(min-width:760px){
+.dre-root .dre-route-banner{display:grid;grid-template-columns:minmax(240px,340px) 1fr;align-items:center;gap:32px;padding:24px;background:#14120e;border-color:#8e7956;border-radius:12px}
+.dre-root .dre-route-banner img{width:100%;height:280px;object-fit:contain!important;object-position:center!important;filter:none}
+.dre-root .dre-route-banner::after{display:none}
+.dre-root .dre-route-banner figcaption{position:static;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;background:none;padding:16px;color:#f4ead5}
+.dre-root .dre-route-banner figcaption b{font-size:30px;line-height:1.6;color:#f4ead5}
+.dre-root .dre-route-banner figcaption span{font-size:12px;color:#d6bd8c}
+}
+/* All specialty choices remain visible, three stacked or four in a balanced grid. */
+@media(max-width:600px){
+.dre-root .dre-route .dre-specialty-tabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible!important;padding:12px 0!important;gap:8px;scroll-snap-type:none}
+.dre-root .dre-route .dre-specialty-tabs:has(>.dre-tab:nth-child(3):last-child){grid-template-columns:1fr}
+.dre-root .dre-route .dre-specialty-tabs .dre-tab{min-width:0;width:100%;min-height:55px;white-space:normal;line-height:1.65;padding:10px;border:1px solid #b6a17d;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;color:#625238}
+.dre-root .dre-route .dre-specialty-tabs .dre-tab::before{display:none!important}
+.dre-root .dre-route .dre-specialty-tabs .dre-tab.on{background:#c89d7c;color:#231c15;border-color:#99744f}
+}
+.dre-root :is(.dre-specialty-tabs .dre-tab,.dre-edcar-btn,.dre-edcar-dot):focus-visible{outline:3px solid #755a31;outline-offset:3px}
+/* Comfortable click targets, the dot itself stays small. */
+.dre-root .dre-edcar-bar{flex-wrap:wrap;justify-content:space-between;gap:8px}
+.dre-root .dre-edcar-btn{width:44px;height:44px;min-width:44px;min-height:44px}
+.dre-root .dre-edcar-dots{order:3;flex-basis:100%;display:flex;justify-content:center;flex-wrap:wrap;gap:0}
+.dre-root .dre-edcar-dot,.dre-root .dre-edcar-dot.on{width:44px;height:44px;min-width:44px;min-height:44px;border:0;background:transparent;box-shadow:none;display:grid;place-items:center;transform:none;padding:0}
+.dre-root .dre-edcar-dot::after{content:"";width:7px;height:7px;border:1px solid #9d7d41;border-radius:50%;background:#f3e8ce}
+.dre-root .dre-edcar-dot.on::after{width:9px;height:9px;background:#9d7d41}
+.dre-root .dre-edcar-count{font-size:14px;color:#665536;line-height:1.8;unicode-bidi:plaintext}
+.dre-root :is(.dre-guide-hint a,.dre5-social a,.dre7-reviews-link,.dre7-clinic a,.dre7-textlink){min-height:44px;display:inline-flex;align-items:center;padding-block:8px}
+.dre-root .dre-bidi-passage{text-align:start;unicode-bidi:plaintext}
+/* Supporting text, scoped away from Library and the separate Recovery reference. */
+.dre-root :is(.dre-route-assessment,.dre-route-body,.dre-route-face,.dre-route-rhino) .dre-proc .dre-small{font-size:15px!important;line-height:1.9!important;color:#64563f!important;opacity:1!important}
+.dre-root :is(.dre-route-assessment,.dre-route-body,.dre-route-face,.dre-route-rhino) .dre-proc :is(.dre-h2,.dre-h3){line-height:1.8;overflow-wrap:normal;unicode-bidi:plaintext}
+.dre-root :is(.dre-route-assessment,.dre-route-body,.dre-route-face,.dre-route-rhino) .dre-instrument :is(.dre-small,.dre-opt-desc){font-size:15px!important;line-height:1.85!important;color:#c5bdaf!important}
+.dre-root :is(.dre-route-assessment,.dre-route-body,.dre-route-face,.dre-route-rhino) .dre-instrument .dre-field-lbl{font-size:14px!important;line-height:1.8!important}
+.dre-root .dre6-foot-meta{font-size:14px;line-height:1.9;color:#b8ad98}
+@media(max-width:600px){.dre-root .dre-route.dre-ivory .dre-specialty-tabs .dre-tab{min-height:58px!important;white-space:normal!important;padding:12px!important;line-height:1.65!important;overflow:visible!important}}
+.dre-root :is(.dre7-greviews-link,.dre5-social a){min-height:44px!important;display:inline-flex!important;align-items:center;padding-block:8px!important}
+.dre-root .dre-route-banner figcaption{unicode-bidi:plaintext}
+.dre-root .dre-proc .dre-ltr{direction:ltr!important;unicode-bidi:isolate!important;text-align:start!important}
+.dre-root .dre-route.dre-ivory .dre-specialty-tabs .dre-tab[aria-selected=true]{background:#c89d7c!important;color:#231c15!important;border-color:#99744f!important;box-shadow:inset 0 0 0 1px #99744f!important}

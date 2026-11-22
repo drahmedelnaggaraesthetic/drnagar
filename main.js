@@ -19686,6 +19686,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [dateIdx, setDateIdx] = (0, import_react35.useState)(0);
     const [cairoHour, setCairoHour] = (0, import_react35.useState)(20);
     const [flexible, setFlexible] = (0, import_react35.useState)(false);
+    const [scheduleTouched, setScheduleTouched] = (0, import_react35.useState)(false);
     const [fullName, setFullName] = (0, import_react35.useState)("");
     const [gender, setGender] = (0, import_react35.useState)(null);
     const [city, setCity] = (0, import_react35.useState)("");
@@ -19707,7 +19708,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const bmi = bmiInfo(h2, w2, ar2);
     const readiness = Math.min(
       100,
-      20 + (flexible || cairoHour ? 20 : 0) + (fullName.trim().length >= 2 ? 20 : 0) + (city.trim().length >= 2 ? 10 : 0) + (procs.length > 0 ? 15 : 0) + (questions.length > 0 || notes.trim().length > 4 ? 15 : 0)
+      (scheduleTouched ? 20 : 0) + (fullName.trim().length >= 2 ? 20 : 0) + (city.trim().length >= 2 ? 15 : 0) + (procs.length > 0 ? 25 : 0) + (questions.length > 0 || notes.trim().length > 4 ? 20 : 0)
     );
     const toggle = (list, set, id2) => set(list.includes(id2) ? list.filter((x2) => x2 !== id2) : [...list, id2]);
     const conv = cairoHour != null ? consultationLocal(dateObj, cairoHour, tz.id) : null;
@@ -19917,6 +19918,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             const c = consultationLocal(dateObj, ch, tz.id);
             return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "dre-opt", "aria-pressed": !flexible && cairoHour === ch, onClick: () => {
               setCairoHour(ch);
+              setScheduleTouched(true);
               setFlexible(false);
             }, children: [
               /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "dre-opt-title", children: [
@@ -19934,7 +19936,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               ] })
             ] }, ch);
           }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Opt, { selected: flexible, onClick: () => setFlexible(true), title: t.flexTitle, desc: t.flexDesc }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Opt, { selected: flexible, onClick: () => { setFlexible(true); setScheduleTouched(true); }, title: t.flexTitle, desc: t.flexDesc }),
           /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "dre-btn dre-btn-primary dre-btn-block", onClick: () => setTab(1), children: t.ctaToTab2 })
         ] })
       ] }),
@@ -20254,7 +20256,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("img", { src: banner.src, alt: banner.alt, style: { objectPosition: banner.pos } }),
         /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figcaption", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: ROUTE_IDS[id2] }),
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("b", { children: banner.title })
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("b", { children: lang === "ar" ? banner.title : ({assessment:"Assessment",body:"Body contouring",recovery:"Recovery journey",library:"Patient knowledge library"}[id2]) })
         ] })
       ] }),
       children,
@@ -20392,7 +20394,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Link, { to: "/library", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0643\u0627\u0645\u0644\u0629 \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "\u0643\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0645\u062A\u0627\u062D\u0629 \u0628\u062F\u0648\u0646 \u0625\u0643\u0645\u0627\u0644 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-tabbar", role: "tablist", children: [["match", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["compare", "\u0645\u0642\u0627\u0631\u0646 \u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"], ["tools", "\u062D\u0627\u0633\u0628\u0627\u062A \u0627\u0644\u062C\u0627\u0647\u0632\u064A\u0629"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-tabbar dre-specialty-tabs", role: "tablist", onKeyDown: phoneTabGridKeys, children: [["match", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["compare", "\u0645\u0642\u0627\u0631\u0646 \u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"], ["tools", "\u062D\u0627\u0633\u0628\u0627\u062A \u0627\u0644\u062C\u0627\u0647\u0632\u064A\u0629"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === id2, tabIndex: tab === id2 ? 0 : -1, className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
       /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { hidden: tab !== "match", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Wizard, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { hidden: tab !== "compare", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Compare, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { hidden: tab !== "tools", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(MiniTools, {}) }),
@@ -20991,13 +20993,15 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Link, { to: "/library", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0643\u0627\u0645\u0644\u0629 \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { children: "\u0643\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0645\u062A\u0627\u062D\u0629 \u0628\u062F\u0648\u0646 \u0625\u0643\u0645\u0627\u0644 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "dre-tabbar", role: "tablist", children: [["enc", "\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629"], ["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["cases", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A \u0648\u0627\u0644\u0645\u0642\u0627\u0631\u0646"], ["tools", "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062A\u062E\u0637\u064A\u0637"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("button", { className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "dre-tabbar dre-specialty-tabs", role: "tablist", onKeyDown: phoneTabGridKeys, children: [["enc", "\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629"], ["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["cases", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A \u0648\u0627\u0644\u0645\u0642\u0627\u0631\u0646"], ["tools", "\u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062A\u062E\u0637\u064A\u0637"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === id2, tabIndex: tab === id2 ? 0 : -1, className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
       tab === "enc" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Encyclopedia, { goAssess: () => setTab("assess") }),
       /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { hidden: tab !== "assess", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(FaceWizard, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { hidden: tab !== "cases", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(CasesAndCompare, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { hidden: tab !== "tools", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(FaceTools, {}) })
     ] });
   }
+function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][^)]*\))/g).map((text,i)=>/^\([A-Za-z0-9]/.test(text)?(0,import_jsx_runtime39.jsx)("bdi",{dir:"ltr",style:{whiteSpace:"nowrap"},children:text},i):text);}
+
   function Encyclopedia({ goAssess }) {
     const [cat, setCat] = (0, import_react38.useState)("all");
     const [open, setOpen] = (0, import_react38.useState)("");
@@ -21037,7 +21041,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "dre-badge", children: CAT_LABELS[p.cat] }),
             /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "dre-badge dre-badge-gold", children: toAr(i + 1) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "dre-h3", style: { margin: 0 }, children: p.name }),
+          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "dre-h3", style: { margin: 0 }, children: isolateClinicalLatin(p.name) }),
           /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "dre-small dre-ltr", style: { textAlign: "end", opacity: 0.65 }, children: p.en }),
           /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: "dre-small", style: { marginTop: 4 }, children: [
             "\u0627\u0644\u062A\u0639\u0627\u0641\u064A: ",
@@ -21665,7 +21669,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Link, { to: "/library", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0643\u0627\u0645\u0644\u0629 \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: "\u0643\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0645\u062A\u0627\u062D\u0629 \u0628\u062F\u0648\u0646 \u0625\u0643\u0645\u0627\u0644 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "dre-tabbar", role: "tablist", children: [["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["encyc", "\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"], ["tools", "\u0623\u062F\u0648\u0627\u062A \u0648\u0645\u0642\u0627\u0631\u0646\u0627\u062A"], ["gallery", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "dre-tabbar dre-specialty-tabs", role: "tablist", onKeyDown: phoneTabGridKeys, children: [["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0630\u0643\u064A"], ["encyc", "\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"], ["tools", "\u0623\u062F\u0648\u0627\u062A \u0648\u0645\u0642\u0627\u0631\u0646\u0627\u062A"], ["gallery", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === id2, tabIndex: tab === id2 ? 0 : -1, className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
       /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { hidden: tab !== "assess", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(BodyWizard, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { hidden: tab !== "encyc", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(BodyEncyclopedia, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { hidden: tab !== "tools", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(BodyTools, {}) }),
@@ -22395,7 +22399,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Link, { to: "/library", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0643\u0627\u0645\u0644\u0629 \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { children: "\u0643\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0645\u062A\u0627\u062D\u0629 \u0628\u062F\u0648\u0646 \u0625\u0643\u0645\u0627\u0644 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "dre-tabbar", role: "tablist", children: [["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0648\u0627\u0644\u0635\u0648\u0631"], ["encyc", "\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062A\u062D\u0641\u0638\u064A"], ["sim", "\u0645\u062D\u0627\u0643\u064A \u0648\u062E\u0631\u0627\u0641\u0627\u062A"], ["gallery", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("button", { className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "dre-tabbar dre-specialty-tabs", role: "tablist", onKeyDown: phoneTabGridKeys, children: [["assess", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0648\u0627\u0644\u0635\u0648\u0631"], ["encyc", "\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062A\u062D\u0641\u0638\u064A"], ["sim", "\u0645\u062D\u0627\u0643\u064A \u0648\u062E\u0631\u0627\u0641\u0627\u062A"], ["gallery", "\u0627\u0644\u062D\u0627\u0644\u0627\u062A"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === id2, tabIndex: tab === id2 ? 0 : -1, className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { hidden: tab !== "assess", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(RhinoWizard, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { hidden: tab !== "encyc", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(RhinoEncyclopedia, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { hidden: tab !== "sim", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(RhinoSimulator, {}) }),
@@ -25604,11 +25608,25 @@ function phoneTabGridKeys(event) {
   else if (event.key === 'End') next = tabs.length - 1;
   else if (event.key === 'ArrowRight') next += rtl ? -1 : 1;
   else if (event.key === 'ArrowLeft') next += rtl ? 1 : -1;
-  else if (grid && event.key === 'ArrowDown') next += 2;
-  else if (grid && event.key === 'ArrowUp') next -= 2;
+  else if (grid && event.key === 'ArrowDown') next += getComputedStyle(event.currentTarget).gridTemplateColumns.split(' ').length;
+  else if (grid && event.key === 'ArrowUp') next -= getComputedStyle(event.currentTarget).gridTemplateColumns.split(' ').length;
   else return;
   event.preventDefault();
   next = (next + tabs.length) % tabs.length;
   tabs[next].focus();
   tabs[next].click();
 }
+
+// Preserve the reading direction of untranslated passages without changing their words.
+(() => {
+ const mark = () => {
+  document.querySelectorAll('.dre-route:not(.dre-route-library) :is(h1,h2,h3,p,label,summary,.dre-h1,.dre-h2,.dre-h3,.dre-sub,.dre-small,.dre-field-lbl,.dre-opt-title,.dre-opt-desc,.dre-tab)').forEach(e => {
+   if(e.closest('dre-recovery-reference') || e.querySelector('input,textarea,select')) return;
+   const text=e.textContent||'';
+   if(/[\u0600-\u06ff]/.test(text)){ if(e.getAttribute('dir')!=='rtl')e.setAttribute('dir','rtl'); e.classList.add('dre-bidi-passage'); }
+   else if(/[A-Za-z]/.test(text)){if(e.getAttribute('dir')!=='ltr')e.setAttribute('dir','ltr');e.classList.remove('dre-bidi-passage');}
+  });
+ };
+ let queued=false;const scan=()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;mark();});}};
+ new MutationObserver(scan).observe(document.getElementById('root'),{childList:true,subtree:true,characterData:true});scan();
+})();
