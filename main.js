@@ -19056,7 +19056,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var hero_portrait_default = "./assets/JGDZ6EXT.jpg";
 
   // src/hero-photo.ts
-  var HERO_COVER = "./assets/UW2MGOG6.jpg";
+  var HERO_COVER = hero_portrait_default;
   var HERO_COVER_ALT_AR = "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631 \u0628\u0627\u0644\u0628\u0627\u0644\u0637\u0648 \u0627\u0644\u0623\u0628\u064A\u0636 \u0623\u0645\u0627\u0645 \u0639\u0644\u0645 \u0645\u0635\u0631\u060C \u0627\u0644\u0635\u0648\u0631\u0629 \u0627\u0644\u0631\u0633\u0645\u064A\u0629 \u0644\u0644\u0628\u0648\u0627\u0628\u0629";
   var HERO_COVER_ALT_EN = "Dr. Ahmed Elnagar in his white coat before the Egyptian flag, the official portal portrait";
 

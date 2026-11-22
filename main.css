@@ -16039,14 +16039,3 @@ body {
 .dre-root .dre-route-library .dre-library-head .dre-sub{font-size:16px!important}
 }
 @media(max-width:759px){.dre-root .dre-route-library .dre-library-head .dre-h1{max-width:100%!important}}
-
-/* The general digital gateway belongs at the Home entrance, not the Library. */
-.dre-root .dre7-cover-frame{outline:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;max-width:410px;margin-inline:auto;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 88%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
-.dre-root .dre7-cover-frame img{width:100%!important;height:auto!important;object-fit:contain!important;filter:none!important}
-@media(max-width:759px){.dre-root .dre7-cover-frame{max-width:340px}}
-@media(min-width:1000px){
-.dre-root .dre7-cover{display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:60px;align-items:center}
-.dre-root .dre7-cover-inner{max-width:none;min-width:0}
-.dre-root .dre7-cover-figure{margin:0!important}
-.dre-root .dre7-cover-frame{max-width:390px}
-}
