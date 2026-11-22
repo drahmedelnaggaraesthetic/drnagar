@@ -15712,3 +15712,18 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-thumb {-webkit-appearance:none;width:18px;height:18px;margin-top:-6px;border-radius:50%;background:#34d399;border:2px solid #0e0f14;box-shadow:0 0 0 1px rgb(52 211 153 / .35),0 0 14px rgb(52 211 153 / .2)}
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]:active::-webkit-slider-thumb {box-shadow:0 0 0 5px rgb(52 211 153 / .15)}
 .dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:18px}
+
+/* Slightly larger reading/UI type requested after the reference-fidelity review. */
+.dre-root .dre-route.dre-ivory .dre-instrument {font-size:14px}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-opt-title,.dre-chip,.dre-btn,.dre-sub,.dre-small,.dre-bullets,.dre-alert) {font-size:13px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-desc {font-size:12px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-h3,
+.dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:19.5px}
+.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab {font-size:13px}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 10px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:10px"] {font-size:11px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 11px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:11px"] {font-size:12px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 12px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:12px"] {font-size:13px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 13px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:13px"] {font-size:14px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 14px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:14px"] {font-size:15px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 15px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:15px"] {font-size:16px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 16px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:16px"] {font-size:17px!important}
