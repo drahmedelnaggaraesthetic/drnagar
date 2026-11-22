@@ -14933,50 +14933,8 @@ body {
   box-shadow: 0 0 10px rgb(150 210 165 / .7);
 }
 
-/* === masthead: compact on scroll, auto-hide on scroll down (mobile) === */
-@media (max-width: 767px) {
-  .dre-root .dre-masthead {
-    transition: transform .32s ease;
-  }
-  .dre-root .dre-masthead.dre-mh-hidden {
-    transform: translateY(-103%);
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-brandline {
-    flex-wrap: nowrap;
-    row-gap: 0;
-    padding-bottom: 8px;
-    gap: 10px;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-wordmark small {
-    display: none;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-brandname .dre-wordmark {
-    font-size: 15px;
-    line-height: 1.15;
-    white-space: nowrap;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-brandname .dre-wordmark > span {
-    font-size: 15px;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-brandcta {
-    font-size: 9px;
-    min-height: 34px;
-    padding: 3px 0;
-    white-space: nowrap;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-chips {
-    gap: 6px;
-  }
-  .dre-root .dre-masthead.dre-mh-compact .dre-chips .dre-chip {
-    min-height: 30px;
-    padding: 3px 10px;
-    font-size: 10px;
-  }
-  .dre-root .dre-masthead .dre-navigation[open] > nav {
-    max-height: 58vh;
-    overflow-y: auto;
-  }
-}
+/* Keep the open mobile menu scrollable without changing header geometry. */
+@media(max-width:767px){.dre-root .dre-masthead .dre-navigation[open]>nav{max-height:58svh;overflow-y:auto}}
 
 /* === portal index: editorial rows instead of boxed cards === */
 .dre-root .dre7-journey-links {
@@ -16054,3 +16012,10 @@ content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-wid
 .dre-root .dre-masthead .dre-navigation nav a[data-section-available=true]{gap:7px}
 .dre-root .dre-masthead .dre-navigation>summary{justify-content:flex-start!important}
 .dre-root .dre-masthead .dre-navigation>summary>span{margin-inline-start:auto}
+
+/* Only Home keeps its availability marker inside the nine-card mobile menu. */
+.dre-root .dre-masthead .dre-navigation nav a[data-section-available=true]:not([href="/#/"]):not([href="#/"]):not([href="/"])>span::before{content:none!important;display:none!important}
+/* Keep mobile header geometry stable while iOS browser bars expand and contract. */
+@media(max-width:767px){
+ .dre-root .dre-masthead{transition:none!important;transform:none!important;background:#0c0a05!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow-anchor:none}
+}

@@ -23246,13 +23246,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   function WaFab() {
     const { lang } = import_react44.default.useContext(LangCtx);
     const ar2 = lang === "ar";
-    const [show, setShow] = (0, import_react44.useState)(false);
-    (0, import_react44.useEffect)(() => {
-      const onScroll = () => setShow(window.scrollY > 420);
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+    const show = true;
     return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
       "a",
       {
@@ -23462,38 +23456,7 @@ react-router/dist/development/index.mjs:
    *)
 */
 
-/* masthead: compact on scroll, auto-hide on scroll down, return on scroll up (mobile) */
-(() => {
-  const init = () => {
-    const mh = document.querySelector(".dre-masthead");
-    if (!mh) return false;
-    const nav = mh.querySelector(".dre-navigation");
-    let lastY = window.scrollY;
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      const y = window.scrollY;
-      const menuOpen = !!(nav && nav.open);
-      mh.classList.toggle("dre-mh-compact", y > 90);
-      if (menuOpen || y <= 90 || y < lastY - 4) mh.classList.remove("dre-mh-hidden");
-      else if (y > lastY + 4 && y > 170) mh.classList.add("dre-mh-hidden");
-      lastY = y;
-    };
-    window.addEventListener("scroll", () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    if (nav) nav.addEventListener("toggle", () => {
-      if (nav.open) mh.classList.remove("dre-mh-hidden");
-    });
-    update();
-    return true;
-  };
-  if (!init()) {
-    const mo = new MutationObserver(() => { if (init()) mo.disconnect(); });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
-  }
-})();
-
+/* Stable masthead: no scroll-driven resizing or direction toggles. */
 /* portal index v2: staggered reveal + tap-to-expand preview rows */
 (() => {
   const PREV = {
@@ -25576,22 +25539,22 @@ react-router/dist/development/index.mjs:
  };
  new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(mark);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true});mark();
 })();
-/* Reading-state contact control: no new communication behavior. */
+/* Reading-state contact control: compact until the reader returns to the top. */
 (() => {
- let lastY=scrollY,upDistance=0,queued=false,collapsed=false;
+ let queued=false;
  const update=()=>{
-  queued=false;const y=scrollY,delta=y-lastY;
-  if(delta>3){collapsed=true;upDistance=0;}else if(delta<0){upDistance-=delta;if(upDistance>70)collapsed=false;}
-  if(y<480)collapsed=false;lastY=y;
+  queued=false;
   const fab=document.querySelector('.dre-wafab');if(!fab)return;
   const nearContact=[...document.querySelectorAll('.dre5-contact,.dre-consultation .dre-btn-wa')].some(e=>{const r=e.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;});
-  const active=document.activeElement;const keyboard=active&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)&&(!visualViewport||visualViewport.height<innerHeight*.82);
-  const modal=!!document.querySelector('dialog[open],[aria-modal="true"],.dre-lightbox,.dre-image-modal');
-  fab.classList.toggle('reading-icon',collapsed&&!nearContact);fab.classList.toggle('context-hidden',keyboard||modal);
+  const active=document.activeElement;const keyboard=active&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName);
+  const modal=!!document.querySelector('dialog[open],[aria-modal="true"],.dre-lightbox,.dre-image-modal,.dre-navigation[open]');
+  fab.classList.toggle('reading-icon',scrollY>120);
+  fab.classList.toggle('context-hidden',keyboard||modal||nearContact);
+
  };
  const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
- addEventListener('scroll',schedule,{passive:true});addEventListener('focusin',schedule);addEventListener('focusout',()=>setTimeout(schedule,100));visualViewport?.addEventListener('resize',schedule);
- new MutationObserver(schedule).observe(document.getElementById('root'),{childList:true,subtree:true});schedule();
+ addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});addEventListener('focusin',schedule);addEventListener('focusout',()=>setTimeout(schedule,100));visualViewport?.addEventListener('resize',schedule);
+ new MutationObserver(schedule).observe(document.getElementById('root'),{childList:true,subtree:true,attributes:true,attributeFilter:['open']});schedule();
 })();
 
 // Keyboard movement follows the phone grid, and the reading direction on wider screens.
