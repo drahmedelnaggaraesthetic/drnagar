@@ -19777,8 +19777,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const tabs = [t.tab1, t.tab2, t.tab3, t.tab4];
     return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-kicker", style: { margin: 0 }, children: t.heroEyebrow }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(LangToggle, {})
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-kicker", style: { margin: 0 }, children: t.heroEyebrow })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-panel-dark", style: { marginBottom: 16 }, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "dre-hero", children: [
         /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { children: [
@@ -22810,7 +22809,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [st3, setSt] = (0, import_react42.useState)(defaultPlan);
     const [tab, setTab] = (0, import_react42.useState)("planner");
     return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { style: { display: "flex", justifyContent: "flex-end", marginBottom: 10 }, children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(LangToggle, {}) }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { style: { display: "flex", justifyContent: "flex-end", marginBottom: 10 }, children: null }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("section", { className: "dre-panel", style: { marginBottom: 16 }, children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "dre-hero", children: [
         /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { className: "dre-kicker", children: ar2 ? "\u0628\u0648\u0627\u0628\u0629 \u0627\u0644\u0633\u064A\u0627\u062D\u0629 \u0627\u0644\u0639\u0644\u0627\u062C\u064A\u0629" : "Medical Tourism Gateway" }),
@@ -23461,6 +23460,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { lang: "ar", children: "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631" }),
               /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("small", { children: "AHMED ELNAGAR / CLINICS" })
             ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(LangToggle, {}),
             /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Link, { className: "dre-brandcta", to: "/consultation", children: ar2 ? "\u0637\u0644\u0628 \u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u2197" : "CONSULTATION \u2197" })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("nav", { className: "file-nav dre-desktop-nav", "aria-label": "Portal sections", children: [

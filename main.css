@@ -1271,7 +1271,7 @@ html.ds-sheet-frame body {
 .file-card {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1040px;
+  max-width: none;
   margin: 0 auto;
   padding: 24px var(--file-pad-x);
   background: var(--ds-page);
@@ -14590,3 +14590,11 @@ body {
   }
 }
 /*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/
+
+/* global header language toggle + full-width polish */
+.dre-root .dre-brandline { flex-wrap: wrap; row-gap: 10px; }
+.dre-root .dre-brandline > .dre-chips { order: 3; margin-inline-start: auto; }
+.dre-root .dre-brandline > .dre-brandcta { margin-inline-start: 0; }
+@media (max-width: 760px) {
+  .dre-root .dre-brandline > .dre-chips { order: 3; margin-inline-start: auto; }
+}
