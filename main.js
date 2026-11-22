@@ -23606,3 +23606,35 @@ react-router/dist/development/index.mjs:
    * @license MIT
    *)
 */
+
+/* masthead: compact on scroll, auto-hide on scroll down, return on scroll up (mobile) */
+(() => {
+  const init = () => {
+    const mh = document.querySelector(".dre-masthead");
+    if (!mh) return false;
+    const nav = mh.querySelector(".dre-navigation");
+    let lastY = window.scrollY;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const y = window.scrollY;
+      const menuOpen = !!(nav && nav.open);
+      mh.classList.toggle("dre-mh-compact", y > 90);
+      if (menuOpen || y <= 90 || y < lastY - 4) mh.classList.remove("dre-mh-hidden");
+      else if (y > lastY + 4 && y > 170) mh.classList.add("dre-mh-hidden");
+      lastY = y;
+    };
+    window.addEventListener("scroll", () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    if (nav) nav.addEventListener("toggle", () => {
+      if (nav.open) mh.classList.remove("dre-mh-hidden");
+    });
+    update();
+    return true;
+  };
+  if (!init()) {
+    const mo = new MutationObserver(() => { if (init()) mo.disconnect(); });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();

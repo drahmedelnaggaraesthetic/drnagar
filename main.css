@@ -14932,3 +14932,136 @@ body {
   background: linear-gradient(140deg, #b7dcbc, #5f9d76);
   box-shadow: 0 0 10px rgb(150 210 165 / .7);
 }
+
+/* === masthead: compact on scroll, auto-hide on scroll down (mobile) === */
+@media (max-width: 767px) {
+  .dre-root .dre-masthead {
+    transition: transform .32s ease;
+  }
+  .dre-root .dre-masthead.dre-mh-hidden {
+    transform: translateY(-103%);
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-brandline {
+    flex-wrap: nowrap;
+    row-gap: 0;
+    padding-bottom: 8px;
+    gap: 10px;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-wordmark small {
+    display: none;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-brandname .dre-wordmark {
+    font-size: 15px;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-brandname .dre-wordmark > span {
+    font-size: 15px;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-brandcta {
+    font-size: 9px;
+    min-height: 34px;
+    padding: 3px 0;
+    white-space: nowrap;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-chips {
+    gap: 6px;
+  }
+  .dre-root .dre-masthead.dre-mh-compact .dre-chips .dre-chip {
+    min-height: 30px;
+    padding: 3px 10px;
+    font-size: 10px;
+  }
+  .dre-root .dre-masthead .dre-navigation[open] > nav {
+    max-height: 58vh;
+    overflow-y: auto;
+  }
+}
+
+/* === portal index: editorial rows instead of boxed cards === */
+.dre-root .dre7-journey-links {
+  display: block;
+  gap: 0;
+  counter-reset: drejn;
+  border-top: 1px solid rgb(176 141 83 / .35);
+}
+.dre-root .dre7-journey-links a {
+  position: relative;
+  overflow: visible;
+  border: 0 !important;
+  border-bottom: 1px solid rgb(176 141 83 / .22) !important;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  min-height: 0;
+  padding: 15px 4px !important;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  transition: background .22s ease;
+}
+.dre-root .dre7-journey-links a::before {
+  counter-increment: drejn;
+  content: counter(drejn, decimal-leading-zero);
+  position: static;
+  inset: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .14em;
+  color: #b3904f;
+  direction: ltr;
+  pointer-events: none;
+}
+.dre-root .dre7-journey-links a::after {
+  content: none;
+}
+.dre-root .dre7-journey-links a > span {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #241c10;
+}
+.dre-root .dre7-journey-links a small {
+  color: #8d8271;
+  font-size: 11px;
+  font-weight: 400;
+}
+.dre-root .dre7-journey-links a b {
+  border: 0;
+  background: none;
+  color: #a8874e;
+  font-size: 17px;
+  font-weight: 300;
+  transition: transform .25s ease;
+}
+.dre-root .dre7-journey-links a:hover {
+  transform: none;
+  border-bottom-color: rgb(176 141 83 / .45) !important;
+  background: linear-gradient(90deg, rgb(95 157 118 / .1), rgb(95 157 118 / .02) 60%, transparent);
+  box-shadow: none;
+}
+.dre-root .dre7-journey-links a:hover::before {
+  background: none;
+}
+.dre-root .dre7-journey-links a:hover b {
+  background: none;
+  border-color: transparent;
+  color: #6fae85;
+}
+[dir=rtl] .dre-root .dre7-journey-links a:hover b {
+  transform: translateX(-5px);
+}
+[dir=ltr] .dre-root .dre7-journey-links a:hover b,
+.dre-root [dir=ltr] .dre7-journey-links a:hover b {
+  transform: translateX(5px);
+}
+.dre-root .dre7-journey-links a:active {
+  transform: none;
+  background: linear-gradient(90deg, rgb(95 157 118 / .18), rgb(95 157 118 / .04) 65%, transparent);
+}
