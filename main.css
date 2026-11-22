@@ -16039,13 +16039,3 @@ body {
 .dre-root .dre-route-library .dre-library-head .dre-sub{font-size:16px!important}
 }
 @media(max-width:759px){.dre-root .dre-route-library .dre-library-head .dre-h1{max-width:100%!important}}
-
-/* Consultation gateway: replace the existing portrait, not another visual layer. */
-.dre-root .dre-route-consultation > .dre-consultation > .dre-panel-dark{background:none!important;border:0!important;box-shadow:none!important;padding:28px 0 42px!important}
-.dre-root .dre-route-consultation .dre-panel-dark .dre-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);align-items:center;gap:90px}
-.dre-root .dre-consult-gateway{margin:0 auto!important;width:min(300px,100%);padding:0;border:0;background:none;box-shadow:none;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent),linear-gradient(to bottom,transparent,#000 4%,#000 87%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent),linear-gradient(to bottom,transparent,#000 4%,#000 87%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect}
-.dre-root .dre-consult-gateway img{width:100%;height:auto;display:block;filter:none}
-@media(max-width:759px){.dre-root .dre-route-consultation .dre-panel-dark .dre-hero{grid-template-columns:1fr;gap:24px}.dre-root .dre-consult-gateway{width:220px}}
-.dre-root .dre-route-consultation .dre-panel-dark .dre-h1{color:#30291e!important;font-size:32px!important;line-height:1.5}
-.dre-root .dre-route-consultation .dre-panel-dark p,.dre-root .dre-route-consultation .dre-panel-dark .dre-sub{color:#766b56!important;line-height:1.95!important}
-.dre-root .dre-route-consultation .dre-panel-dark .dre-badge{color:#766b56!important;border-color:#d4c5a8!important;background:none!important}
