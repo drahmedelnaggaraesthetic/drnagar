@@ -15708,7 +15708,7 @@ body {
 .dre-root .dre-route-recovery dre-recovery-reference {display:block;margin-inline:calc(-1 * clamp(16px,4vw,44px) - 1px);background:#050507}
 /* True inputs retain a draggable thumb, but use the reference's live cyan/emerald palette. */
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range] {appearance:none;-webkit-appearance:none;width:100%;height:28px;cursor:pointer;background:transparent;accent-color:#34d399}
-.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-runnable-track {height:8px;border-radius:999px;background:linear-gradient(to left,#34d399 0%,#2dd4bf var(--range-progress,50%),#050507 var(--range-progress,50%),#050507 100%);border:1px solid rgb(255 255 255 / .08)}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-runnable-track {height:8px;border-radius:999px;background:transparent;border:1px solid rgb(255 255 255 / .08)}
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-thumb {-webkit-appearance:none;width:18px;height:18px;margin-top:-6px;border-radius:50%;background:#34d399;border:2px solid #0e0f14;box-shadow:0 0 0 1px rgb(52 211 153 / .35),0 0 14px rgb(52 211 153 / .2)}
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]:active::-webkit-slider-thumb {box-shadow:0 0 0 5px rgb(52 211 153 / .15)}
 .dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:18px}
@@ -15822,7 +15822,7 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-fill{height:100%;border-radius:999px;transition:width .5s cubic-bezier(0,0,.2,1);background:linear-gradient(to left,#dfb99b,#c89d7c)}
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-gauge-pin{transition:left .5s cubic-bezier(0,0,.2,1)}
 .dre-root .dre-route-rhino .dre-instrument .dre-panel-soft > .dre-steps-bar:nth-child(4) .dre-steps-fill{background:linear-gradient(to left,#34d399,#2dd4bf,#38bdf8)}
-.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:linear-gradient(to left,#34d399 0%,#2dd4bf var(--range-progress,50%),#050507 var(--range-progress,50%));border:1px solid rgb(255 255 255 / .08)}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:transparent;border:1px solid rgb(255 255 255 / .08)}
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#34d399;border:2px solid #0e0f14;box-shadow:0 0 12px rgb(52 211 153 / .3)}
 @media(prefers-reduced-motion:reduce){.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-steps-fill,.dre-gauge-pin){transition:none}}
 .dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft > .dre-steps-bar:last-child .dre-steps-fill{background:linear-gradient(to left,#34d399,#2dd4bf,#38bdf8)}
@@ -15831,3 +15831,19 @@ body {
 .dre-root .dre-tabbar .dre-tab.on[data-content-indicator=true]::before{background:#236747}
 .dre-root .dre-masthead summary[data-content-indicator=true]::before{flex:0 0 6px}
 @media(prefers-reduced-motion:reduce){.dre-root [data-content-indicator=true]::before{animation:none!important;opacity:1;box-shadow:0 0 4px rgb(64 156 107 / .2)}}
+/* Draw the fill on the range itself so Safari cannot lose pseudo-track variables. */
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]{background-image:var(--range-fill,linear-gradient(#050507,#050507));background-repeat:no-repeat;background-size:100% 8px;background-position:center;border-radius:0;padding:0;border:0}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-runnable-track{background:transparent;border:0;height:8px;border-radius:999px;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08)}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-thumb{margin-top:-5px}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-moz-range-track{background:transparent;border:0;height:8px;border-radius:999px;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08)}
+
+/* Reference meter geometry and label placement, with RTL fills anchored right. */
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-lbl{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;color:#a1a1aa;font-size:12px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-lbl>span:last-child{font-weight:800;color:#dfb99b;flex-shrink:0}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-bar{height:8px;border-radius:9999px;border:1px solid rgb(255 255 255 / .06);background:#050507;direction:inherit}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-steps-fill{margin-inline-start:0;margin-inline-end:auto;background:linear-gradient(to left,#dfb99b,#c89d7c)}
+.dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft>.dre-steps-bar:last-child .dre-steps-fill{background:linear-gradient(to left,#34d399,#2dd4bf,#38bdf8)}
+.dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft>.dre-steps-lbl:nth-child(3)>span:last-child{color:#f8f8fa}
+
+.dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft>.dre-steps-lbl>span:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:8px;background:#dfb99b}
+.dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft>.dre-steps-lbl:nth-child(3)>span:first-child::before{background:#34d399}

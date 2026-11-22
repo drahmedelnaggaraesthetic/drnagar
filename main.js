@@ -25381,12 +25381,23 @@ react-router/dist/development/index.mjs:
   connectedCallback(){if(this.shadowRoot)return;const root=this.attachShadow({mode:'open'});root.innerHTML=markup;mount(root);}
  });
 })();
-/* Native range input fill tracks the actual value, including SPA-created models. */
+/* Range fill uses the same center-to-center travel area as the native thumb. */
 (() => {
- const update = e => { if(!e.matches('input[type=range]')) return;const min=Number(e.min||0),max=Number(e.max||100);e.style.setProperty('--range-progress',((Number(e.value)-min)/(max-min)*100)+'%'); };
- const scan = () => document.querySelectorAll('.dre-instrument input[type=range]').forEach(update);
- document.addEventListener('input',e=>update(e.target),{passive:true});
- new MutationObserver(scan).observe(document.getElementById('root')||document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['value']});scan();
+ let pending=false;
+ const update=e=>{
+  if(!(e instanceof HTMLInputElement)||e.type!=='range'||!e.closest('.dre-instrument'))return;
+  const min=Number(e.min||0),max=Number(e.max||100),p=max>min?Math.max(0,Math.min(1,(Number(e.value)-min)/(max-min))):0;
+  const width=e.getBoundingClientRect().width;if(!width)return;
+  const rtl=getComputedStyle(e).direction==='rtl',x=9+p*Math.max(0,width-18);
+  const fill=`linear-gradient(to ${rtl?'left':'right'},#34d399 0px,#2dd4bf ${x/2}px,#38bdf8 ${x}px,#050507 ${x}px,#050507 100%)`;
+  if(e.style.getPropertyValue('--range-fill')!==fill)e.style.setProperty('--range-fill',fill);
+  const pct=(p*100)+'%';if(e.style.getPropertyValue('--range-progress')!==pct)e.style.setProperty('--range-progress',pct);
+ };
+ const scan=()=>{pending=false;document.querySelectorAll('.dre-instrument input[type=range]').forEach(update);};
+ const queue=()=>{if(!pending){pending=true;requestAnimationFrame(scan);}};
+ for(const type of ['input','change'])document.addEventListener(type,e=>{update(e.target);queue();},true);
+ new MutationObserver(queue).observe(document.getElementById('root')||document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['value','style','dir','min','max']});
+ const resize=new ResizeObserver(queue);resize.observe(document.documentElement);window.addEventListener('resize',queue,{passive:true});queue();
 })();
 
 /* Availability lights indicate an implemented portal destination, never staff presence. */
