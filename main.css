@@ -15927,3 +15927,5 @@ body {
 /* Keep the expanded contact label compact rather than stretching between inset edges. */
 .dre-wafab{width:max-content!important;max-width:calc(100vw - 36px)!important;left:auto!important}
 .dre-wafab.reading-icon{width:48px!important}
+/* Quiet mode does not build a title clone. Show its source immediately. */
+.mo-js .dre7-title:not(.dre-mo-title){opacity:1!important;animation:none!important}
