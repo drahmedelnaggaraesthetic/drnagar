@@ -7237,6 +7237,7 @@
     }
   });
 
+
   // ../../opt/files/node_modules/react/cjs/react-jsx-runtime.production.min.js
   var require_react_jsx_runtime_production_min = __commonJS({
     "../../opt/files/node_modules/react/cjs/react-jsx-runtime.production.min.js"(exports) {
@@ -12025,7 +12026,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           {
             ...rest,
             ...prefetchHandlers,
-            href: (isSpaLink ? maskedHref : void 0) || parsed.absoluteURL || href,
+            href: isSpaLink && href.startsWith("/") && !href.startsWith("//") ? "/#" + href : ((isSpaLink ? maskedHref : void 0) || parsed.absoluteURL || href),
             onClick: isSpaLink ? handleClick : onClick,
             ref: mergeRefs(forwardedRef, prefetchRef),
             target,
@@ -12515,8 +12516,15 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const location = useLocation();
     const navigate = useNavigate();
     (0, import_react29.useEffect)(() => {
-      window.instinctFile.route(location.pathname + location.search + location.hash);
+      const path = location.pathname + location.search + location.hash;
+      window.instinctFile.route(path);
+      if (window.location.hash !== "#" + path) window.history.pushState(null, "", "/#" + path);
     }, [location]);
+    (0, import_react29.useEffect)(() => {
+      const syncHash = () => { const path = window.location.hash.slice(1); if (path.startsWith("/")) navigate(path, { replace: true }); };
+      window.addEventListener("hashchange", syncHash);
+      return () => window.removeEventListener("hashchange", syncHash);
+    }, [navigate]);
     (0, import_react29.useEffect)(() => {
       const restore = (event) => navigate(event.detail, { replace: true });
       window.addEventListener("instinct-route", restore);
@@ -12533,13 +12541,22 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
 
   function Recovery() {
     const { lang } = useLang();
+    const [skin,setSkin] = (0, import_react44.useState)("medium");
+    const recoveryRef = (0, import_react44.useRef)(null);
+    (0, import_react44.useEffect)(()=>{if(recoveryRef.current){recoveryRef.current.dataset.skin=skin;recoveryRef.current.refreshSkin?.();}},[skin]);
     return (0, import_jsx_runtime44.jsxs)("div", {className:"dre-stack",children:[
       (0, import_jsx_runtime44.jsxs)("section", {className:"dre-panel",children:[
         (0, import_jsx_runtime44.jsx)("span",{className:"dre-kicker",children:"دليل التعافي التفاعلي"}),
         (0, import_jsx_runtime44.jsx)("h1",{className:"dre-h1",children:"رحلة التعافي بعد كل إجراء، يوماً بيوم"}),
         (0, import_jsx_runtime44.jsx)("p",{className:"dre-sub",children:"اختر الإجراء وتابع مرحلتك: الأعراض الطبيعية، العودة للعمل والرياضة، وبروتوكول العناية. أدخل تاريخ عمليتك لتحديد مرحلتك الحالية تلقائياً."})
       ]}),
-      (0, import_jsx_runtime44.jsx)("dre-recovery-reference",{})
+      (0, import_jsx_runtime44.jsxs)("label",{className:"dre-field",children:[
+      (0, import_jsx_runtime44.jsx)("span",{className:"dre-field-lbl",children:lang === "ar" ? "سُمك الجلد لتوقيت النتيجة النهائية للأنف" : "Skin thickness for the final rhinoplasty stage"}),
+      (0, import_jsx_runtime44.jsxs)("select",{className:"dre-input",value:skin,onChange:e=>setSkin(e.target.value),children:[
+        (0, import_jsx_runtime44.jsx)("option",{value:"thin",children:lang === "ar" ? "رقيق، يستقر مبكراً" : "Thin, settles earlier"}),
+        (0, import_jsx_runtime44.jsx)("option",{value:"medium",children:lang === "ar" ? "متوسط، تحسن تدريجي" : "Medium, gradual improvement"}),
+        (0, import_jsx_runtime44.jsx)("option",{value:"thick",children:lang === "ar" ? "سميك، نحو عام" : "Thick, about one year"})]})]}),
+      (0, import_jsx_runtime44.jsx)("dre-recovery-reference",{ref:recoveryRef,"data-skin":skin})
     ]});
   }
 
@@ -14163,11 +14180,11 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       },
       {
         "swell": 26,
-        "tip": "\u0644\u0627 \u062A\u062A\u0639\u062C\u0644 \u0627\u0644\u062D\u0643\u0645 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u061B \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0633\u0645\u064A\u0643 \u064A\u0648\u0627\u0635\u0644 \u0627\u0644\u062A\u062D\u0633\u0646 \u0627\u0644\u062F\u0642\u064A\u0642 \u0628\u064A\u0646 \u0627\u0644\u0634\u0647\u0631 \u0627\u0644\u0633\u0627\u062F\u0633 \u0648\u0627\u0644\u062B\u0627\u0645\u0646 \u0639\u0634\u0631.",
+        "tip": "\u0644\u0627 \u062A\u062A\u0639\u062C\u0644 \u0627\u0644\u062D\u0643\u0645 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u061B \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0633\u0645\u064A\u0643 \u064A\u0648\u0627\u0635\u0644 \u0627\u0644\u062A\u062D\u0633\u0646 \u0627\u0644\u062F\u0642\u064A\u0642 حتى نحو عام.",
         "mirror": "\u0641\u0631\u0642 \u0648\u0627\u0636\u062D \u062C\u062F\u0627\u064B \u0641\u064A \u0627\u0644\u0635\u0648\u0631 \u0627\u0644\u0623\u0645\u0627\u0645\u064A\u0629 \u0648\u0627\u0644\u062C\u0627\u0646\u0628\u064A\u0629 \u0645\u0639 \u062A\u0631\u0627\u062C\u0639 \u0645\u0644\u062D\u0648\u0638 \u0641\u064A \u0627\u0645\u062A\u0644\u0627\u0621 \u0627\u0644\u0623\u0631\u0646\u0628\u0629."
       },
       {
-        "swell": 3,
+        "swell": 0,
         "tip": "\u062B\u0645\u0631\u0629 \u0627\u0644\u0635\u0628\u0631 \u0648\u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u0645\u0646\u0638\u0645\u0629 - \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0622\u0646 \u0646\u0627\u0636\u062C\u0629 \u0648\u0645\u0633\u062A\u0642\u0631\u0629 \u062A\u0645\u0627\u0645\u0627\u064B.",
         "mirror": "\u0627\u0646\u0643\u0645\u0627\u0634 \u0646\u0647\u0627\u0626\u064A \u0645\u062A\u0642\u0646 \u0644\u063A\u0644\u0627\u0641 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0633\u0645\u064A\u0643 \u0648\u0638\u0647\u0648\u0631 \u0623\u062F\u0642 \u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u0623\u0631\u0646\u0628\u0629 \u0628\u062A\u0648\u0627\u0632\u0646 \u0637\u0628\u064A\u0639\u064A \u062B\u0627\u0628\u062A."
       }
@@ -19709,7 +19726,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       gender || ageNum || bmi ? `\u2022 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u062D\u064A\u0648\u064A\u0629: ${[gender ? gender === "female" ? "\u0623\u0646\u062B\u0649" : "\u0630\u0643\u0631" : null, ageNum ? `${toAr(ageNum)} \u0633\u0646\u0629` : null, h2 ? `\u0627\u0644\u0637\u0648\u0644 ${toAr(h2)} \u0633\u0645` : null, w2 ? `\u0627\u0644\u0648\u0632\u0646 ${toAr(w2)} \u0643\u062C\u0645` : null, bmi ? `BMI ${toAr(bmi.val)}` : null].filter(Boolean).join(" | ")}` : null,
       procNames.length ? `\u2022 \u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A \u0627\u0644\u0645\u0633\u062A\u0647\u062F\u0641\u0629: ${procNames.join("\u060C ")}` : null,
       tlObj ? `\u2022 \u0627\u0644\u062A\u0648\u0642\u064A\u062A \u0627\u0644\u0645\u0633\u062A\u0647\u062F\u0641: ${tlObj.ar}` : null,
-      `\u2022 \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0641\u0631\u0632 \u0627\u0644\u0637\u0628\u064A: ${sfList.length ? sfList.join("\u060C ") : "\u0644\u0627 \u062A\u0648\u062C\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u062E\u0627\u0635\u0629"}`,
+      `\u2022 \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0627\u0644\u0641\u0631\u0632 \u0627\u0644\u0637\u0628\u064A: ${sfList.length ? sfList.join("\u060C ") : "لم تُستكمل إجابات الفرز الطبي بعد"}`,
       qList.length ? `\u2022 \u0623\u0647\u0645 \u0627\u0644\u0623\u0633\u0626\u0644\u0629:
 - ${qList.join("\n- ")}` : null,
       notes.trim() ? `\u2022 \u062A\u0641\u0627\u0635\u064A\u0644 \u0625\u0636\u0627\u0641\u064A\u0629: ${notes.trim()}` : null,
@@ -19724,7 +19741,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       gender || ageNum || bmi ? `\u2022 Profile: ${[gender, ageNum ? `${ageNum} yrs` : null, h2 ? `${h2} cm` : null, w2 ? `${w2} kg` : null, bmi ? `BMI ${bmi.val}` : null].filter(Boolean).join(" | ")}` : null,
       procNames.length ? `\u2022 Target Focus: ${procNames.join(", ")}` : null,
       tlObj ? `\u2022 Surgical Timeline: ${tlObj.en}` : null,
-      `\u2022 Medical Screening: ${sfList.length ? sfList.join(", ") : "None noted"}`,
+      `\u2022 Medical Screening: ${sfList.length ? sfList.join(", ") : "Medical screening not completed yet"}`,
       qList.length ? `\u2022 Priority Questions:
 - ${qList.join("\n- ")}` : null,
       notes.trim() ? `\u2022 Additional Notes: ${notes.trim()}` : null,
@@ -19790,7 +19807,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       if (imgRef.current) draw(imgRef.current, on2, y, hh, ww);
     };
     const tabs = [t.tab1, t.tab2, t.tab3, t.tab4];
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "dre-consultation", children: [
       /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-kicker", style: { margin: 0 }, children: t.heroEyebrow })
       ] }),
@@ -20350,9 +20367,9 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "dre-kicker", children: "\u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u062A\u062C\u0645\u064A\u0644\u064A \u0627\u0644\u0630\u0643\u064A" }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("h1", { className: "dre-h1", children: "\u0623\u064A \u0625\u062C\u0631\u0627\u0621 \u064A\u0646\u0627\u0633\u0628\u0646\u064A\u061F \u062A\u0642\u064A\u064A\u0645 \u062A\u0634\u0631\u064A\u062D\u064A \u062A\u0641\u0627\u0639\u0644\u064A \u0641\u064A 4 \u062E\u0637\u0648\u0627\u062A" }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "dre-sub", children: "\u0623\u062C\u0628 \u0639\u0646 \u0623\u0633\u0626\u0644\u0629 \u062F\u0642\u064A\u0642\u0629 \u0639\u0646 \u062D\u0627\u0644\u062A\u0643 \u0644\u064A\u0642\u062A\u0631\u062D \u0627\u0644\u0646\u0638\u0627\u0645 \u0627\u0644\u0645\u0633\u0627\u0631 \u0627\u0644\u0623\u0646\u0633\u0628 \u062A\u0634\u0631\u064A\u062D\u064A\u0627\u064B\u060C \u0645\u0639 \u0642\u0631\u0627\u0621\u0629 \u0635\u0631\u064A\u062D\u0629 \u0644\u0644\u0623\u0645\u0627\u0646 \u0648\u0641\u062A\u0631\u0629 \u0627\u0644\u062A\u0639\u0627\u0641\u064A \u0648\u0627\u0644\u0646\u062F\u0628\u0629\u060C \u0642\u0628\u0644 \u0623\u0646 \u062A\u062F\u0641\u0639 \u062F\u0642\u064A\u0642\u0629 \u0648\u0627\u062D\u062F\u0629 \u0645\u0646 \u0648\u0642\u062A\u0643 \u0641\u064A \u0645\u0648\u0639\u062F \u063A\u064A\u0631 \u0645\u0646\u0627\u0633\u0628." }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "dre-sub", children: "أجب بالقدر الذي يناسبك لتحضير استشارتك وفهم الخيارات وفترة التعافي. يمكنك مراجعة إجاباتك قبل مشاركة الملخص." }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-hero-badges", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "dre-badge dre-badge-gold", children: "\u0645\u062D\u0631\u0643 \u0642\u0631\u0627\u0631 \u0637\u0628\u064A \u0645\u0628\u0633\u0651\u0637" }),
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "dre-badge dre-badge-gold", children: "دليل مبدئي لتحضير الاستشارة" }),
             /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "dre-badge", children: "\u0646\u062A\u064A\u062C\u0629 \u0641\u0648\u0631\u064A\u0629 + \u0645\u0644\u062E\u0635 \u0648\u0627\u062A\u0633\u0627\u0628" })
           ] })
         ] }) })
@@ -20435,12 +20452,12 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(BmiBlock, { info: bmi })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "\u0639\u0648\u0627\u0645\u0644 \u0637\u0628\u064A\u0629 \u0648\u0633\u064A\u0627\u0642 \u0625\u0636\u0627\u0641\u064A (\u0627\u062E\u062A\u0631 \u0643\u0644 \u0645\u0627 \u064A\u0646\u0637\u0628\u0642\u060C \u0627\u062E\u062A\u064A\u0627\u0631\u064A)", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-chips", children: CONTEXTS.filter((c) => !c.femaleOnly || gender === "female").map((c) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Chip, { selected: contexts.has(c.id), onClick: () => toggle(contexts, c.id, setContexts), children: c.label }, c.id)) }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "عوامل طبية وسياق إضافي (اختياري، اختر ما ينطبق)", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-chips", children: CONTEXTS.filter((c) => !c.femaleOnly || gender === "female").map((c) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Chip, { selected: contexts.has(c.id), onClick: () => toggle(contexts, c.id, setContexts), children: c.label }, c.id)) }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-primary dre-btn-block", onClick: () => setStep(2), children: "\u0627\u0644\u062A\u0627\u0644\u064A: \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0627\u0644\u0645\u0646\u0627\u0637\u0642" })
       ] }),
       step === 2 && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-stack", children: [
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "\u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0633\u0627\u0631 \u0627\u0644\u062A\u062C\u0645\u064A\u0644\u064A \u0627\u0644\u0631\u0626\u064A\u0633\u064A", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-stack", children: CATEGORIES.filter((c) => c.id !== "men" || gender === "male").map((c) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Opt, { selected: category === c.id, title: c.title, desc: c.sub, onClick: () => pickCategory(c.id) }, c.id)) }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "\u062D\u062F\u062F \u0627\u0644\u0645\u0646\u0627\u0637\u0642 \u0627\u0644\u0645\u0633\u062A\u0647\u062F\u0641\u0629 \u0628\u062F\u0642\u0629 (\u064A\u0645\u0643\u0646 \u0627\u062E\u062A\u064A\u0627\u0631 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0645\u0646\u0637\u0642\u0629)", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-chips", children: cat.zones.map((z3) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Chip, { selected: zones.has(z3), onClick: () => toggle(zones, z3, setZones), children: z3 }, z3)) }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "اختر المناطق التي تود مناقشتها (يمكن اختيار أكثر من منطقة)", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-chips", children: cat.zones.map((z3) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Chip, { selected: zones.has(z3), onClick: () => toggle(zones, z3, setZones), children: z3 }, z3)) }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-btnrow", children: [
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(1), children: "\u0627\u0644\u0633\u0627\u0628\u0642" }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-primary", disabled: zones.size === 0, onClick: () => setStep(3), children: "\u0627\u0644\u062A\u0627\u0644\u064A: \u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0623\u0646\u0633\u062C\u0629" })
@@ -20450,7 +20467,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Field, { label: "\u0623\u064A \u0648\u0635\u0641 \u064A\u0637\u0627\u0628\u0642 \u062D\u0627\u0644\u0629 \u0627\u0644\u0623\u0646\u0633\u062C\u0629 \u0644\u062F\u064A\u0643 \u0628\u062F\u0642\u0629\u061F", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-stack", children: cat.tissues.map((t) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Opt, { selected: tissue === t.id, title: t.title, desc: t.desc, onClick: () => setTissue(t.id) }, t.id)) }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-btnrow", children: [
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(2), children: "\u0627\u0644\u0633\u0627\u0628\u0642" }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-primary", disabled: !tissue, onClick: () => setStep(4), children: "\u0627\u0644\u062A\u0627\u0644\u064A: \u0627\u0644\u062A\u0648\u0642\u0641 \u0648\u0627\u0644\u0625\u0642\u0627\u0645\u0629" })
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-primary", disabled: !tissue, onClick: () => setStep(4), children: "التالي: وقت التعافي والإقامة" })
         ] })
       ] }),
       step === 4 && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-stack", children: [
@@ -20461,7 +20478,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-btnrow", children: [
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(3), children: "\u0627\u0644\u0633\u0627\u0628\u0642" }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-gold", onClick: () => setStep(5), children: "\u0639\u0631\u0636 \u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0627\u0644\u0645\u0628\u062F\u0626\u064A" })
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { className: "dre-btn dre-btn-gold", onClick: () => setStep(5), children: "عرض ملخصك المبدئي" })
         ] })
       ] }),
       done && report && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-stack", children: [
@@ -20477,7 +20494,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-panel", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("h3", { className: "dre-h3", children: "\u0644\u0645\u0627\u0630\u0627 \u0647\u0630\u0627 \u0627\u0644\u062A\u0648\u062C\u064A\u0647\u061F" }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("h3", { className: "dre-h3", children: "كيف وصلنا لهذا الملخص؟" }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { children: report.rationale })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-grid dre-grid-2", children: [
@@ -20490,7 +20507,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "dre-kv-v", children: v })
         ] }, k3)) }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-panel-soft", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("h3", { className: "dre-h3", children: "\u0642\u0631\u0627\u0621\u0629 \u0635\u0631\u064A\u062D\u0629 \u0642\u0628\u0644 \u0623\u0646 \u062A\u0642\u0631\u0631" }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("h3", { className: "dre-h3", children: "ما يفيدك قبل القرار" }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { children: report.candid })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "dre-panel", children: [
@@ -21224,8 +21241,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("pre", { className: "dre-panel-soft dre-small", style: { whiteSpace: "pre-wrap", fontFamily: "inherit", margin: 0 }, children: report.waText }),
         /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: "dre-btnrow", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("a", { className: "dre-btn dre-btn-wa", href: waLink(report.waText), target: "_blank", rel: "noreferrer", children: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0648\u062D\u062C\u0632 \u0627\u0644\u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0639\u0628\u0631 \u0648\u0627\u062A\u0633\u0627\u0628" }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(1), children: "\u062A\u0639\u062F\u064A\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A / \u062A\u0642\u064A\u064A\u0645 \u062C\u062F\u064A\u062F" })
+          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("a", { className: "dre-btn dre-btn-wa", href: waLink(report.waText), target: "_blank", rel: "noreferrer", children: "مراجعة التقرير في واتساب" }),
+          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(1), children: "مراجعة الإجابات / البدء من جديد" })
         ] })
       ] })
     ] });
@@ -21764,7 +21781,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "dre-panel", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Field, { label: "\u0639\u0648\u0627\u0645\u0644 \u0627\u0644\u0623\u0645\u0627\u0646 \u0627\u0644\u0637\u0628\u064A\u0629 (\u0627\u062E\u062A\u0631 \u0643\u0644 \u0645\u0627 \u064A\u0646\u0637\u0628\u0642)", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "dre-chips", children: SAFETY.map(([id2, l2]) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Chip, { selected: safety.has(id2), onClick: () => toggleSafety(id2), children: l2 }, id2)) }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "dre-btnrow", children: [
           /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: () => setStep(3), children: "\u0627\u0644\u0633\u0627\u0628\u0642" }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: "dre-btn dre-btn-gold", onClick: () => setStep(5), children: "\u0628\u0646\u0627\u0621 \u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0647\u0646\u062F\u0633\u064A" })
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: "dre-btn dre-btn-gold", onClick: () => setStep(5), children: "عرض ملخص التحضير" })
         ] })
       ] }),
       done && report && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(BodyReportView, { r: report, onReset: () => setStep(1) })
@@ -22029,7 +22046,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("pre", { className: "dre-panel-soft dre-small", style: { whiteSpace: "pre-wrap", fontFamily: "inherit", margin: 0 }, children: r.waLines }),
       /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "dre-btnrow", children: [
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(qc, { text: r.waLines, label: "\u0646\u0633\u062E \u0627\u0644\u062A\u0642\u0631\u064A\u0631" }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("a", { className: "dre-btn dre-btn-wa", href: waLink(r.waLines), target: "_blank", rel: "noreferrer", children: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0645\u0644\u062E\u0635 \u0648\u062D\u062C\u0632 \u0627\u0644\u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0639\u0628\u0631 \u0648\u0627\u062A\u0633\u0627\u0628" }),
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("a", { className: "dre-btn dre-btn-wa", href: waLink(r.waLines), target: "_blank", rel: "noreferrer", children: "مراجعة الملخص في واتساب" }),
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: "dre-btn dre-btn-ghost", onClick: onReset, children: "\u062A\u0642\u064A\u064A\u0645 \u062C\u062F\u064A\u062F" })
       ] })
     ] });
@@ -22329,7 +22346,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const score = q1 + q2 + q3;
     if (score <= 1) return { key: "thin", label: "\u0631\u0642\u064A\u0642 (Thin)", timeline: "6 \u2013 9 \u0623\u0634\u0647\u0631", desc: "\u064A\u0632\u0648\u0644 \u0627\u0644\u062A\u0648\u0631\u0645 \u0633\u0631\u064A\u0639\u0627\u064B \u0648\u062A\u0638\u0647\u0631 \u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u0646\u062D\u062A \u0645\u0628\u0643\u0631\u0627\u064B\u061B \u064A\u062A\u0637\u0644\u0628 \u0646\u0639\u0648\u0645\u0629 \u0648\u062F\u0642\u0629 \u0639\u0627\u0644\u064A\u0629 \u0641\u064A \u062A\u0634\u0643\u064A\u0644 \u0627\u0644\u062C\u0633\u0631 \u0648\u0627\u0644\u0623\u0631\u0646\u0628\u0629." };
     if (score <= 4) return { key: "medium", label: "\u0645\u062A\u0648\u0633\u0637 (Medium)", timeline: "12 \u0634\u0647\u0631\u0627\u064B", desc: "\u0627\u0644\u062A\u0648\u0627\u0632\u0646 \u0627\u0644\u0623\u0645\u062B\u0644 \u0628\u064A\u0646 \u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0648\u062A\u063A\u0637\u064A\u0629 \u0627\u0644\u0647\u064A\u0643\u0644 \u0628\u0646\u0639\u0648\u0645\u0629\u061B \u062A\u0633\u062A\u0642\u0631 \u0623\u063A\u0644\u0628 \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u062E\u0644\u0627\u0644 6 \u0625\u0644\u0649 12 \u0634\u0647\u0631\u0627\u064B." };
-    return { key: "thick", label: "\u0633\u0645\u064A\u0643 (Thick)", timeline: "12 \u2013 18 \u0634\u0647\u0631\u0627\u064B", desc: "\u064A\u062D\u062A\u0627\u062C \u062F\u0639\u0627\u0645\u0627\u062A \u063A\u0636\u0631\u0648\u0641\u064A\u0629 \u0642\u0648\u064A\u0629 \u0644\u0625\u0628\u0631\u0627\u0632 \u0627\u0644\u0623\u0631\u0646\u0628\u0629\u060C \u0648\u0635\u0628\u0631\u0627\u064B \u0623\u0637\u0648\u0644 \u0644\u062A\u0631\u0627\u062C\u0639 \u0627\u0644\u062A\u0648\u0631\u0645 \u0645\u0639 \u0627\u0644\u0639\u0646\u0627\u064A\u0629 \u0628\u0627\u0644\u0644\u0627\u0635\u0642 \u0627\u0644\u0644\u064A\u0644\u064A." };
+    return { key: "thick", label: "\u0633\u0645\u064A\u0643 (Thick)", timeline: "12 شهراً", desc: "\u064A\u062D\u062A\u0627\u062C \u062F\u0639\u0627\u0645\u0627\u062A \u063A\u0636\u0631\u0648\u0641\u064A\u0629 \u0642\u0648\u064A\u0629 \u0644\u0625\u0628\u0631\u0627\u0632 \u0627\u0644\u0623\u0631\u0646\u0628\u0629\u060C \u0648\u0635\u0628\u0631\u0627\u064B \u0623\u0637\u0648\u0644 \u0644\u062A\u0631\u0627\u062C\u0639 \u0627\u0644\u062A\u0648\u0631\u0645 \u0645\u0639 \u0627\u0644\u0639\u0646\u0627\u064A\u0629 \u0628\u0627\u0644\u0644\u0627\u0635\u0642 \u0627\u0644\u0644\u064A\u0644\u064A." };
   }
   function getAngleFeedback(deg, gender) {
     const isMale = gender === "male";
@@ -22696,6 +22713,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   function RhinoSimulator() {
     const [skin, setSkin] = (0, import_react41.useState)("medium");
     const [stage, setStage] = (0, import_react41.useState)(0);
+    const stages = SIM_STAGES.map((label,i)=>skin === "thick" && i === 5 ? "الشهر 12" : label);
     const sim = SIM_DATA[skin][stage];
     const clarity = 100 - sim.swell;
     const [open, setOpen] = (0, import_react41.useState)(/* @__PURE__ */ new Set());
@@ -22703,7 +22721,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "dre-panel", children: [
         /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(SectionHead, { kicker: "\u0645\u062D\u0627\u0643\u064A \u0627\u0644\u062A\u0648\u0631\u0645", title: "\u0645\u062D\u0627\u0643\u064A \u0627\u0644\u062A\u0648\u0631\u0645 \u0648\u0648\u0636\u0648\u062D \u0627\u0644\u0623\u0631\u0646\u0628\u0629 \u0627\u0644\u062A\u0641\u0627\u0639\u0644\u064A", sub: "\u0627\u062E\u062A\u0631 \u0633\u064F\u0645\u0643 \u0627\u0644\u062C\u0644\u062F \u0648\u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u0632\u0645\u0646\u064A\u0629 \u0644\u0645\u0634\u0627\u0647\u062F\u0629 \u0627\u0644\u0645\u0633\u0627\u0631 \u0627\u0644\u0648\u0627\u0642\u0639\u064A \u0644\u062A\u0631\u0627\u062C\u0639 \u0627\u0644\u062A\u0648\u0631\u0645" }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Field, { label: "1. \u0627\u062E\u062A\u0631 \u0633\u064F\u0645\u0643 \u062C\u0644\u062F \u0627\u0644\u0623\u0646\u0641", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "dre-chips", children: [["thin", "\u0631\u0642\u064A\u0642"], ["medium", "\u0645\u062A\u0648\u0633\u0637"], ["thick", "\u0633\u0645\u064A\u0643"]].map(([id2, l2]) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Chip, { selected: skin === id2, onClick: () => setSkin(id2), children: l2 }, id2)) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Field, { label: "2. \u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u0632\u0645\u0646\u064A\u0629 (6 \u0645\u0631\u0627\u062D\u0644)", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "dre-chips", children: SIM_STAGES.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Chip, { selected: stage === i, onClick: () => setStage(i), children: s }, s)) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Field, { label: "2. \u0627\u062E\u062A\u0631 \u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u0632\u0645\u0646\u064A\u0629 (6 \u0645\u0631\u0627\u062D\u0644)", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "dre-chips", children: stages.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Chip, { selected: stage === i, onClick: () => setStage(i), children: s }, s)) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "dre-panel-soft", style: { marginBottom: 12 }, children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "dre-steps-lbl", children: [
             /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { children: "\u0646\u0633\u0628\u0629 \u0627\u0644\u062A\u0648\u0631\u0645 \u0627\u0644\u0645\u062A\u0628\u0642\u064A\u0629" }),
@@ -22725,7 +22743,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "dre-alert dre-alert-ok", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("strong", { children: [
             "\u0645\u0627\u0630\u0627 \u062A\u0631\u0649 \u0641\u064A \u0627\u0644\u0645\u0631\u0622\u0629 \u0627\u0644\u0622\u0646\u061F (",
-            SIM_STAGES[stage],
+            stages[stage],
             " \xB7 ",
             skin === "thin" ? "\u062C\u0644\u062F \u0631\u0642\u064A\u0642" : skin === "medium" ? "\u062C\u0644\u062F \u0645\u062A\u0648\u0633\u0637" : "\u062C\u0644\u062F \u0633\u0645\u064A\u0643",
             ")"
@@ -22891,6 +22909,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const postCheckDate = addDays(surgeryDate, isSurgical ? 2 : 1);
     const fitDate = addDays(surgeryDate, flyDay);
     const departDate = addDays(fitDate, 1);
+    // Hotel nights follow the same calendar used by the itinerary, never a second count.
+    nights = Math.round((Date.UTC(departDate.getFullYear(), departDate.getMonth(), departDate.getDate()) - Date.UTC(arrival.getFullYear(), arrival.getMonth(), arrival.getDate())) / 86400000);
     return { p1, p2, orig, isSurgical, bothMajor, nights, flyDay, hospAr, hospEn, arrival, consultDate, surgeryDate, postCheckDate, fitDate, departDate };
   }
   function hotelMeta(st3) {
@@ -23258,6 +23278,8 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var NAV_RECOVERY = { to: "/recovery", ar: "\u0628\u0639\u062F \u0627\u0644\u0639\u0645\u0644\u064A\u0629", en: "Recovery" };
   function App() {
     const [lang, setLang] = (0, import_react44.useState)("ar");
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     const ctx = (0, import_react44.useMemo)(() => ({ lang, setLang }), [lang]);
     const [openGroup, setOpenGroup] = (0, import_react44.useState)("");
     const ar2 = lang === "ar";
@@ -25040,11 +25062,18 @@ react-router/dist/development/index.mjs:
             `).join('');
         }
 
+        const skinFinalMeta = () => {
+            const skin = root.host.dataset.skin;
+            const complete = !appState.surgeryDate || new Date() >= new Date(appState.surgeryDate.getFullYear(), appState.surgeryDate.getMonth() + (skin === "thin" ? 9 : 12), appState.surgeryDate.getDate());
+            return {...STAGES_META[6],shortLabel:complete ? "النتيجة النهائية" : "استمرار نضج النتيجة",rangeLabel:skin === "thin" ? "٦ – ٩ أشهر" : "نحو ١٢ شهراً",complete};
+        };
+        root.host.refreshSkin = () => {if(appState.surgeryDate)updateCalculator(false);else{renderTimelineTabs();renderStageDetails();}};
         function renderTimelineTabs() {
             const container = root.getElementById('timeline-tabs');
             container.innerHTML = '';
 
-            STAGES_META.forEach((meta, idx) => {
+            STAGES_META.forEach((baseMeta, idx) => {
+                const meta = appState.procedureId === "rhinoplasty" && idx === 6 ? skinFinalMeta() : baseMeta;
                 const isSelected = idx === appState.stageIndex;
                 const isPast = idx < appState.stageIndex;
                 const isCurrentPatientStage = appState.matchedStageIdx === idx;
@@ -25092,9 +25121,16 @@ react-router/dist/development/index.mjs:
 
         function renderStageDetails() {
             const proc = PROCEDURES[appState.procedureId];
-            const meta = STAGES_META[appState.stageIndex];
-            const stage = proc.stages[appState.stageIndex];
+            const isRhinoFinal = appState.procedureId === "rhinoplasty" && appState.stageIndex === 6;
+            const meta = isRhinoFinal ? skinFinalMeta() : STAGES_META[appState.stageIndex];
+            const stage = isRhinoFinal ? {...proc.stages[6],swelling:meta.complete && root.host.dataset.skin === "thick" ? 0 : proc.stages[6].swelling,summary:!meta.complete ? "ما زالت التفاصيل الدقيقة تتحسن. توقيت النتيجة النهائية يتبع سُمك الجلد والتقييم الطبي." :root.host.dataset.skin === "thick" ? "اكتمال النتيجة النهائية للجلد السميك نحو عام." : root.host.dataset.skin === "thin" ? "الجلد الرقيق يستقر مبكراً، مع اكتمال النضج في المرحلة النهائية." : "الجلد المتوسط يتحسن تدريجياً حتى اكتمال النضج في المرحلة النهائية."} : proc.stages[appState.stageIndex];
 
+            if (isRhinoFinal && !meta.complete) {
+                stage.normal = ["يستمر تراجع التورم الدقيق وتحسن ليونة الأرنبة تدريجياً.","الجلد الرقيق يستقر مبكراً، والجلد المتوسط يتحسن تدريجياً، والجلد السميك يصل للنتيجة النهائية نحو عام.","يُراجع اكتمال النتيجة في المتابعة الطبية، وليس بمرور اليوم التسعين وحده."];
+                stage.protocolPrimary = ["المتابعة الدورية","استمرار النضج","مراجعة الصور وتغيرات التورم والتنفس مع الطبيب."];
+                stage.protocolSecondary = ["العناية اليومية","حسب توجيه الطبيب","استمر في خطة العناية والمتابعة المخصصة لحالتك."];
+                stage.pearl = "توقيت النتيجة النهائية يختلف حسب سُمك الجلد، ولا يعني الانتقال إلى هذه المرحلة اكتمال التعافي.";
+            }
             const panel = root.getElementById('stage-detail-panel');
             panel.classList.remove('stage-animate');
             void panel.offsetWidth;
@@ -25228,7 +25264,7 @@ react-router/dist/development/index.mjs:
                 if (idx === -1) idx = STAGES_META.length - 1;
                 appState.matchedStageIdx = idx;
 
-                const matchedMeta = STAGES_META[idx];
+                const matchedMeta = appState.procedureId === "rhinoplasty" && idx === 6 ? skinFinalMeta() : STAGES_META[idx];
                 const weeks = Math.floor(diffDays / 7);
                 const remDays = diffDays % 7;
                 const elapsedText = diffDays === 0
@@ -25505,7 +25541,7 @@ react-router/dist/development/index.mjs:
 (() => {
  const originals=new WeakMap();let pending=false;
  const localize=s=>s.replace(/[A-Za-z]+[A-Za-z0-9+_.:/-]*|\b\d+[A-Za-z][A-Za-z0-9+_.:/-]*/g,m=>m.replace(/[0-9]/g,d=>String.fromCharCode(0xE000+Number(d)))).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]).replace(/[\uE000-\uE009]/g,d=>String(d.charCodeAt(0)-0xE000));
- const scan=()=>{pending=false;const ar=document.querySelector('.dre-root [dir]')?.getAttribute('dir')!=='ltr';document.querySelectorAll('.dre-instrument').forEach(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(n.parentElement.closest('script,style,textarea'))continue;let r=originals.get(n);if(!r||n.data!==r.last)r={original:n.data,last:n.data};const next=ar?localize(r.original):r.original;if(n.data!==next)n.data=next;r.last=next;originals.set(n,r);}});};
+ const scan=()=>{pending=false;const ar=document.documentElement.lang!=='en';if(!ar)return;document.querySelectorAll('.dre-instrument').forEach(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(n.parentElement.closest('script,style,textarea'))continue;let r=originals.get(n);if(!r||n.data!==r.last)r={original:n.data,last:n.data};const next=ar?localize(r.original):r.original;if(n.data!==next)n.data=next;r.last=next;originals.set(n,r);}});};
  new MutationObserver(()=>{if(!pending){pending=true;requestAnimationFrame(scan);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['dir','lang']});scan();
 })();
 /* Quiet content indicators, not claims of staff presence or medical readiness. */
@@ -25523,4 +25559,21 @@ react-router/dist/development/index.mjs:
   if(cta&&new URL(cta.href,location.href).pathname==='/consultation'&&cta.dataset.contentIndicator!=='true')cta.dataset.contentIndicator='true';
  };
  new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(mark);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true});mark();
+})();
+/* Reading-state contact control: no new communication behavior. */
+(() => {
+ let lastY=scrollY,upDistance=0,queued=false,collapsed=false;
+ const update=()=>{
+  queued=false;const y=scrollY,delta=y-lastY;
+  if(delta>3){collapsed=true;upDistance=0;}else if(delta<0){upDistance-=delta;if(upDistance>70)collapsed=false;}
+  if(y<480)collapsed=false;lastY=y;
+  const fab=document.querySelector('.dre-wafab');if(!fab)return;
+  const nearContact=[...document.querySelectorAll('.dre5-contact,.dre-consultation .dre-btn-wa')].some(e=>{const r=e.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;});
+  const active=document.activeElement;const keyboard=active&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)&&(!visualViewport||visualViewport.height<innerHeight*.82);
+  const modal=!!document.querySelector('dialog[open],[aria-modal="true"],.dre-lightbox,.dre-image-modal');
+  fab.classList.toggle('reading-icon',collapsed&&!nearContact);fab.classList.toggle('context-hidden',keyboard||modal);
+ };
+ const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
+ addEventListener('scroll',schedule,{passive:true});addEventListener('focusin',schedule);addEventListener('focusout',()=>setTimeout(schedule,100));visualViewport?.addEventListener('resize',schedule);
+ new MutationObserver(schedule).observe(document.getElementById('root'),{childList:true,subtree:true});schedule();
 })();

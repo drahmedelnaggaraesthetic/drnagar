@@ -15896,3 +15896,34 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-opt[aria-pressed=true] .dre-opt-check{color:#050507}
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-myth-q{background:#050507;border-bottom:1px solid rgb(255 255 255 / .07);color:#f8f8fa;border-radius:12px;padding:12px}
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-myth-q .dre-badge{color:#dfb99b}
+
+/* Approved comfort options 1 and 2. Tool logic and reference component unchanged. */
+.dre-route .dre-instrument,.dre-route .dre-instrument .dre-panel{background:#17191c!important;box-shadow:none!important;border-color:#46413b!important}
+.dre-route .dre-instrument .dre-panel-soft,.dre-route .dre-instrument .dre-opt{background:#202226!important;box-shadow:none!important;border-color:#46413b!important}
+.dre-route .dre-instrument .dre-opt[aria-pressed=true]{background:#2c2926!important;border-color:#c59f7f!important}
+.dre-route .dre-instrument .dre-field-lbl{color:#d6ccba!important}
+.dre-consultation .dre-field{margin-bottom:26px!important}
+.dre-consultation .dre-field-lbl{margin-bottom:14px!important;line-height:1.75!important}
+.dre-consultation .dre-opt{padding:20px 18px!important;margin-bottom:12px!important;min-height:64px!important}
+.dre-consultation .dre-opt-desc{line-height:1.9!important}
+.dre-wafab{bottom:calc(18px + env(safe-area-inset-bottom,0px))!important;right:calc(18px + env(safe-area-inset-right,0px))!important}
+.dre-wafab.reading-icon{width:48px!important;min-width:48px!important;height:48px!important;padding:0!important;border-radius:50%!important;font-size:0!important;gap:0!important;box-shadow:0 3px 12px #0002!important}
+.dre-wafab.reading-icon svg{width:23px!important;height:23px!important;flex-shrink:0!important}
+.dre-wafab.context-hidden{visibility:hidden!important;pointer-events:none!important;opacity:0!important}
+/* Approved Home rhythm, same content and media order. */
+.dre7-cover .dre5-hero-meta{display:none!important}
+.dre7-cover{padding-top:54px!important;padding-bottom:54px!important;min-height:0!important}
+.dre7-cover .dre7-lead{line-height:1.95!important;max-width:31ch!important;margin-top:26px!important;margin-bottom:30px!important}
+.dre7-cover .dre5-hero-ctas{gap:16px!important}
+/* Quiet browsing: no looping decorative motion, brief feedback only. */
+.dre-mo-mq .dre5-mq-track,.dre7-disc,.dre5-mq-item i,[data-content-indicator]::before,.dre-mo-hint,.dre-mo-hint *{animation:none!important}
+.dre7-cover-frame{transform:none!important}
+.dre7-title.mo-src{font-size:inherit}
+.dre5-reveal{opacity:1!important;transform:none!important;animation:none!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.dre-root *{animation:none!important;scroll-behavior:auto!important;transition-duration:0s!important}}
+.dre-wafab.reading-icon{display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
+.dre-wafab.reading-icon svg{display:block!important;margin:0!important;position:static!important;transform:none!important}
+.dre-wafab.reading-icon span{display:none!important}
+/* Keep the expanded contact label compact rather than stretching between inset edges. */
+.dre-wafab{width:max-content!important;max-width:calc(100vw - 36px)!important;left:auto!important}
+.dre-wafab.reading-icon{width:48px!important}

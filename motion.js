@@ -1,7 +1,7 @@
 /* drelnajar.online motion pass - vanilla, no libs. All effects reduced-motion aware. */
 (() => {
   'use strict';
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = true; // Quiet by default, manual media remains available.
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   /* 1R. hero headline line-by-line mask reveal.
