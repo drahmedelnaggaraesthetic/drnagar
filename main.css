@@ -15727,3 +15727,8 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 14px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:14px"] {font-size:15px!important}
 .dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 15px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:15px"] {font-size:16px!important}
 .dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 16px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:16px"] {font-size:17px!important}
+
+/* Retain the soft breathing LED status treatment across tool cards. */
+@keyframes dreToolLedBreathe{0%,100%{opacity:.4;filter:brightness(.8)}50%{opacity:1;filter:brightness(1.2)}}
+.dre-root .dre-instrument :is(.dre-status-dot,.dre-meter-led){animation:dreToolLedBreathe 2.2s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-instrument :is(.dre-status-dot,.dre-meter-led){animation:none}}
