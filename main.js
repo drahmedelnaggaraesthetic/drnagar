@@ -25497,3 +25497,19 @@ react-router/dist/development/index.mjs:
  const scan=()=>{pending=false;const ar=document.querySelector('.dre-root [dir]')?.getAttribute('dir')!=='ltr';document.querySelectorAll('.dre-instrument').forEach(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(n.parentElement.closest('script,style,textarea'))continue;let r=originals.get(n);if(!r||n.data!==r.last)r={original:n.data,last:n.data};const next=ar?localize(r.original):r.original;if(n.data!==next)n.data=next;r.last=next;originals.set(n,r);}});};
  new MutationObserver(()=>{if(!pending){pending=true;requestAnimationFrame(scan);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['dir','lang']});scan();
 })();
+/* Quiet content indicators, not claims of staff presence or medical readiness. */
+(() => {
+ let queued=false;
+ const mark=()=>{queued=false;
+  const selectors='.dre-root h2,.dre-root .dre-guide-group-head h3,.dre-root .dre-tabbar .dre-tab,.dre-root .dre-masthead summary';
+  document.querySelectorAll(selectors).forEach(e=>{
+   if(e.closest('.dre-instrument')&&e.matches('h2'))return;
+   if(e.matches('button')&&e.disabled)return;
+   if(e.tagName==='SUMMARY'&&!e.parentElement.querySelector('a[data-section-available="true"]'))return;
+   if(e.dataset.contentIndicator!=='true')e.dataset.contentIndicator='true';
+  });
+  const cta=document.querySelector('.dre-brandcta');
+  if(cta&&new URL(cta.href,location.href).pathname==='/consultation'&&cta.dataset.contentIndicator!=='true')cta.dataset.contentIndicator='true';
+ };
+ new MutationObserver(()=>{if(!queued){queued=true;requestAnimationFrame(mark);}}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true});mark();
+})();

@@ -15826,3 +15826,8 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#34d399;border:2px solid #0e0f14;box-shadow:0 0 12px rgb(52 211 153 / .3)}
 @media(prefers-reduced-motion:reduce){.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-steps-fill,.dre-gauge-pin){transition:none}}
 .dre-root .dre-route-rhino.dre-ivory .dre-instrument .dre-panel-soft > .dre-steps-bar:last-child .dre-steps-fill{background:linear-gradient(to left,#34d399,#2dd4bf,#38bdf8)}
+/* One restrained breathing rhythm for primary content and real navigation controls. */
+.dre-root :is(h2,.dre-guide-group-head h3,.dre-tabbar .dre-tab,.dre-masthead summary,.dre-brandcta)[data-content-indicator=true]::before{content:"";display:inline-block;vertical-align:middle;width:6px;height:6px;min-width:6px;margin-inline-end:9px;border-radius:50%;background:#39845c;animation:dreAvailableBreathe 2.8s ease-in-out infinite;pointer-events:none}
+.dre-root .dre-tabbar .dre-tab.on[data-content-indicator=true]::before{background:#236747}
+.dre-root .dre-masthead summary[data-content-indicator=true]::before{flex:0 0 6px}
+@media(prefers-reduced-motion:reduce){.dre-root [data-content-indicator=true]::before{animation:none!important;opacity:1;box-shadow:0 0 4px rgb(64 156 107 / .2)}}
