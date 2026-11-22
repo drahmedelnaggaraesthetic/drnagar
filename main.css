@@ -15741,3 +15741,54 @@ body {
 .dre-root .dre-masthead :is(.dre-navigation nav,.dre-desktop-nav) a[data-section-available=true]::after{content:"";display:block;position:absolute;inset:auto;inset-inline-end:14px;bottom:14px;width:6px;height:6px;border:0;border-radius:50%;margin:0;transform:none;background:#39845c;animation:dreAvailableBreathe 2.8s ease-in-out infinite}
 .dre-root .dre-navigation nav a[data-section-available=true]{gap:12px}
 @media(prefers-reduced-motion:reduce){.dre-root .dre7-journey-links a[data-section-available=true]::before,.dre-root .dre7-journey > h3[data-section-available=true]::before,.dre-root .dre-masthead :is(.dre-navigation nav,.dre-desktop-nav) a[data-section-available=true]::after{animation:none;opacity:1;box-shadow:0 0 5px rgb(64 156 107 / .25)}}
+
+/* Recovery editions: quiet cover rails and an immersive, uncropped slide viewer. */
+.dre-guides {padding:28px 0 10px;color:#eee4d1}
+.dre-guides-head {padding:0 4px 24px;max-width:620px}
+.dre-root .dre-guides .dre-h2 {font-family:"Tajawal","Cairo",sans-serif;font-size:26px;line-height:1.4;font-weight:800;margin:8px 0;color:#eee4d1}
+.dre-root .dre-guides .dre-sub {color:#b6ad9c;font-size:14px;line-height:1.9}
+.dre-guide-group {margin:0 0 32px}
+.dre-guide-group-head {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 4px 13px;border-bottom:1px solid rgb(200 157 124 / .2);margin-bottom:16px}
+.dre-guide-group-head h3 {font-family:"Tajawal","Cairo",sans-serif;font-size:20px;margin:0;color:#dfb99b;font-weight:700}
+.dre-guide-group-head > span {font:11px "Cairo",sans-serif;color:#a59b8c;white-space:nowrap}
+.dre-guide-rail {display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 4px 16px;scrollbar-width:thin;scrollbar-color:#69513d transparent;-webkit-overflow-scrolling:touch}
+.dre-guide-cover {appearance:none;flex:0 0 218px;width:218px;scroll-snap-align:start;background:transparent;border:0;padding:0;text-align:start;cursor:pointer;color:inherit;font-family:"Cairo",sans-serif;transition:transform .2s}
+.dre-guide-cover:active {transform:scale(.98)}
+.dre-guide-cover:focus-visible {outline:2px solid #dfb99b;outline-offset:4px;border-radius:16px}
+.dre-guide-cover-image {position:relative;border:1px solid rgb(200 157 124 / .3);border-radius:16px;overflow:hidden;background:#050507;aspect-ratio:955/1280}
+.dre-guide-cover-image img {display:block;width:100%;height:100%;object-fit:contain}
+.dre-guide-count {position:absolute;inset-inline-start:9px;top:9px;padding:4px 9px;border:1px solid rgb(200 157 124 / .4);background:rgb(5 5 7 / .85);border-radius:30px;font-size:10px;color:#e8d5b5;backdrop-filter:blur(8px)}
+.dre-guide-open {position:absolute;inset-inline-end:9px;bottom:9px;width:29px;height:29px;border-radius:50%;display:grid;place-items:center;border:1px solid #9d7955;color:#e9cbb0;background:rgb(5 5 7 / .85);font-size:16px}
+.dre-guide-cover-label {display:grid;gap:5px;padding:12px 2px 0}
+.dre-guide-cover-label strong {font-size:13px;font-weight:600;line-height:1.8;color:#e5d8c0}
+.dre-guide-cover-label small {font-size:11px;font-weight:400;color:#958b7e;line-height:1.5;direction:ltr}
+.dre-guide-note {color:#9a9081;font:12px/1.9 "Cairo",sans-serif;padding:8px 4px;border-top:1px solid rgb(200 157 124 / .15)}
+.dre-guide-viewer {box-sizing:border-box;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;padding:0;margin:0;border:0;background:#050507;color:#f6efdf;overflow:hidden;font-family:"Cairo",sans-serif;overscroll-behavior:contain}
+.dre-guide-viewer[open] {display:flex;flex-direction:column}
+.dre-guide-viewer::backdrop {background:#050507}
+.dre-guide-viewer-head {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(12px + env(safe-area-inset-top)) 18px 12px;border-bottom:1px solid rgb(200 157 124 / .2);flex-shrink:0}
+.dre-guide-viewer-title {display:grid;gap:4px;min-width:0}
+.dre-guide-viewer-title small {font-size:9px;letter-spacing:.07em;color:#c89d7c}
+.dre-guide-viewer-title strong {font-size:12px;font-weight:500;line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dre-guide-close {width:42px;height:42px;flex:0 0 42px;border:1px solid rgb(200 157 124 / .4);border-radius:50%;background:#15130f;color:#e5c5a6;font:28px/1 sans-serif;cursor:pointer}
+.dre-guide-viewport {display:flex;flex:1;min-height:0;width:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pinch-zoom}
+.dre-guide-viewport::-webkit-scrollbar {display:none}
+.dre-guide-slide {flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:grid;place-items:center;background:#050507}
+.dre-guide-slide img {display:block;max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.dre-guide-progress {height:2px;background:#201b16;flex-shrink:0;direction:ltr}
+.dre-guide-progress span {display:block;height:100%;background:#c89d7c;transition:width .25s ease}
+.dre-guide-viewer-foot {display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px;flex-shrink:0}
+.dre-guide-viewer-foot button {border:1px solid rgb(200 157 124 / .3);border-radius:30px;min-height:42px;padding:8px 15px;background:#15120e;color:#e6c6a6;font:12px "Cairo",sans-serif;cursor:pointer}
+.dre-guide-viewer-foot button:disabled {opacity:.3;cursor:default}
+.dre-guide-position {font-size:12px;color:#b4a68f;direction:ltr}
+.dre-guide-hint {padding:0 16px calc(12px + env(safe-area-inset-bottom));text-align:center;color:#8e8374;font-size:10px;line-height:1.8;flex-shrink:0}
+@media(min-width:800px){.dre-guide-cover{flex-basis:250px;width:250px}.dre-guides{padding-inline:16px}.dre-guide-viewer-head{padding-inline:32px}.dre-guide-viewer-title strong{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.dre-guide-cover,.dre-guide-progress span{transition:none}.dre-guide-viewport{scroll-behavior:auto}}
+
+.dre-root .dre-route-recovery dre-recovery-guides {display:block;background:#08090c;margin-inline:calc(-1 * clamp(16px,4vw,44px) - 1px);padding-inline:16px;border-top:1px solid rgb(200 157 124 / .25)}
+.dre-root .dre-route.dre-ivory .dre-guides .dre-h2 {color:#eee4d1!important;font-size:26px!important;line-height:1.4}
+.dre-root .dre-route.dre-ivory .dre-guides .dre-sub {color:#b6ad9c!important}
+.dre-guide-cover,.dre-guide-cover-label,.dre-guide-cover-label strong {white-space:normal;overflow-wrap:anywhere}
+.dre-guide-position {direction:ltr!important;unicode-bidi:isolate}
+.dre-root .dre-route.dre-ivory .dre-guide-cover-label {display:grid;white-space:normal!important}
+.dre-root .dre-route.dre-ivory .dre-guide-cover-label :is(strong,small) {white-space:normal!important;max-width:100%;overflow-wrap:anywhere}
