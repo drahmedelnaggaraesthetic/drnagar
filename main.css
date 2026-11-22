@@ -15792,3 +15792,27 @@ body {
 .dre-guide-position {direction:ltr!important;unicode-bidi:isolate}
 .dre-root .dre-route.dre-ivory .dre-guide-cover-label {display:grid;white-space:normal!important}
 .dre-root .dre-route.dre-ivory .dre-guide-cover-label :is(strong,small) {white-space:normal!important;max-width:100%;overflow-wrap:anywhere}
+/* One reference typography and live-tool language across every interactive model. */
+.dre-root .dre-route.dre-ivory .dre-instrument {font-family:"Cairo","Tajawal",sans-serif;font-size:14px;line-height:1.8}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(button,input,select,textarea,label,.dre-chip,.dre-opt-title,.dre-opt-desc,.dre-sub,.dre-small,.dre-alert,.dre-bullets) {font-family:"Cairo","Tajawal",sans-serif}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-h1,.dre-h2,.dre-h3) {font-family:"Tajawal","Cairo",sans-serif;font-weight:800;line-height:1.45}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-h2,.dre-h3)::before {content:"";display:inline-block;width:6px;height:6px;border-radius:50%;vertical-align:middle;margin-inline-end:9px;background:#34d399;color:#34d399;box-shadow:0 0 8px rgb(52 211 153 / .4);animation:dreToolLedBreathe 2.2s ease-in-out infinite}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-input,.dre-label,.dre-opt-title,.dre-chip,.dre-btn,.dre-sub,.dre-small,.dre-bullets,.dre-alert) {font-size:14px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-desc {font-size:13px}
+.dre-root .dre-route dre-recovery-guides {display:block;background:#08090c;margin-inline:calc(-1 * clamp(16px,4vw,44px) - 1px);padding-inline:16px;border-top:1px solid rgb(200 157 124 / .25)}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-h2,.dre-h3)::before{animation:none}}
+
+/* Listening desk: charcoal instrument, rose-gold controls, waveform from source audio. */
+.dre-experiences{padding:44px 22px;background:#08090c;border-block:1px solid rgb(200 157 124 / .25);margin-block:28px;color:#eee4d1;font-family:"Cairo",sans-serif}
+.dre-exp-head{max-width:650px;margin-bottom:24px}.dre-exp-head .dre-kicker{color:#c89d7c!important}.dre-exp-head h2{font:800 30px/1.4 "Tajawal","Cairo",sans-serif;color:#f3e8d4!important;margin:8px 0 14px}.dre-exp-head p{font-size:14px;line-height:1.9;color:#a99f91!important;margin:0}
+.dre-exp-layout{display:grid;gap:14px}.dre-exp-feature{background:linear-gradient(140deg,#17191f,#0d0e12 70%);border:1px solid rgb(200 157 124 / .35);border-radius:24px;padding:22px 18px;overflow:hidden}
+.dre-exp-category{font-size:10px;color:#c89d7c;letter-spacing:.04em}.dre-exp-info h3{font:800 23px/1.4 "Tajawal","Cairo",sans-serif;color:#f3e8d4;margin:9px 0}.dre-exp-info p{font-size:12px;color:#a99f91;line-height:1.8;margin:0;min-height:43px}
+.dre-exp-wave{height:92px;margin:17px 0 6px;display:flex;gap:2px;align-items:center;overflow:hidden}.dre-exp-wave i{flex:1;min-width:1px;border-radius:3px;background:#4b423a;transition:background .15s}.dre-exp-wave i.heard{background:#c89d7c}.dre-experiences.is-playing .dre-exp-wave i.heard{box-shadow:0 0 7px rgb(200 157 124 / .25)}
+.dre-exp-controls{display:flex;align-items:center;justify-content:space-between;gap:14px}.dre-exp-play{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#c89d7c;color:#100d0a;border:1px solid #dfb99b;font-size:21px;cursor:pointer;box-shadow:0 0 24px -8px rgb(200 157 124 / .5)}
+.dre-exp-time{font-size:12px;letter-spacing:.05em;color:#b9aa95}.dre-exp-seek{display:block;width:100%;margin:18px 0 20px;accent-color:#c89d7c;cursor:pointer;min-height:24px}
+.dre-exp-caption{border-top:1px solid rgb(200 157 124 / .18);padding-top:17px;min-height:93px}.dre-exp-caption small{font-size:9px;color:#9d8e79}.dre-exp-caption p{font-size:14px;line-height:1.9;color:#e8dbc2;margin:7px 0 0}.dre-exp-caption.sound-only p{color:#b7ac9c}
+.dre-exp-list{display:grid;gap:8px}.dre-exp-track{appearance:none;width:100%;display:flex;align-items:center;gap:12px;text-align:start;padding:15px 13px;background:#0f1014;border:1px solid rgb(200 157 124 / .16);border-radius:15px;color:#e5d9c2;font-family:"Cairo",sans-serif;cursor:pointer;transition:border-color .2s,background .2s}.dre-exp-track[aria-pressed=true]{border-color:#c89d7c;background:linear-gradient(90deg,rgb(200 157 124 / .12),#101115)}
+.dre-exp-track-n{font-size:11px;color:#c89d7c;flex:0 0 20px;direction:ltr}.dre-exp-track>span:nth-child(2){display:grid;gap:4px;flex:1}.dre-exp-track strong{font-size:13px;font-weight:600;line-height:1.7}.dre-exp-track small{font-size:10px;color:#918778}.dre-exp-track-length{font-size:10px;color:#9e917d;direction:ltr;flex:none}.dre-exp-note{font-size:11px;line-height:1.9;color:#8f8578!important;margin:18px 0 0;max-width:750px}
+@media(min-width:850px){.dre-experiences{padding:54px 44px}.dre-exp-layout{grid-template-columns:1.15fr 1fr;align-items:start;gap:24px}.dre-exp-feature{padding:28px}.dre-exp-head h2{font-size:38px}}
+@media(prefers-reduced-motion:reduce){.dre-exp-track,.dre-exp-wave i{transition:none}}
+.dre-exp-play-label{flex:1;font-size:12px;color:#dfb99b}.dre-exp-seek{direction:ltr}
