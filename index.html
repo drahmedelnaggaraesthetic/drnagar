@@ -68,6 +68,8 @@
    const replacements = new Map();
    await Promise.all([...css.matchAll(/url\(["']?([^)'"\s]+)["']?\)/g)].map(async ([, value]) => {
      const url = new URL(value, configuration.host + '/');
+     // Static site fonts load on actual CSS use, not eagerly with every declared face.
+     if (/\.(woff2?|ttf|otf)(?:[?#]|$)/i.test(value)) return;
      if (value.startsWith('#') || url.origin !== configuration.host) return;
      const fragment = url.hash; url.hash = ''; url.searchParams.delete('lease');
      if (!styleAssets.has(url.href)) {

@@ -15929,3 +15929,49 @@ body {
 .dre-wafab.reading-icon{width:48px!important}
 /* Quiet mode does not build a title clone. Show its source immediately. */
 .mo-js .dre7-title:not(.dre-mo-title){opacity:1!important;animation:none!important}
+/* Approved Library reading rhythm, scoped away from navigation and clinical tools. */
+.dre-library-head~.dre-faq{margin-bottom:12px!important;border-radius:16px!important;box-shadow:none!important;border-color:#ded4c1!important}
+.dre-library-head~.dre-faq>summary{font-size:16px!important;line-height:1.75!important;font-weight:600!important;padding-block:18px!important}
+
+/* One Library introduction: keep its eyebrow and title, remove duplicate ornament. */
+.dre-route-library>.dre-route-id{display:none!important}
+.dre-route-library .dre-library-head::after{content:none!important;display:none!important}
+
+/* Approved Library category entrance. Existing topic accordions retained. */
+.dre-library-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dre-library-section{appearance:none;text-align:start;display:flex;flex-direction:column;gap:10px;padding:20px 16px;border:1px solid #ded4c1;border-radius:18px;background:#fffaf0;color:#30291e;font:inherit;cursor:pointer;min-height:160px}
+.dre-library-section strong{font-size:17px;line-height:1.6;font-weight:600}
+.dre-library-section span{font-size:14px;line-height:1.8;color:#766b56}
+.dre-library-section small{font-size:12px;color:#766b56;margin-top:auto}
+.dre-library-section:focus-visible{outline:2px solid #755a31;outline-offset:3px}
+.dre-library-section:hover{border-color:#a78b61}
+@media(max-width:340px){.dre-library-sections{grid-template-columns:1fr}}
+
+/* Approved phone tab grid, Consultation and Travel only. */
+@media(max-width:600px){
+.dre-root .dre-route .dre-tabbar.dre-phone-tabgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible!important;gap:8px!important;padding:12px!important;border:0!important;scroll-snap-type:none}
+.dre-root .dre-route .dre-phone-tabgrid .dre-tab{width:100%!important;min-width:0;white-space:normal!important;min-height:55px!important;border:1px solid #d4c5a8!important;border-radius:12px!important;padding:10px!important;font-size:14px!important;line-height:1.6!important;text-align:center!important;letter-spacing:0!important;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
+.dre-root .dre-route .dre-phone-tabgrid .dre-tab::before,.dre-root .dre-route .dre-phone-tabgrid .dre-tab::after{display:none!important}
+.dre-root .dre-route .dre-phone-tabgrid .dre-tab[aria-selected=true]{background:#c89d7c!important;color:#231c15!important;border-color:#99744f!important;box-shadow:inset 0 0 0 1px #99744f!important}
+}
+.dre-root .dre-phone-tabgrid .dre-tab:focus-visible{outline:3px solid #755a31!important;outline-offset:3px!important}
+
+/* Selected slate-blue palette, Library only. Gold consultation CTA retained. */
+.dre-root .dre-route-library.dre-ivory{background:#eaf0f5!important;color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-h1,.dre-h2,.dre-h3,.dre-field-lbl,.dre-library-section strong,.dre-library-field h3){color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-sub,.dre-small,.dre-kicker,.dre-library-section span,.dre-library-section small,.dre-library-field p){color:#506780!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-head{border-color:#a3b5c6!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-library-section,.dre-input,.dre-chip,.dre-faq,.dre-panel,.dre-btn-ghost){background:#f7f9fc!important;background-image:none!important;color:#223b56!important;border-color:#a3b5c6!important;box-shadow:none!important}
+.dre-root .dre-route-library .dre-library-content .dre-input::placeholder{color:#506780!important;opacity:1}
+.dre-root .dre-route-library .dre-library-content :is(.dre-library-section,.dre-chip,.dre-btn-ghost):hover,.dre-root .dre-route-library .dre-library-content .dre-faq:hover{background:#dce6ef!important;border-color:#506780!important}
+.dre-root .dre-route-library .dre-library-content :is(button,input,summary,a):focus-visible{outline:3px solid #223b56!important;outline-offset:3px!important}
+.dre-root .dre-route-library .dre-library-content .dre-input:focus{border-color:#223b56!important;box-shadow:0 0 0 1px #223b56!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq>summary{color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq[open]{background:#f7f9fc!important;border-color:#506780!important;box-shadow:inset 3px 0 0 #506780!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq[open]>summary{background:#dce6ef!important;color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq>summary::after{background:#eaf0f5!important;border-color:#506780!important;color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq[open]>summary::after{background:#223b56!important;color:#f7f9fc!important;border-color:#223b56!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-field{border-color:#a3b5c6!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-input,.dre-chip,.dre-btn-ghost){border-color:#71869b!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq>div{border-color:#a3b5c6!important}
+.dre-root [dir=rtl] .dre-route-library .dre-library-content .dre-faq[open],.dre-root .dre-route-library[dir=rtl] .dre-library-content .dre-faq[open]{box-shadow:inset -3px 0 0 #506780!important}

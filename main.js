@@ -18862,13 +18862,23 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var ALL = entries();
   var LIBRARY_TOPIC_COUNT = ALL.length;
   var CATS = [["all", "\u0643\u0644 \u0627\u0644\u0623\u062F\u0644\u0629"], ["assessment", "\u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0648\u0627\u0644\u0625\u062C\u0631\u0627\u0621\u0627\u062A"], ["face", "\u0627\u0644\u0648\u062C\u0647 \u0648\u0627\u0644\u0631\u0642\u0628\u0629"], ["body", "\u0627\u0644\u0642\u0648\u0627\u0645"], ["rhino", "\u0627\u0644\u0623\u0646\u0641"], ["travel", "\u0627\u0644\u0633\u0641\u0631 \u0648\u0627\u0644\u062A\u062D\u0627\u0644\u064A\u0644"], ["prepare", "\u062A\u062C\u0647\u064A\u0632 \u0627\u0644\u0627\u0633\u062A\u0634\u0627\u0631\u0629"], ["recovery", "\u0627\u0644\u062A\u0639\u0627\u0641\u064A"]];
+  var LIBRARY_SECTIONS = [
+    ["body","القوام","Body","نحت، شد، ما بعد فقدان الوزن","Contouring and body procedures"],
+    ["face","الوجه والرقبة","Face, neck & ears","شد، جفون، أذن وتجديد البشرة","Face, neck, eyelids and ears"],
+    ["rhino","الأنف","Nose","التشريح والإجراء والتوقعات","Anatomy and procedure guidance"],
+    ["travel","السفر والتحاليل","Travel & tests","الفحوصات والإقامة والطيران","Tests, stay and flying"],
+    ["prepare","قبل الاستشارة","Before consultation","التجهيز والتقييم والخيارات العامة","Preparation and general options"],
+    ["recovery","بعد العملية","After your procedure","العناية والعودة للنشاط","Care and return to activity"]
+  ];
+  var LIBRARY_ASSESSMENT_SECTIONS = {weight_safety:"body",vaser4d:"body",lipoabdominoplasty:"body",mini_tummy:"body",fat_grafting:"body",limb_body_lift:"body",endolift:"face",threads:"face",smas:"face",blepharoplasty:"face",facial_fat:"face",rhinoplasty:"rhino",otoplasty:"face",gyno_12:"body",gyno_34:"body"};
+  var librarySection = e => e.cat === "assessment" ? (LIBRARY_ASSESSMENT_SECTIONS[e.id.slice(2)] || "prepare") : e.cat;
   function Library() {
     const [query, setQuery] = (0, import_react31.useState)("");
     const [cat, setCat] = (0, import_react31.useState)("all");
     const [limit, setLimit] = (0, import_react31.useState)(20);
     const { lang } = useLang();
-    const rows = (0, import_react31.useMemo)(() => ALL.filter((e2) => (cat === "all" || e2.cat === cat) && (!query || [e2.title, ...e2.fields.flat()].join(" ").toLowerCase().includes(query.toLowerCase()))), [cat, query]);
-    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "dre-stack", children: [
+    const rows = (0, import_react31.useMemo)(() => ALL.filter((e2) => (cat === "all" || librarySection(e2) === cat) && (!query.trim() || [e2.title, ...e2.fields.flat()].join(" ").toLowerCase().includes(query.trim().toLowerCase()))), [cat, query]);
+    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "dre-stack dre-library-content", children: [
       /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("header", { className: "dre-library-head", children: [
         /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "dre-kicker", children: "PATIENT KNOWLEDGE LIBRARY" }),
         /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h1", { className: "dre-h1", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0627\u0644\u0637\u0628\u064A\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D" }),
@@ -18881,10 +18891,14 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           setLimit(20);
         }, placeholder: "\u0645\u062B\u0644\u0627\u064B: \u0627\u0644\u0645\u0634\u062F\u060C \u0627\u0644\u0646\u062F\u0628\u0629\u060C \u0627\u0644\u0631\u0636\u0627\u0639\u0629\u060C \u0627\u0644\u062A\u062D\u0627\u0644\u064A\u0644..." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "dre-chips", children: CATS.map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("button", { className: "dre-chip", "aria-pressed": cat === id2, onClick: () => {
-        setCat(id2);
-        setLimit(20);
-      }, children: label }, id2)) }),
+      !query.trim() && (0, import_jsx_runtime28.jsx)("div",{className:"dre-chips dre-library-starters",children:["المشد","الندبة","التحاليل","الرضاعة","الرياضة"].map(term=>(0, import_jsx_runtime28.jsx)("button",{type:"button",className:"dre-chip",onClick:()=>{setQuery(term);setCat("all");setLimit(20);},children:term},term))}),
+      cat === "all" && !query.trim() && (0, import_jsx_runtime28.jsx)("div", {className:"dre-library-sections",children:LIBRARY_SECTIONS.map(([id,ar,en,desc,descEn])=>(0, import_jsx_runtime28.jsxs)("button",{type:"button",className:"dre-library-section",onClick:()=>{setCat(id);setLimit(20);},children:[
+        (0, import_jsx_runtime28.jsx)("strong",{children:lang === "ar" ? ar : en}),
+        (0, import_jsx_runtime28.jsx)("span",{children:lang === "ar" ? desc : descEn}),
+        (0, import_jsx_runtime28.jsxs)("small",{children:[ALL.filter(e=>librarySection(e)===id).length,lang === "ar" ? " موضوعاً ←" : " topics →"]})
+      ]},id))}),
+      (cat !== "all" || query.trim()) && (0, import_jsx_runtime28.jsx)("button",{type:"button",className:"dre-btn dre-btn-ghost",onClick:()=>{setCat("all");setQuery("");setLimit(20);},children:lang === "ar" ? "العودة للأقسام" : "Back to sections"}),
+      cat !== "all" && (0, import_jsx_runtime28.jsx)("h2",{className:"dre-h2",children:LIBRARY_SECTIONS.find(x=>x[0]===cat)?.[lang === "ar" ? 1 : 2]}),
       /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("p", { className: "dre-small", children: [
         rows.length,
         " \u0645\u0648\u0636\u0648\u0639\u0627\u064B \u0645\u0646 ",
@@ -18898,14 +18912,14 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
           setCat("all");
         }, children: "\u0645\u0633\u062D \u0627\u0644\u0628\u062D\u062B" })
       ] }),
-      rows.slice(0, limit).map((e2) => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("details", { className: "dre-faq", children: [
+      (cat !== "all" || query.trim()) && rows.slice(0, limit).map((e2) => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("details", { className: "dre-faq", children: [
         /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("summary", { children: e2.title }),
         /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { children: e2.fields.map(([k3, v], i) => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("section", { className: "dre-library-field", children: [
           /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h3", { children: k3 }),
           /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { children: v })
         ] }, i)) })
       ] }, e2.id)),
-      limit < rows.length && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("button", { className: "dre-btn dre-btn-ghost dre-btn-block", onClick: () => setLimit(limit + 20), children: [
+      (cat !== "all" || query.trim()) && limit < rows.length && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("button", { className: "dre-btn dre-btn-ghost dre-btn-block", onClick: () => setLimit(limit + 20), children: [
         "\u0639\u0631\u0636 \u0627\u0644\u0645\u0632\u064A\u062F \u0645\u0646 \u0627\u0644\u0645\u0648\u0627\u0636\u064A\u0639 (",
         rows.length - limit,
         ")"
@@ -19830,7 +19844,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-steps-bar", style: { marginTop: 8 }, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-steps-fill", style: { width: `${readiness}%` } }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-tabbar", role: "tablist", children: tabs.map((x2, i) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === i, className: "dre-tab", onClick: () => setTab(i), children: x2 }, x2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-tabbar dre-phone-tabgrid", role: "tablist", onKeyDown: phoneTabGridKeys, children: tabs.map((x2, i) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === i, tabIndex: tab === i ? 0 : -1, className: "dre-tab", onClick: () => setTab(i), children: x2 }, x2)) }),
       /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "dre-guide-hint", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Link, { to: "/library", children: ar2 ? "\u0643\u0644 \u0646\u0635\u0627\u0626\u062D \u0627\u0644\u0627\u0633\u062A\u0639\u062F\u0627\u062F \u0648\u0627\u0644\u062A\u0635\u0648\u064A\u0631 \u2197" : "Preparation and photo advice \u2197" }) }),
       tab === 0 && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "dre-stack dre-instrument", children: [
         /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { children: [
@@ -22862,7 +22876,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Link, { to: "/library", children: "\u0627\u0644\u0645\u0643\u062A\u0628\u0629 \u0648\u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0643\u0627\u0645\u0644\u0629 \u2197" }),
         /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "\u0643\u0644 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0645\u062A\u0627\u062D\u0629 \u0628\u062F\u0648\u0646 \u0625\u0643\u0645\u0627\u0644 \u0627\u0644\u062A\u0642\u064A\u064A\u0645" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "dre-tabbar", role: "tablist", children: [["planner", ar2 ? "\u0645\u062E\u0637\u0637 \u0627\u0644\u0631\u062D\u0644\u0629" : "Journey Planner"], ["stays", ar2 ? "\u0627\u0644\u0641\u0646\u0627\u062F\u0642 \u0648\u0627\u0644\u0645\u0633\u062A\u0634\u0641\u064A\u0627\u062A" : "Stays & Hospitals"], ["labs", ar2 ? "\u0627\u0644\u062A\u062D\u0627\u0644\u064A\u0644 \u0648\u0627\u0644\u0637\u064A\u0631\u0627\u0646" : "Labs & Flight"], ["clinics", ar2 ? "\u0627\u0644\u0627\u0633\u062A\u0642\u0628\u0627\u0644 \u0648\u0627\u0644\u0641\u0631\u0648\u0639" : "Arrival & Branches"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("button", { className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "dre-tabbar dre-phone-tabgrid", role: "tablist", onKeyDown: phoneTabGridKeys, children: [["planner", ar2 ? "\u0645\u062E\u0637\u0637 \u0627\u0644\u0631\u062D\u0644\u0629" : "Journey Planner"], ["stays", ar2 ? "\u0627\u0644\u0641\u0646\u0627\u062F\u0642 \u0648\u0627\u0644\u0645\u0633\u062A\u0634\u0641\u064A\u0627\u062A" : "Stays & Hospitals"], ["labs", ar2 ? "\u0627\u0644\u062A\u062D\u0627\u0644\u064A\u0644 \u0648\u0627\u0644\u0637\u064A\u0631\u0627\u0646" : "Labs & Flight"], ["clinics", ar2 ? "\u0627\u0644\u0627\u0633\u062A\u0642\u0628\u0627\u0644 \u0648\u0627\u0644\u0641\u0631\u0648\u0639" : "Arrival & Branches"]].map(([id2, label]) => /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("button", { type: "button", role: "tab", "aria-selected": tab === id2, tabIndex: tab === id2 ? 0 : -1, className: `dre-tab ${tab === id2 ? "on" : ""}`, onClick: () => setTab(id2), children: label }, id2)) }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { hidden: tab !== "planner", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Planner2, { ar: ar2, st: st3, setSt }) }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { hidden: tab !== "stays", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Stays, { ar: ar2, st: st3, setSt }) }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { hidden: tab !== "labs", className: "dre-instrument", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(LabsTab, { ar: ar2, st: st3, setSt }) }),
@@ -25167,15 +25181,15 @@ react-router/dist/development/index.mjs:
             root.getElementById('stage-activity-list').innerHTML = stage.activities.map(row => {
                 const cfg = getActivityBadgeConfig(row.status);
                 return `
-                    <div class="p-3 rounded-2xl bg-pitch border ${cfg.border} flex items-start justify-between gap-2.5">
+                    <div class="p-3 rounded-2xl bg-pitch border ${row.status === "available" ? "border-white/10" : cfg.border} flex items-start justify-between gap-2.5">
                         <div class="flex items-start gap-2 min-w-0">
-                            <span class="dre-live-led w-2 h-2 rounded-full ${cfg.dot} shrink-0 mt-1.5"></span>
+                            <span class="w-2 h-2 rounded-full ${row.status === "available" ? "bg-white/20" : cfg.dot} shrink-0 mt-1.5"></span>
                             <div class="min-w-0">
                                 <div class="text-xs font-bold text-crisp">${row.label}</div>
                                 <div class="text-[11px] text-silver mt-0.5 leading-relaxed">${row.note}</div>
                             </div>
                         </div>
-                        <span class="shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full border ${cfg.pill}">${cfg.text}</span>
+                        <span class="shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full border ${row.status === "available" ? "bg-white/5 text-emerald-300 border-white/10" : cfg.pill}">${cfg.text}</span>
                     </div>
                 `;
             }).join('');
@@ -25577,3 +25591,24 @@ react-router/dist/development/index.mjs:
  addEventListener('scroll',schedule,{passive:true});addEventListener('focusin',schedule);addEventListener('focusout',()=>setTimeout(schedule,100));visualViewport?.addEventListener('resize',schedule);
  new MutationObserver(schedule).observe(document.getElementById('root'),{childList:true,subtree:true});schedule();
 })();
+
+// Keyboard movement follows the phone grid, and the reading direction on wider screens.
+function phoneTabGridKeys(event) {
+  const tabs = Array.from(event.currentTarget.querySelectorAll('[role="tab"]'));
+  const index = tabs.indexOf(event.target);
+  if (index < 0) return;
+  const rtl = getComputedStyle(event.currentTarget).direction === 'rtl';
+  const grid = getComputedStyle(event.currentTarget).display === 'grid';
+  let next = index;
+  if (event.key === 'Home') next = 0;
+  else if (event.key === 'End') next = tabs.length - 1;
+  else if (event.key === 'ArrowRight') next += rtl ? -1 : 1;
+  else if (event.key === 'ArrowLeft') next += rtl ? 1 : -1;
+  else if (grid && event.key === 'ArrowDown') next += 2;
+  else if (grid && event.key === 'ArrowUp') next -= 2;
+  else return;
+  event.preventDefault();
+  next = (next + tabs.length) % tabs.length;
+  tabs[next].focus();
+  tabs[next].click();
+}
