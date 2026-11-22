@@ -15174,3 +15174,156 @@ body {
   color: #7c5f30;
   letter-spacing: .03em;
 }
+
+/* === recovery timeline v2: snap phase rail, fluid meters, activity status cards === */
+.dre-root .dre-route-recovery .dre-instrument .dre-chips {
+  counter-reset: dreph;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  gap: 8px;
+  padding: 4px 2px 10px;
+  scrollbar-width: none;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-chips::-webkit-scrollbar { display: none; }
+.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip {
+  counter-increment: dreph;
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 8px 16px;
+  border-radius: 14px;
+  font-family: "Plex Arabic Display", var(--dre-font);
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip::before {
+  content: counter(dreph, arabic-indic);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 50%;
+  border: 1px solid rgb(211 175 109 / .5);
+  color: #d3af6d;
+  font-family: var(--dre-font);
+  font-size: 12px;
+  font-weight: 400;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip[aria-pressed=true] {
+  background: linear-gradient(140deg, #e3c78c, #c19a58);
+  border-color: #d3af6d;
+  color: #1a130a;
+  font-weight: 700;
+  box-shadow: 0 8px 22px -10px rgb(211 175 109 / .55);
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-chips .dre-chip[aria-pressed=true]::before {
+  background: #1a130a;
+  border-color: #1a130a;
+  color: #e3c78c;
+}
+/* meters: thick track, fluid animation, label + % on one row */
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  column-gap: 10px;
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-meter {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-kv-k {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-kv-k::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d3af6d;
+  box-shadow: 0 0 7px rgb(211 175 109 / .9);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(2) .dre-kv-k::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8fc79b;
+  box-shadow: 0 0 7px rgb(143 199 155 / .9);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 .dre-small {
+  font-family: Cairo, var(--dre-font);
+  font-size: 15px;
+  font-weight: 700;
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-meter {
+  height: 10px;
+  background: rgb(255 255 255 / .09);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / .55);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-meter-fill {
+  transition: width 1s cubic-bezier(.22, .75, .25, 1);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter-fill {
+  background: linear-gradient(90deg, #a8823f, #e3c78c);
+  box-shadow: 0 0 14px rgb(211 175 109 / .35);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter-fill::after {
+  background: radial-gradient(circle at 35% 30%, #fffdf6, #e3c78c 55%, #a8823f);
+}
+.dre-root .dre-route-recovery .dre-panel-dark .dre-grid-2 > div:nth-child(1) .dre-meter + .dre-small {
+  color: #e3c78c !important;
+}
+/* activity status cards */
+.dre-root .dre-route-recovery .dre-panel-soft:has(> .dre-stack) > .dre-stack {
+  display: grid;
+  gap: 10px;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft:has(> .dre-stack) > .dre-stack > div {
+  background: rgb(255 246 224 / .045);
+  border: 1px solid rgb(236 229 216 / .12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  padding-inline-start: 18px;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status {
+  border-radius: 999px !important;
+  padding: 4px 11px !important;
+  letter-spacing: .04em !important;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-ok {
+  background: rgb(95 157 118 / .16) !important;
+  border: 1px solid rgb(95 157 118 / .5) !important;
+  color: #b7dcbc;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-partial {
+  background: rgb(211 175 109 / .14) !important;
+  border: 1px solid rgb(211 175 109 / .5) !important;
+  color: #e3cf9f;
+}
+.dre-root .dre-route-recovery .dre-instrument .dre-panel-soft .dre-status-rest {
+  background: rgb(201 138 124 / .14) !important;
+  border: 1px solid rgb(201 138 124 / .5) !important;
+  color: #e0a99d;
+}
+/* phase navigation: next = gold primary */
+.dre-root .dre-route-recovery .dre-actions .dre-btn:last-child {
+  background: linear-gradient(140deg, #e3c78c, #c19a58);
+  border-color: #d3af6d;
+  color: #1a130a;
+  font-weight: 700;
+}
+.dre-root .dre-route-recovery .dre-actions .dre-btn:disabled {
+  opacity: .35;
+}

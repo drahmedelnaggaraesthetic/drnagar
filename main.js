@@ -23706,3 +23706,26 @@ react-router/dist/development/index.mjs:
     new MutationObserver(scan).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
   }
 })();
+
+/* recovery timeline: keep the active phase pill centered in the rail */
+(() => {
+  const arm = (rail) => {
+    if (rail.dataset.dreRail) return;
+    rail.dataset.dreRail = "1";
+    const center = (chip) => chip && chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    rail.addEventListener("click", (e) => {
+      const chip = e.target.closest(".dre-chip");
+      if (chip) setTimeout(() => center(chip), 60);
+    });
+    new MutationObserver(() => {
+      const active = rail.querySelector('.dre-chip[aria-pressed="true"]');
+      if (active) center(active);
+    }).observe(rail, { attributes: true, subtree: true, attributeFilter: ["aria-pressed"] });
+  };
+  const scan = () => {
+    const rail = document.querySelector(".dre-route-recovery .dre-instrument .dre-chips");
+    if (rail) arm(rail);
+  };
+  new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+  scan();
+})();
