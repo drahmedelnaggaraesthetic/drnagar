@@ -23470,7 +23470,46 @@ react-router/dist/development/index.mjs:
    *)
 */
 
-/* Stable masthead: no scroll-driven resizing or direction toggles. */
+/* Mobile masthead: transform-only hide/reveal, never resize while scrolling. */
+(() => {
+ const init=()=>{
+  const header=document.querySelector('.dre-masthead');if(!header)return false;
+  const nav=header.querySelector('.dre-navigation');let last=scrollY,travel=0,direction=0,queued=false,openAt=scrollY,settling=false;
+  const hide=value=>header.classList.toggle('dre-mh-away',value);
+  const update=()=>{
+   queued=false;
+   const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);
+   const raw=scrollY,y=Math.max(0,Math.min(raw,max));
+   if(!matchMedia('(max-width:767px)').matches){hide(false);last=y;travel=0;return;}
+   if(settling){last=y;return;}
+   if(nav.open){
+    hide(false);
+    if(Math.abs(y-openAt)>8){
+     nav.open=false;settling=true;travel=0;direction=0;
+     requestAnimationFrame(()=>{last=Math.max(0,scrollY);settling=false;});
+    }
+    last=y;return;
+   }
+   // Ignore Safari rubber-band excursions, viewport-bar resize is handled separately.
+   if(raw<0||raw>max){last=y;travel=0;return;}
+   const delta=y-last;last=y;
+   if(y<=80){hide(false);travel=0;direction=0;return;}
+   if(Math.abs(delta)<1)return;
+   const next=delta>0?1:-1;if(next!==direction){travel=0;direction=next;}
+   travel+=Math.abs(delta);
+   if(direction===1&&travel>=28&&y>170)hide(true);
+   if(direction===-1&&travel>=20)hide(false);
+  };
+  const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',()=>{last=Math.max(0,scrollY);travel=0;direction=0;},{passive:true});
+  nav.addEventListener('toggle',()=>{openAt=Math.max(0,scrollY);last=openAt;travel=0;direction=0;if(nav.open)hide(false);});
+  header.addEventListener('focusin',()=>hide(false));
+  addEventListener('hashchange',()=>{hide(false);travel=0;direction=0;last=Math.max(0,scrollY);});
+  return true;
+ };
+ if(!init()){const observer=new MutationObserver(()=>{if(init())observer.disconnect();});observer.observe(document.documentElement,{childList:true,subtree:true});}
+})();
 /* portal index v2: staggered reveal + tap-to-expand preview rows */
 (() => {
   const PREV = {

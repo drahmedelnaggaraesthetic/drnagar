@@ -16017,7 +16017,7 @@ content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-wid
 .dre-root .dre-masthead .dre-navigation nav a[data-section-available=true]:not([href="/#/"]):not([href="#/"]):not([href="/"])>span::before{content:none!important;display:none!important}
 /* Keep mobile header geometry stable while iOS browser bars expand and contract. */
 @media(max-width:767px){
- .dre-root .dre-masthead{transition:none!important;transform:none!important;background:#0c0a05!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow-anchor:none}
+ .dre-root .dre-masthead{transition:transform .2s ease-out!important;transform:translateY(0)!important;background:#0c0a05!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow-anchor:none}
 }
 
 /* Selected D: connected slate index, mobile menu only. */
@@ -16031,3 +16031,10 @@ content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-wid
  .dre-root .dre-masthead .dre-navigation nav a .dre-menu-description{display:block;font-size:10px;line-height:1.6;color:#a6a7a9;font-weight:400;margin-top:3px}
  .dre-root .dre-masthead .dre-navigation nav a::before,.dre-root .dre-masthead .dre-navigation nav a::after,.dre-root .dre-masthead .dre-navigation nav a>span::before{content:none!important;display:none!important}
 }
+
+/* Hiding moves only the painted header; its layout height never changes. */
+@media(max-width:767px){
+ .dre-root .dre-masthead.dre-mh-away{transform:translateY(calc(-100% - 32px))!important;pointer-events:none}
+ .dre-root .dre-masthead .dre-navigation nav{overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
+}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-masthead{transition:none!important}}
