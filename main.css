@@ -15704,3 +15704,11 @@ body {
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-opt[aria-pressed=true] .dre-opt-check {background:#c89d7c;color:#050507;border-color:#dfb99b}
 .dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument :is(.dre-h1,.dre-h2,.dre-h3) {font-family:"Tajawal","Cairo",sans-serif;font-weight:800;letter-spacing:0}
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-h2 {font-size:20px;line-height:1.4}
+
+.dre-root .dre-route-recovery dre-recovery-reference {display:block;margin-inline:calc(-1 * clamp(16px,4vw,44px) - 1px);background:#050507}
+/* True inputs retain a draggable thumb, but use the reference's live cyan/emerald palette. */
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range] {appearance:none;-webkit-appearance:none;width:100%;height:28px;cursor:pointer;background:transparent;accent-color:#34d399}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-runnable-track {height:8px;border-radius:999px;background:linear-gradient(to left,#34d399 0%,#2dd4bf var(--range-progress,50%),#050507 var(--range-progress,50%),#050507 100%);border:1px solid rgb(255 255 255 / .08)}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]::-webkit-slider-thumb {-webkit-appearance:none;width:18px;height:18px;margin-top:-6px;border-radius:50%;background:#34d399;border:2px solid #0e0f14;box-shadow:0 0 0 1px rgb(52 211 153 / .35),0 0 14px rgb(52 211 153 / .2)}
+.dre-root .dre-route.dre-ivory .dre-instrument input[type=range]:active::-webkit-slider-thumb {box-shadow:0 0 0 5px rgb(52 211 153 / .15)}
+.dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:18px}
