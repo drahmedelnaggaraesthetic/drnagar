@@ -14620,3 +14620,124 @@ body {
   .dre-root .dre-clinical-note,
   .dre-root .dre6-foot { padding-inline: clamp(24px, 3vw, 44px); }
 }
+
+/* === motion pass: 7 premium touches (all reduced-motion guarded) === */
+/* 2. gold shimmer on overline + section kickers */
+.dre-root .dre7-overline {
+  background: linear-gradient(100deg, rgb(211 175 109 / .05) 40%, rgb(246 231 195 / .22) 50%, rgb(211 175 109 / .05) 60%) padding-box;
+  background-size: 280% 100%;
+  animation: dreMoSheen 7.5s ease-in-out infinite;
+}
+.dre-root .dre7-overline > span, .dre-root .dre7-overline {
+  text-shadow: none;
+}
+.dre-root .dre7-overline .dre-mo-shine {
+  background: linear-gradient(100deg, #c9a86a 40%, #f6e7c3 50%, #c9a86a 60%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dreMoShimmer 7.5s ease-in-out infinite;
+}
+.dre-root .dre7-seclabel {
+  background: linear-gradient(100deg, #8a6a3d 40%, #d9b878 50%, #8a6a3d 60%);
+  background-size: 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dreMoShimmer 8.5s ease-in-out infinite;
+}
+@keyframes dreMoShimmer { 0%, 18% { background-position: 120% 0; } 52%, 100% { background-position: -30% 0; } }
+@keyframes dreMoSheen { 0%, 18% { background-position: 120% 0; } 52%, 100% { background-position: -30% 0; } }
+
+/* 3. before/after handle invite */
+.dre-root .dre5-ba.dre-mo-hint .dre5-ba-line { animation: dreMoBaHint 1.5s ease-in-out 2; }
+.dre-root .dre5-ba.dre-mo-hint .dre5-ba-grip { animation: dreMoBaPulse 1.5s ease-in-out 2; }
+@keyframes dreMoBaHint {
+  0%, 100% { transform: translateX(-50%); }
+  30% { transform: translateX(calc(-50% - 12px)); }
+  70% { transform: translateX(calc(-50% + 12px)); }
+}
+@keyframes dreMoBaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(211 175 109 / .55); }
+  50% { box-shadow: 0 0 0 11px rgb(211 175 109 / 0); }
+}
+
+/* 4. ambient gold glow (hero wall + footer) */
+.dre-root .dre7-cover-wall::after {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 42% at 32% 30%, rgb(211 175 109 / .14), transparent 70%),
+    radial-gradient(30% 30% at 74% 68%, rgb(211 175 109 / .09), transparent 70%);
+  animation: dreMoGlow 38s ease-in-out infinite alternate;
+}
+.dre-root .dre6-foot {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+.dre-root .dre6-foot::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(42% 48% at 68% 62%, rgb(211 175 109 / .10), transparent 70%);
+  animation: dreMoGlow 44s ease-in-out infinite alternate-reverse;
+}
+@keyframes dreMoGlow {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.1); }
+}
+
+/* 5. marquee band sits on obsidian between hero and frieze */
+.dre-root .dre5 > .dre5-mq.dre-mo-mq { margin-top: 34px; }
+@media (max-width: 759px) {
+  .dre-root .dre5 > .dre5-mq.dre-mo-mq { margin-top: 26px; }
+}
+
+/* 6+7. magnetic + parallax are JS-driven (transforms only) */
+
+@media (prefers-reduced-motion: reduce) {
+  .dre-root .dre7-overline,
+  .dre-root .dre7-overline .dre-mo-shine,
+  .dre-root .dre7-seclabel { animation: none; }
+  .dre-root .dre5-ba.dre-mo-hint .dre5-ba-line,
+  .dre-root .dre5-ba.dre-mo-hint .dre5-ba-grip { animation: none; }
+  .dre-root .dre7-cover-wall::after,
+  .dre-root .dre6-foot::before { animation: none; }
+}
+
+/* live presence dot: the pill's disc becomes a soft green online light (his idea) */
+.dre7-disc {
+  background: radial-gradient(circle at 35% 30%, #8cf2b4, #23b363);
+  box-shadow: 0 0 10px rgb(62 220 130 / .55);
+  animation: dreMoPulse 2.2s ease-in-out infinite;
+}
+@keyframes dreMoPulse {
+  0%, 42% { opacity: 1; box-shadow: 0 0 12px 4px rgb(62 220 130 / .65); }
+  62%, 84% { opacity: .07; box-shadow: 0 0 0 0 rgb(62 220 130 / 0); }
+  100% { opacity: 1; box-shadow: 0 0 12px 4px rgb(62 220 130 / .65); }
+}
+
+/* hero headline line-by-line mask reveal (clone overlay; React's own h1 untouched) */
+.mo-js .dre7-title:not(.dre-mo-title) { opacity: 0; animation: dreMoUnhide 0s linear 3s forwards; }
+@keyframes dreMoUnhide { to { opacity: 1; } }
+.mo-js .dre7-title.mo-src { animation: none; opacity: 1; position: relative; color: transparent; }
+.mo-js .dre7-title.mo-src > *:not(.dre-mo-title) { color: transparent !important; }
+.dre-mo-title { position: absolute; inset: 0; margin: 0; color: #f1e9dd; pointer-events: none; user-select: none; }
+.dre-mo-title em { font-style: normal; color: #d3af6d; }
+.dre-mo-line { display: block; overflow: hidden; padding: .09em 0; margin: -.09em 0; }
+.dre-mo-in { display: inline-block; transform: translateY(115%); animation: dreMoLine 1s cubic-bezier(.2,.75,.25,1) forwards; animation-delay: var(--d, 0ms); will-change: transform; }
+@keyframes dreMoLine { to { transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mo-js .dre7-title:not(.dre-mo-title) { opacity: 1 !important; animation: none !important; }
+  .dre7-disc { animation: none !important; }
+  .dre-mo-in { animation: none !important; transform: none !important; }
+}
