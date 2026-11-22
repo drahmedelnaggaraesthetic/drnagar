@@ -14598,3 +14598,25 @@ body {
 @media (max-width: 760px) {
   .dre-root .dre-brandline > .dre-chips { order: 3; margin-inline-start: auto; }
 }
+
+/* full-bleed gutters pass 2: thin insets, sheets edge-to-edge */
+@media (max-width: 767px) {
+  .dre-root .file-card { padding-inline: 0; }
+  .dre-root .dre7-sheet { padding-inline: 14px; border-inline: 0; }
+  .dre-root .dre-masthead,
+  .dre-root .dre7-cover,
+  .dre-root .dre5-contact,
+  .dre-root .dre5-social,
+  .dre-root .dre-clinical-note,
+  .dre-root .dre6-foot { padding-inline: 14px; }
+}
+@media (min-width: 768px) {
+  .dre-root .file-card { padding-inline: 0; }
+  .dre-root .dre7-sheet { padding-inline: clamp(24px, 3vw, 44px); border-inline: 0; }
+  .dre-root .dre-masthead,
+  .dre-root .dre7-cover,
+  .dre-root .dre5-contact,
+  .dre-root .dre5-social,
+  .dre-root .dre-clinical-note,
+  .dre-root .dre6-foot { padding-inline: clamp(24px, 3vw, 44px); }
+}
