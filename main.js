@@ -23243,6 +23243,20 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   }
   // src/App.tsx
   var import_jsx_runtime45 = __toESM(require_jsx_runtime());
+  function menuDescription(path, ar) {
+    const descriptions = {
+      "/": ["نقطة البداية", "Your starting point"],
+      "/library": ["أدلة وإجابات طبية", "Medical guides and answers"],
+      "/face": ["الوجه والرقبة والجفون", "Face, neck and eyelids"],
+      "/body": ["نحت الجسم وتناسقه", "Body contouring and balance"],
+      "/rhino": ["رحلة تجميل الأنف", "Your rhinoplasty journey"],
+      "/assessment": ["ابدأ التقييم الشخصي", "Start your assessment"],
+      "/consultation": ["تواصل من أي مكان", "Connect from anywhere"],
+      "/travel": ["خطط لزيارتك", "Plan your visit"],
+      "/recovery": ["دليلك بعد الإجراء", "Your post-procedure guide"]
+    };
+    return (0, import_jsx_runtime45.jsx)("small", {className:"dre-menu-description", children:descriptions[path]?.[ar ? 0 : 1] || ""});
+  }
   function WaFab() {
     const { lang } = import_react44.default.useContext(LangCtx);
     const ar2 = lang === "ar";
@@ -23339,18 +23353,18 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
               return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(import_jsx_runtime45.Fragment, { children: [
                 /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(NavLink, { to: "/", end: true, children: [
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("i", { className: "dre-drawer-n", "aria-hidden": "true", children: next() }),
-                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: ar2 ? "\u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629" : "Home" })
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: [ar2 ? "\u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629" : "Home", menuDescription("/", ar2)] })
                 ] }),
                 NAV_GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(import_react44.default.Fragment, { children: [
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "dre-navhead", children: ar2 ? g.ar : g.en }),
                   g.links.map((l2) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(NavLink, { to: l2.to, children: [
                     /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("i", { className: "dre-drawer-n", "aria-hidden": "true", children: next() }),
-                    /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: ar2 ? l2.ar : l2.en })
+                    /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: [ar2 ? l2.ar : l2.en, menuDescription(l2.to, ar2)] })
                   ] }, l2.to))
                 ] }, g.id)),
                 /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(NavLink, { to: NAV_RECOVERY.to, children: [
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("i", { className: "dre-drawer-n", "aria-hidden": "true", children: next() }),
-                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: ar2 ? NAV_RECOVERY.ar : NAV_RECOVERY.en })
+                  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: [ar2 ? NAV_RECOVERY.ar : NAV_RECOVERY.en, menuDescription(NAV_RECOVERY.to, ar2)] })
                 ] })
               ] });
             })() })
