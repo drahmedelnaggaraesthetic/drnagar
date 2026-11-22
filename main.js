@@ -23638,3 +23638,71 @@ react-router/dist/development/index.mjs:
     mo.observe(document.documentElement, { childList: true, subtree: true });
   }
 })();
+
+/* portal index v2: staggered reveal + tap-to-expand preview rows */
+(() => {
+  const PREV = {
+    "/face": { ar: "شد الوجه والرقبة والجفون ومحفزات الكولاجين، كل تقنية بآلية عملها ومرشحها المثالي.", en: "Facelift, eyelids and collagen biostimulators, every technique with how it works and who it suits." },
+    "/body": { ar: "الفيزر رباعي الأبعاد وشد البطن، ومسارات ما بعد الولادة وما بعد التكميم.", en: "4D VASER and tummy tuck, plus post-pregnancy and post-sleeve pathways." },
+    "/rhino": { ar: "تجميل الأنف التحفظي وتقنية البيزو، مع تقييم لتاريخك الجراحي.", en: "Preservation rhinoplasty and the piezo technique, with a surgical-history review." },
+    "/library": { ar: "158 موضوعاً بالعربية مع أسماء التقنيات بالإنجليزية، ابحث في أي مرحلة.", en: "158 Arabic topics with English technique names, search any stage." },
+    "/assessment": { ar: "ملفك الشخصي ومقياس الأمان في 4 خطوات، والبدائل المناسبة لحالتك.", en: "Your profile and safety score in 4 steps, with alternatives for your case." },
+    "/consultation": { ar: "تقييم طبي مباشر بالفيديو بخصوصية تامة، وتوقيت مناسب للخليج وأوروبا.", en: "Private live video assessment, timed for the Gulf and Europe." },
+    "/travel": { ar: "من التقييم الأول إلى خطة السفر والإقامة يوماً بيوم.", en: "From first assessment to a day-by-day travel and stay plan." },
+    "/recovery": { ar: "متابعة التعافي بعد العملية بمؤشرات واضحة وتنبيهات مبكرة.", en: "Post-op recovery tracking with clear indicators and early alerts." }
+  };
+  const isAr = () => {
+    const chip = document.querySelector(".dre-chips .dre-chip[aria-pressed='true']");
+    return chip ? chip.textContent.trim() !== "EN" : true;
+  };
+  const enhance = (list) => {
+    if (list.dataset.dreJl) return;
+    list.dataset.dreJl = "1";
+    const links = [...list.querySelectorAll("a")];
+    links.forEach((a, i) => a.style.setProperty("--dre-jl-d", (i * 70) + "ms"));
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      links.forEach((a) => a.classList.add("dre-jl-in"));
+    } else {
+      list.classList.add("dre-jl-arm");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.querySelectorAll("a").forEach((a) => a.classList.add("dre-jl-in"));
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      io.observe(list);
+    }
+    links.forEach((a) => a.addEventListener("click", (e) => {
+      if (a.classList.contains("dre-jl-open")) return;
+      let key;
+      try { key = new URL(a.href, location.origin).pathname; } catch { return; }
+      const prev = PREV[key];
+      if (!prev) return;
+      e.preventDefault();
+      list.querySelectorAll(".dre-jl-open").forEach((o) => o.classList.remove("dre-jl-open"));
+      if (!a.querySelector(".dre-jl-more")) {
+        const more = document.createElement("span");
+        more.className = "dre-jl-more";
+        const p = document.createElement("p");
+        const cta = document.createElement("span");
+        cta.className = "dre-jl-cta";
+        more.append(p, cta);
+        a.append(more);
+      }
+      const ar = isAr();
+      a.querySelector(".dre-jl-more p").textContent = ar ? prev.ar : prev.en;
+      a.querySelector(".dre-jl-more .dre-jl-cta").textContent = ar ? "استكشف القسم ↗" : "EXPLORE ↗";
+      a.classList.add("dre-jl-open");
+    }));
+  };
+  const scan = () => { document.querySelectorAll(".dre7-journey-links").forEach(enhance); return document.querySelector(".dre7-journey-links"); };
+  if (!scan()) {
+    const mo = new MutationObserver(() => { if (scan()) mo.disconnect(); });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  } else {
+    new MutationObserver(scan).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
+  }
+})();

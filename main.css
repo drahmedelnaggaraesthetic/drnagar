@@ -15065,3 +15065,112 @@ body {
   transform: none;
   background: linear-gradient(90deg, rgb(95 157 118 / .18), rgb(95 157 118 / .04) 65%, transparent);
 }
+
+/* === portal index v2: live editorial rows with LED dot, display titles, tap-to-expand === */
+.dre-root .dre7-journey-links a {
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 17px 4px !important;
+}
+.dre-root .dre7-journey-links a::before {
+  counter-increment: none;
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5f9d76;
+  box-shadow: 0 0 6px rgb(111 174 133 / .7);
+  animation: drejl-pulse 2.6s ease-in-out infinite;
+  margin-top: 3px;
+  flex: 0 0 7px;
+}
+@keyframes drejl-pulse {
+  0%, 100% { opacity: .4; box-shadow: 0 0 2px rgb(111 174 133 / .3); }
+  50% { opacity: 1; box-shadow: 0 0 10px rgb(111 174 133 / .9); }
+}
+.dre-root .dre7-journey-links a > span {
+  font-family: "Plex Arabic Display", var(--dre-font);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1f1708;
+}
+.dre-root .dre7-journey-links a small {
+  font-family: var(--dre-font);
+  font-size: 11.5px;
+  color: #8d8271;
+}
+.dre-root .dre7-journey-links a b {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(176 141 83 / .45);
+  border-radius: 50%;
+  color: #a8874e;
+  font-size: 13px;
+  font-weight: 400;
+  transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+}
+.dre-root .dre7-journey-links a:hover b {
+  background: #d9b878;
+  border-color: #b3904f;
+  color: #1a130a;
+}
+.dre-root .dre7-journey-links.dre-jl-arm a {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.dre-root .dre7-journey-links.dre-jl-arm a.dre-jl-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s ease var(--dre-jl-d, 0ms), transform .5s ease var(--dre-jl-d, 0ms);
+}
+.dre-root .dre7-journey-links a.dre-jl-open {
+  background: linear-gradient(90deg, rgb(95 157 118 / .1), rgb(95 157 118 / .02) 60%, transparent);
+  border-bottom-color: rgb(95 157 118 / .5) !important;
+  box-shadow: inset -3px 0 0 rgb(95 157 118 / .9);
+}
+.dre-root [dir=ltr] .dre7-journey-links a.dre-jl-open,
+[dir=ltr] .dre-root .dre7-journey-links a.dre-jl-open {
+  box-shadow: inset 3px 0 0 rgb(95 157 118 / .9);
+}
+.dre-root .dre7-journey-links a.dre-jl-open::before {
+  animation: none;
+  opacity: 1;
+  box-shadow: 0 0 10px rgb(111 174 133 / .9);
+}
+.dre-root .dre7-journey-links a.dre-jl-open b {
+  background: #5f9d76;
+  border-color: #5f9d76;
+  color: #fff;
+}
+.dre-root .dre7-journey-links .dre-jl-more {
+  flex-basis: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .35s ease, opacity .3s ease;
+  display: grid;
+  gap: 6px;
+  padding-inline-start: 21px;
+}
+.dre-root .dre7-journey-links a.dre-jl-open .dre-jl-more {
+  max-height: 140px;
+  opacity: 1;
+  padding-bottom: 4px;
+}
+.dre-root .dre7-journey-links .dre-jl-more p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: #5d5342;
+}
+.dre-root .dre7-journey-links .dre-jl-more .dre-jl-cta {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #7c5f30;
+  letter-spacing: .03em;
+}
