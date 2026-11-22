@@ -15975,3 +15975,16 @@ body {
 .dre-root .dre-route-library .dre-library-content :is(.dre-input,.dre-chip,.dre-btn-ghost){border-color:#71869b!important}
 .dre-root .dre-route-library .dre-library-content .dre-faq>div{border-color:#a3b5c6!important}
 .dre-root [dir=rtl] .dre-route-library .dre-library-content .dre-faq[open],.dre-root .dre-route-library[dir=rtl] .dre-library-content .dre-faq[open]{box-shadow:inset -3px 0 0 #506780!important}
+
+/* Larger Library reading type after phone review. Layout and clinical copy unchanged. */
+@media(max-width:600px){
+.dre-root .dre-route-library .dre-library-content .dre-h2{font-size:26px!important;line-height:1.55!important}
+.dre-root .dre-route-library .dre-library-content .dre-faq>summary{font-size:20px!important;line-height:1.7!important;padding:22px 18px!important;gap:14px!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-field h3{font-size:18px!important;line-height:1.7!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-field p{font-size:18px!important;line-height:1.95!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-section strong{font-size:19px!important;line-height:1.6!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-section span{font-size:16px!important;line-height:1.8!important}
+.dre-root .dre-route-library .dre-library-content .dre-library-section small{font-size:14px!important;line-height:1.7!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-sub,.dre-small,.dre-field-lbl,.dre-input,.dre-panel){font-size:16px!important;line-height:1.85!important}
+.dre-root .dre-route-library .dre-library-content :is(.dre-chip,.dre-btn-ghost){font-size:16px!important;line-height:1.7!important;min-height:48px!important}
+}
