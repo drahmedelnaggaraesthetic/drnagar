@@ -14862,3 +14862,66 @@ body {
 
 /* phone line under the WhatsApp CTA removed at his direction - number stays in the footer */
 .dre5-contact .dre5-phone { display: none; }
+
+
+/* === recovery route: instrument panels bleed edge-to-edge (no ivory gutters) === */
+.dre-root .dre-route-recovery.dre-ivory { overflow-x: clip; }
+.dre-root .dre-route-recovery.dre-ivory .dre-panel.dre-instrument {
+  margin-inline: calc(-1 * clamp(16px, 4vw, 44px) - 1px);
+  border-inline: 0;
+  border-radius: 0;
+  padding-inline: calc(clamp(16px, 4vw, 44px) + 14px);
+}
+.dre-root .dre-route-recovery .dre-stack > .dre-panel.dre-instrument + .dre-panel.dre-instrument {
+  margin-top: 0;
+  border-top: 1px solid rgb(211 175 109 / .14);
+}
+
+/* === recovery meters: pearl-champagne, slider thumb, interactive affordance === */
+.dre-root .dre-ivory .dre-instrument .dre-meter {
+  height: 12px;
+  overflow: visible;
+  background: rgb(0 0 0 / .5);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / .7), inset 0 0 0 1px rgb(236 229 216 / .1);
+  cursor: pointer;
+}
+.dre-root .dre-ivory .dre-instrument .dre-meter-fill {
+  background: linear-gradient(90deg, var(--mc1), var(--mc2));
+  box-shadow: 0 0 14px var(--mglow);
+  position: relative;
+}
+.dre-root .dre-ivory .dre-instrument .dre-meter-fill::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -1px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fffdf6, var(--mc2) 55%, var(--mc1));
+  border: 1px solid rgb(0 0 0 / .45);
+  box-shadow: 0 0 0 4px rgb(255 255 255 / .06), 0 2px 8px rgb(0 0 0 / .6);
+}
+.dre-root .dre-ivory .dre-instrument .dre-meter:hover .dre-meter-fill { filter: brightness(1.12); }
+.dre-root .dre-ivory .dre-instrument .dre-meter + .dre-small {
+  color: var(--mc2) !important;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: .04em;
+}
+
+.dre-root .dre-route-recovery { --mc1: #5f9d76; --mc2: #b7dcbc; --mglow: rgb(150 210 165 / .35); }
+/* C3: status rail on each row + minimal LED text tag */
+.dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div { position: relative; padding-inline-start: 16px; }
+.dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 13px; bottom: 13px; width: 3px; border-radius: 3px; background: var(--rail, #8d8471);
+}
+.dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div:has(.dre-status-ok) { --rail: #8fc79b; }
+.dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div:has(.dre-status-partial) { --rail: #d3af6d; }
+.dre-root .dre-ivory .dre-instrument .dre-panel-soft:has(.dre-status) .dre-stack > div:has(.dre-status-rest) { --rail: #c98a7c; }
+.dre-root .dre-ivory .dre-instrument .dre-status { background: none !important; border: none !important; padding: 2px 0; font-size: 11px; font-weight: 800; letter-spacing: .12em; gap: 6px; }
+.dre-root .dre-ivory .dre-instrument .dre-status-dot { width: 6px !important; height: 6px !important; outline: none !important; border: none !important; }
+.dre-root .dre-ivory .dre-instrument .dre-status-ok .dre-status-dot { background: #8fc79b !important; box-shadow: 0 0 7px rgb(143 199 155 / .9) !important; }
+.dre-root .dre-ivory .dre-instrument .dre-status-partial .dre-status-dot { background: #d3af6d !important; box-shadow: 0 0 7px rgb(211 175 109 / .9) !important; }
+.dre-root .dre-ivory .dre-instrument .dre-status-rest .dre-status-dot { background: #c98a7c !important; box-shadow: 0 0 7px rgb(201 138 124 / .9) !important; }
