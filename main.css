@@ -15714,21 +15714,30 @@ body {
 .dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:18px}
 
 /* Slightly larger reading/UI type requested after the reference-fidelity review. */
-.dre-root .dre-route.dre-ivory .dre-instrument {font-size:14px}
-.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-opt-title,.dre-chip,.dre-btn,.dre-sub,.dre-small,.dre-bullets,.dre-alert) {font-size:13px}
-.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-desc {font-size:12px}
+.dre-root .dre-route.dre-ivory .dre-instrument {font-size:15px}
+.dre-root .dre-route.dre-ivory .dre-instrument :is(.dre-opt-title,.dre-chip,.dre-btn,.dre-sub,.dre-small,.dre-bullets,.dre-alert) {font-size:14px}
+.dre-root .dre-route.dre-ivory .dre-instrument .dre-opt-desc {font-size:13px}
 .dre-root .dre-route.dre-ivory .dre-instrument .dre-h3,
-.dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:19.5px}
-.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab {font-size:13px}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 10px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:10px"] {font-size:11px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 11px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:11px"] {font-size:12px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 12px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:12px"] {font-size:13px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 13px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:13px"] {font-size:14px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 14px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:14px"] {font-size:15px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 15px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:15px"] {font-size:16px!important}
-.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 16px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:16px"] {font-size:17px!important}
+.dre-root .dre-route.dre-ivory:not(.dre-route-recovery) .dre-instrument .dre-h2 {font-size:21px}
+.dre-root .dre-route.dre-ivory .dre-tabbar .dre-tab {font-size:14px}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 10px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:10px"] {font-size:12px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 11px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:11px"] {font-size:13px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 12px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:12px"] {font-size:14px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 13px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:13px"] {font-size:15px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 14px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:14px"] {font-size:16px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 15px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:15px"] {font-size:17px!important}
+.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size: 16px"],.dre-root .dre-route.dre-ivory .dre-instrument [style*="font-size:16px"] {font-size:18px!important}
 
 /* Retain the soft breathing LED status treatment across tool cards. */
 @keyframes dreToolLedBreathe{0%,100%{opacity:.4;filter:brightness(.8)}50%{opacity:1;filter:brightness(1.2)}}
 .dre-root .dre-instrument :is(.dre-status-dot,.dre-meter-led){animation:dreToolLedBreathe 2.2s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.dre-root .dre-instrument :is(.dre-status-dot,.dre-meter-led){animation:none}}
+
+/* Quiet availability signals, only on implemented destinations marked by the portal. */
+@keyframes dreAvailableBreathe{0%,100%{opacity:.3;box-shadow:0 0 0 2px rgb(176 141 83 / .10),0 0 2px rgb(64 156 107 / .18)}50%{opacity:1;box-shadow:0 0 0 2px rgb(176 141 83 / .22),0 0 9px rgb(64 156 107 / .45)}}
+.dre-root .dre7-journey-links a::before{content:none;animation:none}
+.dre-root .dre7-journey-links a[data-section-available=true]::before{content:"";display:block;width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#39845c;animation:dreAvailableBreathe 2.8s ease-in-out infinite}
+.dre-root .dre7-journey > h3[data-section-available=true]::before{content:"";display:inline-block;vertical-align:middle;width:6px;height:6px;border-radius:50%;margin-inline-end:10px;background:#a8874e;animation:dreAvailableBreathe 3.2s ease-in-out infinite}
+.dre-root .dre-masthead :is(.dre-navigation nav,.dre-desktop-nav) a[data-section-available=true]::after{content:"";display:block;position:absolute;inset:auto;inset-inline-end:14px;bottom:14px;width:6px;height:6px;border:0;border-radius:50%;margin:0;transform:none;background:#39845c;animation:dreAvailableBreathe 2.8s ease-in-out infinite}
+.dre-root .dre-navigation nav a[data-section-available=true]{gap:12px}
+@media(prefers-reduced-motion:reduce){.dre-root .dre7-journey-links a[data-section-available=true]::before,.dre-root .dre7-journey > h3[data-section-available=true]::before,.dre-root .dre-masthead :is(.dre-navigation nav,.dre-desktop-nav) a[data-section-available=true]::after{animation:none;opacity:1;box-shadow:0 0 5px rgb(64 156 107 / .25)}}
