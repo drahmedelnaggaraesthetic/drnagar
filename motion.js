@@ -190,10 +190,30 @@
     update();
   };
 
+  /* Header entrance: the prerendered masthead animates via the preboot-scoped CSS
+     from first paint; React's fresh masthead must not replay it at boot. */
+  const bootHeader = (root) => {
+    const mast = root.querySelector('.dre-masthead');
+    if (!mast) return;
+    if (window.__dreHdrDone) { mast.style.animation = 'none'; return; }
+    window.__dreHdrDone = true;
+  };
+  /* Old behavior: an open portal menu closes on scroll. */
+  if (!window.__dreScrollClose) {
+    window.__dreScrollClose = true;
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < 4) return;
+      lastY = y;
+      document.querySelectorAll('details[open].dre-navigation, details[open].dre-navgroup').forEach((d) => { d.open = false; });
+    }, { passive: true });
+  }
   const boot = () => {
     const root = document.getElementById('root');
     if (!root || !root.hasChildNodes()) return;
     if (!reducedTitle) root.querySelectorAll('.dre7-title').forEach(buildMask);
+    bootHeader(root);
     ensureMarquee();
     ensureExplore();
     if (!window.__dreCapture) root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
