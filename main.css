@@ -15874,9 +15874,8 @@ body {
 .dre7-cover .dre7-lead{line-height:1.95!important;max-width:31ch!important;margin-top:26px!important;margin-bottom:30px!important}
 .dre7-cover .dre5-hero-ctas{gap:16px!important}
 /* Quiet browsing: no looping decorative motion, brief feedback only. */
-.dre-mo-mq .dre5-mq-track,.dre7-disc,.dre5-mq-item i,[data-content-indicator]::before,.dre-mo-hint,.dre-mo-hint *{animation:none!important}
+.dre-mo-hint,.dre-mo-hint *{animation:none!important}
 .dre7-cover-frame{transform:none!important}
-.dre7-title.mo-src{font-size:inherit}
 .dre5-reveal{opacity:1!important;transform:none!important;animation:none!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.dre-root *{animation:none!important;scroll-behavior:auto!important;transition-duration:0s!important}}
 .dre-wafab.reading-icon{display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
@@ -15885,8 +15884,6 @@ body {
 /* Keep the expanded contact label compact rather than stretching between inset edges. */
 .dre-wafab{width:max-content!important;max-width:calc(100vw - 36px)!important;left:auto!important}
 .dre-wafab.reading-icon{width:48px!important}
-/* Quiet mode does not build a title clone. Show its source immediately. */
-.mo-js .dre7-title:not(.dre-mo-title){opacity:1!important;animation:none!important}
 /* Approved Library reading rhythm, scoped away from navigation and clinical tools. */
 .dre-library-head~.dre-faq{margin-bottom:12px!important;border-radius:16px!important;box-shadow:none!important;border-color:#ded4c1!important}
 .dre-library-head~.dre-faq>summary{font-size:16px!important;line-height:1.75!important;font-weight:600!important;padding-block:18px!important}
@@ -16004,7 +16001,7 @@ body {
 .dre-root .dre-masthead .dre-desktop-nav a[data-section-available=true]::before,
 .dre-root .dre-masthead summary[data-content-indicator=true]::before,
 .dre-root .dre-masthead .dre-navigation nav a[data-section-available=true]>span::before{
-content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-width:6px;flex:0 0 6px;margin:0;border:0;border-radius:50%;transform:none;align-self:center;background:#39845c;opacity:1;filter:none;box-shadow:0 0 5px rgb(64 156 107 / .28);animation:none!important;pointer-events:none
+content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-width:6px;flex:0 0 6px;margin:0;border:0;border-radius:50%;transform:none;align-self:center;background:#39845c;opacity:1;filter:none;box-shadow:0 0 5px rgb(64 156 107 / .28);animation:dreAvailableBreathe 2.8s ease-in-out infinite;pointer-events:none
 }
 .dre-root .dre-masthead .dre-navgroup>summary{gap:10px}
 .dre-root .dre-masthead .dre-navigation>summary{gap:10px}

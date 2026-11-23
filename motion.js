@@ -1,7 +1,8 @@
 /* drelnajar.online motion pass - vanilla, no libs. All effects reduced-motion aware. */
 (() => {
   'use strict';
-  const reduced = true; // Quiet by default, manual media remains available.
+  const reduced = true; // Keep unrelated magnetic and parallax effects quiet.
+  const reducedTitle = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   /* 1R. hero headline line-by-line mask reveal.
@@ -167,7 +168,7 @@
   const boot = () => {
     const root = document.getElementById('root');
     if (!root || !root.hasChildNodes()) return;
-    if (!reduced) root.querySelectorAll('.dre7-title').forEach(buildMask);
+    if (!reducedTitle) root.querySelectorAll('.dre7-title').forEach(buildMask);
     ensureMarquee();
     ensureExplore();
     root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
