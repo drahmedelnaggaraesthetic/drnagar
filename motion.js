@@ -10,10 +10,27 @@
      we append one absolutely-positioned clone overlay and rebuild it on language flip. */
   const buildMask = (h) => {
     if (h.closest('.dre-mo-title')) return;
-    const sig = h.textContent;
     const existing = h.querySelector(':scope > .dre-mo-title');
-    if (existing && existing.dataset.sig === sig) return;
-    if (existing) existing.remove();
+    /* Real title text, excluding any overlay clone (the clone doubles textContent). */
+    const cloneless = h.cloneNode(true);
+    const cc = cloneless.querySelector(':scope > .dre-mo-title');
+    if (cc) cc.remove();
+    const sig = cloneless.textContent;
+    if (existing) {
+      /* Prerendered overlay already animating from first paint: remember its clock
+         so a rebuild after the app commits resumes the sweep instead of replaying it. */
+      if (window.__dreMoT0 === undefined) {
+        const inEl = existing.querySelector('.dre-mo-in');
+        const an = inEl && inEl.getAnimations ? inEl.getAnimations()[0] : null;
+        if (an && typeof an.startTime === 'number') window.__dreMoT0 = an.startTime;
+        else window.__dreMoT0 = performance.now() - 10000; /* unknown clock: treat as finished so the rebuild lands on the final state */
+      }
+      window.__dreMoSig = sig;
+      if (existing.dataset.sig === sig) return;
+      existing.remove();
+    }
+    /* Rebuild right after the app commits over the prerendered DOM: continue the same sweep. */
+    const resume = window.__dreCapture ? 0 : (window.__dreMoSig === sig && typeof window.__dreMoT0 === 'number' ? performance.now() - window.__dreMoT0 : 0);
     const clone = document.createElement('div');
     clone.className = 'dre7-title dre-mo-title';
     clone.setAttribute('aria-hidden', 'true');
@@ -41,6 +58,7 @@
     });
     clone.appendChild(line);
     h.classList.add('mo-src');
+    if (resume > 0) clone.querySelectorAll('.dre-mo-in').forEach((el) => { el.style.animationDelay = 'calc(var(--d) - ' + Math.round(resume) + 'ms)'; });
     h.appendChild(clone);
   };
 
@@ -73,10 +91,17 @@
     const lang = isEN() ? 'en' : 'ar';
     const existing = d5.querySelector(':scope > .dre-mo-mq');
     if (existing) {
-      if (existing.dataset.lang !== lang) existing.replaceWith(buildMarquee(lang));
+      if (existing.dataset.lang !== lang) { existing.replaceWith(buildMarquee(lang)); return; }
+      if (window.__dreMqT0 === undefined) {
+        const tr = existing.querySelector('.dre5-mq-track');
+        const an = tr && tr.getAnimations ? tr.getAnimations()[0] : null;
+        window.__dreMqT0 = an && typeof an.startTime === 'number' ? an.startTime : null;
+      }
       return;
     }
-    cover.insertAdjacentElement('afterend', buildMarquee(lang));
+    const mq = buildMarquee(lang);
+    if (window.__dreMqT0) mq.querySelector('.dre5-mq-track').style.animationDelay = '-' + ((performance.now() - window.__dreMqT0) / 1000).toFixed(2) + 's';
+    cover.insertAdjacentElement('afterend', mq);
   };
 
   /* standalone explore-journeys pill below the hero photo (his ask) */
@@ -171,13 +196,16 @@
     if (!reducedTitle) root.querySelectorAll('.dre7-title').forEach(buildMask);
     ensureMarquee();
     ensureExplore();
-    root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
+    if (!window.__dreCapture) root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
     bootMagnetic(root);
     bootParallax();
   };
 
   let t = 0;
   new MutationObserver(() => {
+    /* If the app just committed over the prerendered DOM, restore motion additions in the
+       same frame so nothing visibly pops; otherwise keep the debounce. */
+    if (document.querySelector('.dre5') && (!document.querySelector('.dre-mo-mq') || !document.querySelector('.dre-mo-explore'))) { window.clearTimeout(t); boot(); return; }
     window.clearTimeout(t);
     t = window.setTimeout(boot, 80);
   }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
