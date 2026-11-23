@@ -16035,3 +16035,38 @@ content:"";display:block;position:static;inset:auto;width:6px;height:6px;min-wid
  .dre-root .dre-masthead .dre-navigation nav{overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
 }
 @media(prefers-reduced-motion:reduce){.dre-root .dre-masthead{transition:none!important}}
+
+/* Approved compact mobile header, sliding language capsule and fitted D menu. */
+
+@media(max-width:767px){
+.dre-root .dre-masthead{padding:0 14px!important;margin:0!important;top:0!important;background:#0c0a05!important;box-sizing:border-box!important;position:sticky!important;transition:transform .2s ease-out!important}
+.dre-root .dre-brandline{display:flex!important;align-items:center!important;gap:8px!important;padding:0!important;margin:0!important;border:0!important;min-height:0!important}
+.dre-root .dre-brandname{margin:0!important;min-width:0!important;flex:1!important;order:0!important}
+.dre-root .dre-wordmark>span{font-size:20px!important;line-height:1.35!important;white-space:nowrap!important}
+.dre-root .dre-wordmark small{font-size:6px!important;letter-spacing:1px!important;margin-top:3px!important;white-space:nowrap!important}
+.dre-root .dre-chips{display:flex!important;gap:0!important;margin:0!important;order:1!important}
+.dre-root .dre-chips button{width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;font-size:10px!important;padding:0!important;border-radius:0!important;margin:0!important;box-sizing:border-box!important}
+.dre-root .dre-brandcta{display:flex!important;align-items:center!important;justify-content:center!important;order:2!important;min-height:44px!important;height:44px!important;min-width:105px!important;padding:0 8px!important;font-size:11px!important;line-height:1.2!important;letter-spacing:0!important;margin:0!important;white-space:nowrap!important;box-sizing:border-box!important}
+.dre-root .dre-navigation{margin:0!important;padding:0!important;border:0!important}
+.dre-root .dre-navigation>summary{display:flex!important;align-items:center!important;min-height:44px!important;height:44px!important;font-size:12px!important;line-height:1!important;padding:0!important;border-top:1px solid #4d422d!important;box-sizing:border-box!important;margin:0!important}
+.dre-root .dre-navigation>summary>span{height:44px!important;min-width:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:19px!important;box-sizing:border-box!important}
+}
+@media(max-width:767px){.dre-root .dre-masthead{height:96px!important}.dre-root .dre-brandline{height:48px!important}.dre-root .dre-brandcta{min-width:120px!important}.dre-root .dre-chips{position:absolute!important;bottom:2px!important;inset-inline-end:14px!important}.dre-root .dre-navigation>summary{height:48px!important;padding-inline-end:100px!important}.dre-root .dre-wordmark{display:flex!important;align-items:baseline!important;gap:9px!important;flex-wrap:wrap!important}.dre-root .dre-wordmark>span{font-size:21px!important}.dre-root .dre-wordmark small{display:none!important}}
+
+@media(max-width:767px){
+.dre-root .dre-chips{direction:ltr!important;width:106px!important;height:44px!important;display:flex!important;isolation:isolate;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;border:1px solid #665439!important;border-radius:99px!important;padding:2px!important;box-sizing:border-box!important;background:#16140f!important;bottom:2px!important;overflow:hidden!important}
+.dre-root .dre-chips::before{content:"";position:absolute;top:2px;left:2px;width:48px;height:38px;border-radius:99px;background:linear-gradient(130deg,#eee0bc,#c7a769);box-shadow:0 2px 8px #0005;transform:translateX(50px);transition:transform 650ms cubic-bezier(.34,1.12,.55,1);z-index:0}
+.dre-root .dre-chips:has(button:first-child[aria-pressed=true])::before{transform:translateX(0)}
+.dre-root .dre-chips button{position:relative!important;z-index:1!important;flex:0 0 50px!important;display:flex!important;align-items:center!important;justify-content:center!important;order:0!important;border:0!important;background:transparent!important;border-radius:99px!important;width:50px!important;min-width:50px!important;height:44px!important;margin-top:-3px!important;color:#c0b698!important;font-size:11px!important;transition:color 180ms ease!important}
+.dre-root .dre-chips button[aria-pressed=true]{color:#241f14!important;box-shadow:none!important}
+.dre-root .dre-navigation>summary{padding-inline-end:116px!important;font-size:11px!important}
+.dre-root .dre-navigation[open] nav{position:absolute!important;top:96px!important;left:14px!important;right:14px!important;width:auto!important;margin:0!important;overflow:visible!important;max-height:none!important;box-shadow:0 18px 36px #0009!important;border:1px solid #34383b!important}
+.dre-root .dre-navigation[open] nav a{min-height:64px!important;padding:9px 12px!important;gap:4px!important;flex-direction:row!important;align-items:center!important}
+.dre-root .dre-navigation[open] nav a:first-child{min-height:58px!important}
+.dre-root .dre-navigation[open] nav a .dre-drawer-n{font-size:25px!important;min-width:33px!important;letter-spacing:0!important}
+.dre-root .dre-navigation[open] nav a>span{font-size:12px!important;line-height:1.35!important}
+.dre-root .dre-navigation[open] nav a .dre-menu-description{font-size:8px!important;line-height:1.35!important;margin-top:4px!important}
+}
+@media(max-width:767px){html[dir=rtl] .dre-root .dre-chips{left:14px!important;right:auto!important} html[dir=ltr] .dre-root .dre-chips{left:14px!important;right:auto!important} html[dir=ltr] .dre-root .dre-navigation>summary{padding-left:116px!important;padding-right:0!important}
+}
+@media(prefers-reduced-motion:reduce){.dre-root .dre-chips::before,.dre-root .dre-chips button{transition:none!important}}
