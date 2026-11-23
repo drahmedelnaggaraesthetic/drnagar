@@ -19078,7 +19078,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/hero-portrait.jpg
-  var hero_portrait_default = "./assets/JGDZ6EXT.jpg";
+  var hero_portrait_default = "./assets/JGDZ6EXT.webp";
 
   // src/hero-photo.ts
   var HERO_COVER = hero_portrait_default;
@@ -19086,82 +19086,82 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var HERO_COVER_ALT_EN = "Dr. Ahmed Elnagar in his white coat before the Egyptian flag, the official portal portrait";
 
   // src/photos/temple-wall.jpg
-  var temple_wall_default = "./assets/QFEI37A2.jpg";
+  var temple_wall_default = "./assets/QFEI37A2.webp";
 
   // src/photos/src-extract/tummy-01.jpg
-  var tummy_01_default = "./assets/PRYIPN2R.jpg";
+  var tummy_01_default = "./assets/PRYIPN2R.webp";
 
   // src/photos/case-face-1.jpg
-  var case_face_1_default = "./assets/27EPABUW.jpg";
+  var case_face_1_default = "./assets/27EPABUW.webp";
 
   // src/photos/case-face-2.jpg
-  var case_face_2_default = "./assets/IAZKFRIH.jpg";
+  var case_face_2_default = "./assets/IAZKFRIH.webp";
 
   // src/photos/case-rhino-1.jpg
-  var case_rhino_1_default = "./assets/MOJBB5CB.jpg";
+  var case_rhino_1_default = "./assets/MOJBB5CB.webp";
 
   // src/photos/case-rhino-2.jpg
-  var case_rhino_2_default = "./assets/QAMMJAKP.jpg";
+  var case_rhino_2_default = "./assets/QAMMJAKP.webp";
 
   // src/photos/cases/filler-front.jpg
-  var filler_front_default = "./assets/ORU7V7KF.jpg";
+  var filler_front_default = "./assets/ORU7V7KF.webp";
 
   // src/photos/cases/filler-lips-chin.jpg
-  var filler_lips_chin_default = "./assets/FAN2PI5J.jpg";
+  var filler_lips_chin_default = "./assets/FAN2PI5J.webp";
 
   // src/photos/cases/filler-profile-1.jpg
-  var filler_profile_1_default = "./assets/6I7JDOLB.jpg";
+  var filler_profile_1_default = "./assets/6I7JDOLB.webp";
 
   // src/photos/cases/filler-profile-2.jpg
-  var filler_profile_2_default = "./assets/TVTZVQI3.jpg";
+  var filler_profile_2_default = "./assets/TVTZVQI3.webp";
 
   // src/photos/cases/lips-closeup.jpg
-  var lips_closeup_default = "./assets/3VLUUZVW.jpg";
+  var lips_closeup_default = "./assets/3VLUUZVW.webp";
 
   // src/photos/cases/botox-forehead.jpg
-  var botox_forehead_default = "./assets/OT3O3CZF.jpg";
+  var botox_forehead_default = "./assets/OT3O3CZF.webp";
 
   // src/photos/cases/neck-before.jpg
-  var neck_before_default = "./assets/ONL4XYAY.jpg";
+  var neck_before_default = "./assets/ONL4XYAY.webp";
 
   // src/photos/cases/neck-marking.jpg
-  var neck_marking_default = "./assets/EYXGVZ5N.jpg";
+  var neck_marking_default = "./assets/EYXGVZ5N.webp";
 
   // src/photos/cases/rhino-belgium.jpg
-  var rhino_belgium_default = "./assets/3LQJYGTT.jpg";
+  var rhino_belgium_default = "./assets/3LQJYGTT.webp";
 
   // src/photos/cases/rhino-candid.jpg
-  var rhino_candid_default = "./assets/WBTVGCQI.jpg";
+  var rhino_candid_default = "./assets/WBTVGCQI.webp";
 
   // src/photos/cases/jovena.jpg
-  var jovena_default = "./assets/PSTPBQX3.jpg";
+  var jovena_default = "./assets/PSTPBQX3.webp";
 
   // src/photos/or-video.mp4
   var or_video_default = "./assets/G3OI5XRX.mp4";
 
   // src/photos/cases/or-poster.jpg
-  var or_poster_default = "./assets/NWB6OIJB.jpg";
+  var or_poster_default = "./assets/NWB6OIJB.webp";
 
   // src/photos/cases/review-acne-story.jpg
-  var review_acne_story_default = "./assets/N6UYPSOR.jpg";
+  var review_acne_story_default = "./assets/N6UYPSOR.webp";
 
   // src/photos/cases/review-followup.jpg
-  var review_followup_default = "./assets/FO4ZPK5E.jpg";
+  var review_followup_default = "./assets/FO4ZPK5E.webp";
 
   // src/photos/endo-laser.mp4
   var endo_laser_default = "./assets/RQLJW4SI.mp4";
 
   // src/photos/cases/endo-poster.jpg
-  var endo_poster_default = "./assets/4PMA2CVD.jpg";
+  var endo_poster_default = "./assets/4PMA2CVD.webp";
 
   // src/photos/or-montage.mp4
   var or_montage_default = "./assets/EUUK2S3I.mp4";
 
   // src/photos/cases/or2-poster.jpg
-  var or2_poster_default = "./assets/SK3TDOSZ.jpg";
+  var or2_poster_default = "./assets/SK3TDOSZ.webp";
 
   // src/photos/team-elite.jpg
-  var team_elite_default = "./assets/VEGU7V2H.jpg";
+  var team_elite_default = "./assets/VEGU7V2H.webp";
 
   // src/real-cases.tsx
   var import_jsx_runtime30 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -19671,7 +19671,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var import_react35 = __toESM(require_react());
 
   // src/photos/portrait-consult.jpg
-  var portrait_consult_default = "./assets/SQ2TYPB3.jpg";
+  var portrait_consult_default = "./assets/SQ2TYPB3.webp";
 
   // src/pages/Consultation.tsx
   var import_jsx_runtime33 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -20205,10 +20205,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/src-extract/test-01.jpg
-  var test_01_default = "./assets/LXBYC3LU.jpg";
+  var test_01_default = "./assets/LXBYC3LU.webp";
 
   // src/photos/src-extract/recovery-01.jpg
-  var recovery_01_default = "./assets/6SKFFXOF.jpg";
+  var recovery_01_default = "./assets/6SKFFXOF.webp";
 
   // src/photos/src-extract/index-01.jpg
 
@@ -20880,34 +20880,34 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/lifting-02-private.jpg
-  var lifting_02_private_default = "./assets/TAJGXRMF.jpg";
+  var lifting_02_private_default = "./assets/TAJGXRMF.webp";
 
   // src/photos/lifting-03-private.jpg
-  var lifting_03_private_default = "./assets/IIHSRNNZ.jpg";
+  var lifting_03_private_default = "./assets/IIHSRNNZ.webp";
 
   // src/photos/lifting-04-private.jpg
-  var lifting_04_private_default = "./assets/6LK6D4RL.jpg";
+  var lifting_04_private_default = "./assets/6LK6D4RL.webp";
 
   // src/photos/lifting-05-private.jpg
-  var lifting_05_private_default = "./assets/KOZI3E7V.jpg";
+  var lifting_05_private_default = "./assets/KOZI3E7V.webp";
 
   // src/photos/lifting-06-private.jpg
-  var lifting_06_private_default = "./assets/GXLED5QY.jpg";
+  var lifting_06_private_default = "./assets/GXLED5QY.webp";
 
   // src/photos/lifting-07-private.jpg
-  var lifting_07_private_default = "./assets/YFHS7PRD.jpg";
+  var lifting_07_private_default = "./assets/YFHS7PRD.webp";
 
   // src/photos/rhino-02-private.jpg
-  var rhino_02_private_default = "./assets/O5E42XG2.jpg";
+  var rhino_02_private_default = "./assets/O5E42XG2.webp";
 
   // src/photos/rhino-03-private.jpg
-  var rhino_03_private_default = "./assets/VHIEOLEH.jpg";
+  var rhino_03_private_default = "./assets/VHIEOLEH.webp";
 
   // src/photos/rhino-04-private.jpg
-  var rhino_04_private_default = "./assets/ZDDRCLEL.jpg";
+  var rhino_04_private_default = "./assets/ZDDRCLEL.webp";
 
   // src/photos/rhino-05-private.jpg
-  var rhino_05_private_default = "./assets/7NYFVZGT.jpg";
+  var rhino_05_private_default = "./assets/7NYFVZGT.webp";
 
   // src/source-galleries.tsx
   var import_jsx_runtime37 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -20922,7 +20922,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { className: "dre-panel", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("h3", { className: "dre-h3", children: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0645\u0646 \u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0623\u0635\u0644\u064A" }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "dre-small", children: "\u0627\u0644\u0635\u0648\u0631 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 \u0643\u0627\u0645\u0644\u0629 \u0628\u062f\u0648\u0646 \u0642\u0635. \u0644\u0627 \u0646\u0636\u064a\u0641 \u0645\u062f\u062f \u0645\u062a\u0627\u0628\u0639\u0629 \u0623\u0648 \u0648\u0639\u0648\u062f \u0646\u062a\u0627\u0626\u062c \u063a\u064a\u0631 \u0645\u0630\u0643\u0648\u0631\u0629 \u0645\u0639 \u0627\u0644\u0635\u0648\u0631\u0629." }),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(on, { label: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A\u0629", items: ["./assets/rhino-original-06.jpg", "./assets/rhino-original-07.jpg"].map((src, i) => ({ src, alt: `\u0635\u0648\u0631\u0629 \u0645\u0631\u062C\u0639\u064A\u0629 ${i + 1} \u0645\u0646 \u062F\u0644\u064A\u0644 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A`, fit: "contain" })) })
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(on, { label: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A\u0629", items: ["./assets/rhino-original-06.webp", "./assets/rhino-original-07.webp"].map((src, i) => ({ src, alt: `\u0635\u0648\u0631\u0629 \u0645\u0631\u062C\u0639\u064A\u0629 ${i + 1} \u0645\u0646 \u062F\u0644\u064A\u0644 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A`, fit: "contain" })) })
     ] });
   }
 
@@ -20991,7 +20991,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/lifting-portrait.jpg
-  var lifting_portrait_default = "./assets/JJ5L2PH5.jpg";
+  var lifting_portrait_default = "./assets/JJ5L2PH5.webp";
 
   // src/pages/Face.tsx
   var import_jsx_runtime39 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -21496,37 +21496,37 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react39 = __toESM(require_react());
 
   // src/photos/editorial/clinical-blueprint.jpg
-  var clinical_blueprint_default = "./assets/XR36YW2X.jpg";
+  var clinical_blueprint_default = "./assets/XR36YW2X.webp";
 
   // src/photos/editorial/prep-window.jpg
-  var prep_window_default = "./assets/EGJVQ6VC.jpg";
+  var prep_window_default = "./assets/EGJVQ6VC.webp";
 
   // src/photos/editorial/winter-planning.jpg
-  var winter_planning_default = "./assets/4QQHBH5X.jpg";
+  var winter_planning_default = "./assets/4QQHBH5X.webp";
 
   // src/photos/editorial/strategic-timing.jpg
-  var strategic_timing_default = "./assets/ZLWKNQWL.jpg";
+  var strategic_timing_default = "./assets/ZLWKNQWL.webp";
 
   // src/photos/editorial/aesthetic-timeline.jpg
-  var aesthetic_timeline_default = "./assets/TIRZ4HI3.jpg";
+  var aesthetic_timeline_default = "./assets/TIRZ4HI3.webp";
 
   // src/photos/editorial/neuromodulation.jpg
-  var neuromodulation_default = "./assets/FLOLJUTR.jpg";
+  var neuromodulation_default = "./assets/FLOLJUTR.webp";
 
   // src/photos/editorial/lymphatic-flow.jpg
-  var lymphatic_flow_default = "./assets/I27ZNCHR.jpg";
+  var lymphatic_flow_default = "./assets/I27ZNCHR.webp";
 
   // src/photos/editorial/fluid-dynamics.jpg
-  var fluid_dynamics_default = "./assets/KYX3IO2Q.jpg";
+  var fluid_dynamics_default = "./assets/KYX3IO2Q.webp";
 
   // src/photos/editorial/recovery-comfort.jpg
-  var recovery_comfort_default = "./assets/O3ILYMRB.jpg";
+  var recovery_comfort_default = "./assets/O3ILYMRB.webp";
 
   // src/photos/editorial/collagen-maturation.jpg
-  var collagen_maturation_default = "./assets/3OKKLIJI.jpg";
+  var collagen_maturation_default = "./assets/3OKKLIJI.webp";
 
   // src/photos/editorial/discreet-healing.jpg
-  var discreet_healing_default = "./assets/74XCYRBK.jpg";
+  var discreet_healing_default = "./assets/74XCYRBK.webp";
 
   // src/editorial-carousel.tsx
   var import_jsx_runtime40 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -21677,7 +21677,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
       r.jsx('style',{children:'.dre-body-case-second .second-video{height:auto;max-height:580px;width:100%;object-fit:contain}.dre-body-case-second .second-wrap{max-width:420px;margin:0 auto}.dre-body-case-second .case-note{max-width:620px;margin:12px auto 0}@media(max-width:650px){.dre-body-case-second .second-video{max-height:550px}}'}),
       r.jsx('div',{className:'case-eyebrow',children:t('حالة أخرى من العيادة','ANOTHER CASE FROM THE CLINIC')}),
       r.jsx('h2',{children:t('تنسيق القوام · فيديو قبل وبعد','Body contouring · Before-and-after video')}),
-      r.jsx('div',{className:'second-wrap',children:r.jsx('video',{className:'second-video',src:'./assets/body-case-2.mp4?v=075',poster:'./assets/body-case-2-poster.jpg',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو حالة تنسيق القوام قبل وبعد','Body contouring case before-and-after video')})}),
+      r.jsx('div',{className:'second-wrap',children:r.jsx('video',{className:'second-video',src:'./assets/body-case-2.mp4?v=075',poster:'./assets/body-case-2-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو حالة تنسيق القوام قبل وبعد','Body contouring case before-and-after video')})}),
       r.jsx('p',{className:'case-note',children:t('يتضمن الفيديو لقطات بعد الإجراء مباشرة، وليست نتيجة نهائية بعد التعافي. النتائج فردية.','The video includes footage immediately after the procedure, not a final healed result. Results vary by patient.')})
     ]});
   }
@@ -21690,8 +21690,8 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
       r.jsx('div',{className:'case-eyebrow',children:t('من حالات العيادة','FROM THE CLINIC')}),
       r.jsx('h2',{children:t('تنسيق القوام · قبل وبعد','Body contouring · Before and after')}),
       r.jsxs('div',{className:'case-layout',children:[
-        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('قبل','Before'),r.jsx('span',{children:t('٣ زوايا','3 VIEWS')})]}),r.jsx('div',{className:'case-photos',children:[['side','جانبي','Side'],['front','أمامي','Front'],['back','خلفي','Back']].map(([id,ar,label])=>r.jsxs('figure',{children:[r.jsx('img',{src:'./assets/body-case-'+id+'.png',alt:t('قبل تنسيق القوام · '+ar,'Before body contouring · '+label),loading:'eager'}),r.jsx('figcaption',{children:t(ar,label)})]},id))})]}),
-        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('بعد الإجراء','After the procedure'),r.jsx('span',{children:t('فيديو الحالة','CASE VIDEO')})]}),r.jsx('video',{src:'./assets/body-case-after.mp4',poster:'./assets/body-case-poster.jpg',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو الحالة بعد الإجراء','Case video after the procedure')}),r.jsx('p',{className:'case-note',children:t('الفيديو بعد الإجراء وليس نتيجة نهائية بعد التعافي.','The video is after the procedure, not a final healed result.')})]})
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('قبل','Before'),r.jsx('span',{children:t('٣ زوايا','3 VIEWS')})]}),r.jsx('div',{className:'case-photos',children:[['side','جانبي','Side'],['front','أمامي','Front'],['back','خلفي','Back']].map(([id,ar,label])=>r.jsxs('figure',{children:[r.jsx('img',{src:'./assets/body-case-'+id+'.webp',alt:t('قبل تنسيق القوام · '+ar,'Before body contouring · '+label),loading:'eager',decoding:'async',fetchpriority:'high'}),r.jsx('figcaption',{children:t(ar,label)})]},id))})]}),
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('بعد الإجراء','After the procedure'),r.jsx('span',{children:t('فيديو الحالة','CASE VIDEO')})]}),r.jsx('video',{src:'./assets/body-case-after.mp4',poster:'./assets/body-case-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو الحالة بعد الإجراء','Case video after the procedure')}),r.jsx('p',{className:'case-note',children:t('الفيديو بعد الإجراء وليس نتيجة نهائية بعد التعافي.','The video is after the procedure, not a final healed result.')})]})
       ]}),
       r.jsx('p',{className:'case-note',children:t('الصور الأصلية قبل الإجراء مع فصل الخلفية فقط، دون تعديل شكل الجسم. النتائج فردية.','Original before photos with background removal only, without reshaping. Results vary by patient.')})
     ]});
@@ -22377,7 +22377,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react41 = __toESM(require_react());
 
   // src/photos/rhino-portrait.jpg
-  var rhino_portrait_default = "./assets/BKOM2CL3.jpg";
+  var rhino_portrait_default = "./assets/BKOM2CL3.webp";
 
   // src/pages/Rhino.tsx
   var import_jsx_runtime42 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -22869,28 +22869,28 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react42 = __toESM(require_react());
 
   // src/photos/portrait-travel.jpg
-  var portrait_travel_default = "./assets/M4SQ7PEA.jpg";
+  var portrait_travel_default = "./assets/M4SQ7PEA.webp";
 
   // src/photos/hotel-entrance.jpg
-  var hotel_entrance_default = "./assets/AX4RHTO6.jpg";
+  var hotel_entrance_default = "./assets/AX4RHTO6.webp";
 
   // src/photos/hotel-lobby.jpg
-  var hotel_lobby_default = "./assets/X2DT36O3.jpg";
+  var hotel_lobby_default = "./assets/X2DT36O3.webp";
 
   // src/photos/hotel-room.jpg
-  var hotel_room_default = "./assets/QLS63EYT.jpg";
+  var hotel_room_default = "./assets/QLS63EYT.webp";
 
   // src/photos/hotel-spa.jpg
-  var hotel_spa_default = "./assets/2GDO4YZL.jpg";
+  var hotel_spa_default = "./assets/2GDO4YZL.webp";
 
   // src/photos/src-extract/egypt-05.jpg
-  var egypt_05_default = "./assets/HF33D6CY.jpg";
+  var egypt_05_default = "./assets/HF33D6CY.webp";
 
   // src/photos/src-extract/egypt-07.jpg
-  var egypt_07_default = "./assets/CR2CLQFW.jpg";
+  var egypt_07_default = "./assets/CR2CLQFW.webp";
 
   // src/photos/src-extract/egypt-08.jpg
-  var egypt_08_default = "./assets/7UOL75YJ.jpg";
+  var egypt_08_default = "./assets/7UOL75YJ.webp";
 
   // src/pages/Travel.tsx
   var import_jsx_runtime43 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -25548,7 +25548,7 @@ react-router/dist/development/index.mjs:
 
 /* Recovery education: original slides stay in their supplied sequence. */
 (() => {
- const groups=[{"ar": "الوجه والرقبة", "en": "Face & Neck", "items": [{"id": 2, "ar": "الجانب الخفي لتعافي النانو-فات", "en": "The Yellow Phase", "thumb": "carousel-02/slide-01-cover.webp", "slides": ["carousel-02/slide-01.jpg", "carousel-02/slide-02.jpg", "carousel-02/slide-03.jpg", "carousel-02/slide-04.jpg", "carousel-02/slide-05.jpg"]}, {"id": 5, "ar": "ما لا تتوقعينه بعد حقن البوتوكس", "en": "Transient Asymmetry", "thumb": "carousel-05/slide-01-cover.webp", "slides": ["carousel-05/slide-01.jpg", "carousel-05/slide-02.jpg", "carousel-05/slide-03.jpg", "carousel-05/slide-04.jpg", "carousel-05/slide-05.jpg", "carousel-05/slide-06.jpg"]}, {"id": 12, "ar": "الفارق بين الحشو السطحي وبناء الكولاجين العميق", "en": "Neck Restructuring", "thumb": "carousel-12/slide-01-cover.webp", "slides": ["carousel-12/slide-01.jpg", "carousel-12/slide-02.jpg", "carousel-12/slide-03.jpg", "carousel-12/slide-04.jpg", "carousel-12/slide-05.jpg", "carousel-12/slide-06.jpg", "carousel-12/slide-07.jpg", "carousel-12/slide-08.jpg", "carousel-12/slide-09.jpg", "carousel-12/slide-10.jpg"]}, {"id": 20, "ar": "كيف نعالج الابتسامة اللثوية دون المساس بحيوية الشفة العلوية؟", "en": "Micro-Myomodulation", "thumb": "carousel-20/slide-01-cover.webp", "slides": ["carousel-20/slide-01.jpg", "carousel-20/slide-02.jpg", "carousel-20/slide-03.jpg", "carousel-20/slide-04.jpg", "carousel-20/slide-05.jpg", "carousel-20/slide-06.jpg", "carousel-20/slide-07.jpg", "carousel-20/slide-08.jpg", "carousel-20/slide-09.jpg"]}]}, {"ar": "الصدر", "en": "Chest", "items": [{"id": 3, "ar": "التشنج العضلي الدفاعي المؤقت لإمساك حشوة السيليكون في الأعلى كاستجابة طبيعية", "en": "MUSCLE SPASM", "thumb": "carousel-03/slide-01-cover.webp", "slides": ["carousel-03/slide-01.jpg", "carousel-03/slide-02.jpg", "carousel-03/slide-03.jpg", "carousel-03/slide-04.jpg", "carousel-03/slide-05.jpg", "carousel-03/slide-06.jpg", "carousel-03/slide-07.jpg"]}, {"id": 11, "ar": "هبوط الحشوة", "en": "Implant Bottoming Out", "thumb": "carousel-11/slide-01-cover.webp", "slides": ["carousel-11/slide-01.jpg", "carousel-11/slide-02.jpg", "carousel-11/slide-03.jpg", "carousel-11/slide-04.jpg", "carousel-11/slide-05.jpg", "carousel-11/slide-06.jpg", "carousel-11/slide-07.jpg", "carousel-11/slide-08.jpg", "carousel-11/slide-09.jpg", "carousel-11/slide-10.jpg"]}, {"id": 23, "ar": "تشوه التثدي العكسي (الحفرة الغائرة): عندما يدمر الشفط العشوائي هيبة الصدر الذكوري", "en": null, "thumb": "carousel-23/slide-01-cover.webp", "slides": ["carousel-23/slide-01.jpg", "carousel-23/slide-02.jpg", "carousel-23/slide-03.jpg", "carousel-23/slide-04.jpg", "carousel-23/slide-05.jpg", "carousel-23/slide-06.jpg", "carousel-23/slide-07.jpg"]}]}, {"ar": "شد البطن ونحت الجسم", "en": "Tummy & Body", "items": [{"id": 8, "ar": "السلامة الحرارية", "en": "Thermal Safety", "thumb": "carousel-08/slide-01-cover.webp", "slides": ["carousel-08/slide-01.jpg", "carousel-08/slide-02.jpg", "carousel-08/slide-03.jpg", "carousel-08/slide-04.jpg", "carousel-08/slide-05.jpg", "carousel-08/slide-06.jpg", "carousel-08/slide-07.jpg"]}, {"id": 10, "ar": "المساج الخشبي العنيف", "en": "Aggressive Wood Therapy", "thumb": "carousel-10/slide-01-cover.webp", "slides": ["carousel-10/slide-01.jpg", "carousel-10/slide-02.jpg", "carousel-10/slide-03.jpg", "carousel-10/slide-04.jpg", "carousel-10/slide-05.jpg", "carousel-10/slide-06.jpg"]}, {"id": 13, "ar": "جسدك لا يقبل القوالب التجميلية الجاهزة والمكررة", "en": "Bespoke Aesthetics", "thumb": "carousel-13/slide-01-cover.webp", "slides": ["carousel-13/slide-01.jpg", "carousel-13/slide-02.jpg", "carousel-13/slide-03.jpg", "carousel-13/slide-04.jpg", "carousel-13/slide-05.jpg", "carousel-13/slide-06.jpg", "carousel-13/slide-07.jpg"]}, {"id": 16, "ar": "الوقوف المستقيم المبكر يضع إجهاداً شديداً على جرح شد البطن", "en": "Mechanical Overload", "thumb": "carousel-16/slide-01-cover.webp", "slides": ["carousel-16/slide-01.jpg", "carousel-16/slide-02.jpg", "carousel-16/slide-03.jpg", "carousel-16/slide-04.jpg", "carousel-16/slide-05.jpg"]}, {"id": 21, "ar": "امتى أرجع الجيم بعد عملية شد البطن؟", "en": "The Internal Corset", "thumb": "carousel-21/slide-01-cover.webp", "slides": ["carousel-21/slide-01.jpg", "carousel-21/slide-02.jpg", "carousel-21/slide-03.jpg", "carousel-21/slide-04.jpg", "carousel-21/slide-05.jpg", "carousel-21/slide-06.jpg"]}]}, {"ar": "الدهون والـBBL", "en": "Fat Transfer & BBL", "items": [{"id": 15, "ar": "الحجم المبالغ فيه بعد الحقن مباشرة ليس نتيجة نهائية بل رد فعل طبيعي للأنسجة", "en": "The Temporary Illusion", "thumb": "carousel-15/slide-01-cover.webp", "slides": ["carousel-15/slide-01.jpg", "carousel-15/slide-02.jpg", "carousel-15/slide-03.jpg", "carousel-15/slide-04.jpg", "carousel-15/slide-05.jpg"]}, {"id": 22, "ar": "حقن الدهون الذاتية: الهندسة الطبية لضمان سلامة الأنسجة العميقة", "en": "Ultrasound-Guided Transfer", "thumb": "carousel-22/slide-01-cover.webp", "slides": ["carousel-22/slide-01.jpg", "carousel-22/slide-02.jpg", "carousel-22/slide-03.jpg", "carousel-22/slide-04.jpg", "carousel-22/slide-05.jpg", "carousel-22/slide-06.jpg", "carousel-22/slide-07.jpg", "carousel-22/slide-08.jpg", "carousel-22/slide-09.jpg"]}]}, {"ar": "الندبات والبشرة", "en": "Scars & Skin", "items": [{"id": 6, "ar": "ما لم يخبرك به أحد عن تقطيع الألياف", "en": "Subcision Reality", "thumb": "carousel-06/slide-01-cover.webp", "slides": ["carousel-06/slide-01.jpg", "carousel-06/slide-02.jpg", "carousel-06/slide-03.jpg", "carousel-06/slide-04.jpg", "carousel-06/slide-05.jpg"]}, {"id": 9, "ar": "التوقيت الذهبي", "en": "The Golden Laser Window", "thumb": "carousel-09/slide-01-cover.webp", "slides": ["carousel-09/slide-01.jpg", "carousel-09/slide-02.jpg", "carousel-09/slide-03.jpg", "carousel-09/slide-04.jpg", "carousel-09/slide-05.jpg", "carousel-09/slide-06.jpg", "carousel-09/slide-07.jpg"]}, {"id": 14, "ar": "شفط الظهر العنيف والمشدات القاسية السبب المخفي للحروق والتليفات الدائمة", "en": "Friction Burns & Fibrosis", "thumb": "carousel-14/slide-01-cover.webp", "slides": ["carousel-14/slide-01.jpg", "carousel-14/slide-02.jpg", "carousel-14/slide-03.jpg", "carousel-14/slide-04.jpg", "carousel-14/slide-05.jpg", "carousel-14/slide-06.jpg", "carousel-14/slide-07.jpg"]}, {"id": 18, "ar": "تصبغ الجروح", "en": "Pigment Prevention", "thumb": "carousel-18/slide-01-cover.webp", "slides": ["carousel-18/slide-01.jpg", "carousel-18/slide-02.jpg", "carousel-18/slide-03.jpg", "carousel-18/slide-04.jpg", "carousel-18/slide-05.jpg", "carousel-18/slide-06.jpg"]}]}];
+ const groups=[{"ar": "الوجه والرقبة", "en": "Face & Neck", "items": [{"id": 2, "ar": "الجانب الخفي لتعافي النانو-فات", "en": "The Yellow Phase", "thumb": "carousel-02/slide-01-cover.webp", "slides": ["carousel-02/slide-01.webp", "carousel-02/slide-02.webp", "carousel-02/slide-03.webp", "carousel-02/slide-04.webp", "carousel-02/slide-05.webp"]}, {"id": 5, "ar": "ما لا تتوقعينه بعد حقن البوتوكس", "en": "Transient Asymmetry", "thumb": "carousel-05/slide-01-cover.webp", "slides": ["carousel-05/slide-01.webp", "carousel-05/slide-02.webp", "carousel-05/slide-03.webp", "carousel-05/slide-04.webp", "carousel-05/slide-05.webp", "carousel-05/slide-06.webp"]}, {"id": 12, "ar": "الفارق بين الحشو السطحي وبناء الكولاجين العميق", "en": "Neck Restructuring", "thumb": "carousel-12/slide-01-cover.webp", "slides": ["carousel-12/slide-01.webp", "carousel-12/slide-02.webp", "carousel-12/slide-03.webp", "carousel-12/slide-04.webp", "carousel-12/slide-05.webp", "carousel-12/slide-06.webp", "carousel-12/slide-07.webp", "carousel-12/slide-08.webp", "carousel-12/slide-09.webp", "carousel-12/slide-10.webp"]}, {"id": 20, "ar": "كيف نعالج الابتسامة اللثوية دون المساس بحيوية الشفة العلوية؟", "en": "Micro-Myomodulation", "thumb": "carousel-20/slide-01-cover.webp", "slides": ["carousel-20/slide-01.webp", "carousel-20/slide-02.webp", "carousel-20/slide-03.webp", "carousel-20/slide-04.webp", "carousel-20/slide-05.webp", "carousel-20/slide-06.webp", "carousel-20/slide-07.webp", "carousel-20/slide-08.webp", "carousel-20/slide-09.webp"]}]}, {"ar": "الصدر", "en": "Chest", "items": [{"id": 3, "ar": "التشنج العضلي الدفاعي المؤقت لإمساك حشوة السيليكون في الأعلى كاستجابة طبيعية", "en": "MUSCLE SPASM", "thumb": "carousel-03/slide-01-cover.webp", "slides": ["carousel-03/slide-01.webp", "carousel-03/slide-02.webp", "carousel-03/slide-03.webp", "carousel-03/slide-04.webp", "carousel-03/slide-05.webp", "carousel-03/slide-06.webp", "carousel-03/slide-07.webp"]}, {"id": 11, "ar": "هبوط الحشوة", "en": "Implant Bottoming Out", "thumb": "carousel-11/slide-01-cover.webp", "slides": ["carousel-11/slide-01.webp", "carousel-11/slide-02.webp", "carousel-11/slide-03.webp", "carousel-11/slide-04.webp", "carousel-11/slide-05.webp", "carousel-11/slide-06.webp", "carousel-11/slide-07.webp", "carousel-11/slide-08.webp", "carousel-11/slide-09.webp", "carousel-11/slide-10.webp"]}, {"id": 23, "ar": "تشوه التثدي العكسي (الحفرة الغائرة): عندما يدمر الشفط العشوائي هيبة الصدر الذكوري", "en": null, "thumb": "carousel-23/slide-01-cover.webp", "slides": ["carousel-23/slide-01.webp", "carousel-23/slide-02.webp", "carousel-23/slide-03.webp", "carousel-23/slide-04.webp", "carousel-23/slide-05.webp", "carousel-23/slide-06.webp", "carousel-23/slide-07.webp"]}]}, {"ar": "شد البطن ونحت الجسم", "en": "Tummy & Body", "items": [{"id": 8, "ar": "السلامة الحرارية", "en": "Thermal Safety", "thumb": "carousel-08/slide-01-cover.webp", "slides": ["carousel-08/slide-01.webp", "carousel-08/slide-02.webp", "carousel-08/slide-03.webp", "carousel-08/slide-04.webp", "carousel-08/slide-05.webp", "carousel-08/slide-06.webp", "carousel-08/slide-07.webp"]}, {"id": 10, "ar": "المساج الخشبي العنيف", "en": "Aggressive Wood Therapy", "thumb": "carousel-10/slide-01-cover.webp", "slides": ["carousel-10/slide-01.webp", "carousel-10/slide-02.webp", "carousel-10/slide-03.webp", "carousel-10/slide-04.webp", "carousel-10/slide-05.webp", "carousel-10/slide-06.webp"]}, {"id": 13, "ar": "جسدك لا يقبل القوالب التجميلية الجاهزة والمكررة", "en": "Bespoke Aesthetics", "thumb": "carousel-13/slide-01-cover.webp", "slides": ["carousel-13/slide-01.webp", "carousel-13/slide-02.webp", "carousel-13/slide-03.webp", "carousel-13/slide-04.webp", "carousel-13/slide-05.webp", "carousel-13/slide-06.webp", "carousel-13/slide-07.webp"]}, {"id": 16, "ar": "الوقوف المستقيم المبكر يضع إجهاداً شديداً على جرح شد البطن", "en": "Mechanical Overload", "thumb": "carousel-16/slide-01-cover.webp", "slides": ["carousel-16/slide-01.webp", "carousel-16/slide-02.webp", "carousel-16/slide-03.webp", "carousel-16/slide-04.webp", "carousel-16/slide-05.webp"]}, {"id": 21, "ar": "امتى أرجع الجيم بعد عملية شد البطن؟", "en": "The Internal Corset", "thumb": "carousel-21/slide-01-cover.webp", "slides": ["carousel-21/slide-01.webp", "carousel-21/slide-02.webp", "carousel-21/slide-03.webp", "carousel-21/slide-04.webp", "carousel-21/slide-05.webp", "carousel-21/slide-06.webp"]}]}, {"ar": "الدهون والـBBL", "en": "Fat Transfer & BBL", "items": [{"id": 15, "ar": "الحجم المبالغ فيه بعد الحقن مباشرة ليس نتيجة نهائية بل رد فعل طبيعي للأنسجة", "en": "The Temporary Illusion", "thumb": "carousel-15/slide-01-cover.webp", "slides": ["carousel-15/slide-01.webp", "carousel-15/slide-02.webp", "carousel-15/slide-03.webp", "carousel-15/slide-04.webp", "carousel-15/slide-05.webp"]}, {"id": 22, "ar": "حقن الدهون الذاتية: الهندسة الطبية لضمان سلامة الأنسجة العميقة", "en": "Ultrasound-Guided Transfer", "thumb": "carousel-22/slide-01-cover.webp", "slides": ["carousel-22/slide-01.webp", "carousel-22/slide-02.webp", "carousel-22/slide-03.webp", "carousel-22/slide-04.webp", "carousel-22/slide-05.webp", "carousel-22/slide-06.webp", "carousel-22/slide-07.webp", "carousel-22/slide-08.webp", "carousel-22/slide-09.webp"]}]}, {"ar": "الندبات والبشرة", "en": "Scars & Skin", "items": [{"id": 6, "ar": "ما لم يخبرك به أحد عن تقطيع الألياف", "en": "Subcision Reality", "thumb": "carousel-06/slide-01-cover.webp", "slides": ["carousel-06/slide-01.webp", "carousel-06/slide-02.webp", "carousel-06/slide-03.webp", "carousel-06/slide-04.webp", "carousel-06/slide-05.webp"]}, {"id": 9, "ar": "التوقيت الذهبي", "en": "The Golden Laser Window", "thumb": "carousel-09/slide-01-cover.webp", "slides": ["carousel-09/slide-01.webp", "carousel-09/slide-02.webp", "carousel-09/slide-03.webp", "carousel-09/slide-04.webp", "carousel-09/slide-05.webp", "carousel-09/slide-06.webp", "carousel-09/slide-07.webp"]}, {"id": 14, "ar": "شفط الظهر العنيف والمشدات القاسية السبب المخفي للحروق والتليفات الدائمة", "en": "Friction Burns & Fibrosis", "thumb": "carousel-14/slide-01-cover.webp", "slides": ["carousel-14/slide-01.webp", "carousel-14/slide-02.webp", "carousel-14/slide-03.webp", "carousel-14/slide-04.webp", "carousel-14/slide-05.webp", "carousel-14/slide-06.webp", "carousel-14/slide-07.webp"]}, {"id": 18, "ar": "تصبغ الجروح", "en": "Pigment Prevention", "thumb": "carousel-18/slide-01-cover.webp", "slides": ["carousel-18/slide-01.webp", "carousel-18/slide-02.webp", "carousel-18/slide-03.webp", "carousel-18/slide-04.webp", "carousel-18/slide-05.webp", "carousel-18/slide-06.webp"]}]}];
  const digits=(v,ar)=>ar?String(v).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]):String(v);
  const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
  const asset=p=>new URL('assets/recovery-guides/'+p,document.baseURI).href;
@@ -25581,14 +25581,14 @@ react-router/dist/development/index.mjs:
    const header=node('header','dre-guide-viewer-head');const title=node('div','dre-guide-viewer-title');title.append(node('small','',ar?'مكتبة التعافي':'RECOVERY EDITIONS'),node('strong','',ar?c.ar:(c.en||window.dreTranslateClinicCopy(c.ar,'en'))));
    const close=node('button','dre-guide-close','×');close.type='button';close.setAttribute('aria-label',ar?'إغلاق العرض':'Close viewer');close.addEventListener('click',()=>d.close());header.append(title,close);
    const viewport=node('div','dre-guide-viewport');viewport.dir='ltr';viewport.tabIndex=0;viewport.setAttribute('aria-label',ar?'اسحب للتنقل بين الشرائح':'Swipe to change slides');
-   const frames=c.slides.map((src,i)=>{const frame=node('div','dre-guide-slide');frame.setAttribute('role','group');frame.setAttribute('aria-label',(ar?'شريحة ':'Slide ')+digits(i+1,ar));const img=node('img');img.alt=(ar?'الشريحة ':'Slide ')+digits(i+1,ar);img.draggable=false;frame.append(img);viewport.append(frame);return {frame,img,src};});
+   const frames=c.slides.map((src,i)=>{const frame=node('div','dre-guide-slide');frame.setAttribute('role','group');frame.setAttribute('aria-label',(ar?'شريحة ':'Slide ')+digits(i+1,ar));const img=node('img');img.alt=(ar?'الشريحة ':'Slide ')+digits(i+1,ar);img.draggable=false;img.decoding='async';frame.append(img);viewport.append(frame);return {frame,img,src};});
    const footer=node('footer','dre-guide-viewer-foot');const prev=node('button','',ar?'→ السابق':'← Previous');const next=node('button','',ar?'التالي ←':'Next →');prev.type=next.type='button';const counter=node('span','dre-guide-position');counter.setAttribute('aria-live','polite');counter.setAttribute('aria-atomic','true');footer.append(prev,counter,next);
    const progress=node('div','dre-guide-progress');const fill=node('span');progress.append(fill);
    const hint=node('div','dre-guide-hint',ar?'اسحب يميناً أو يساراً · يمكنك تكبير الصورة بإصبعين':'Swipe left or right · Pinch to zoom');
    d.append(header,viewport,progress,footer,hint);document.body.append(d);this.dialog=d;let current=0,raf=0;
    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
    const update=()=>{const width=viewport.clientWidth;if(width)current=Math.max(0,Math.min(frames.length-1,Math.round(viewport.scrollLeft/width)));
-    frames.forEach((f,i)=>{if(Math.abs(i-current)<=1&&!f.img.getAttribute('src'))f.img.src=asset(f.src);});
+    frames.forEach((f,i)=>{if(Math.abs(i-current)<=2&&!f.img.getAttribute('src'))f.img.src=asset(f.src);});
     counter.textContent=ar?('الشريحة '+digits(current+1,ar)+' من '+digits(frames.length,ar)):('Slide '+(current+1)+' of '+frames.length);prev.disabled=current===0;next.disabled=current===frames.length-1;fill.style.width=((current+1)/frames.length*100)+'%';
    };
    const move=i=>viewport.scrollTo({left:Math.max(0,Math.min(frames.length-1,i))*viewport.clientWidth,behavior:reduced?'instant':'smooth'});
@@ -25718,4 +25718,12 @@ function phoneTabGridKeys(event) {
  const scan=()=>{queued=false;const lang=document.documentElement.lang;document.querySelectorAll('dre-recovery-reference').forEach(e=>{const root=e.shadowRoot;if(!root)return;if(!watched.has(root)){watched.add(root);new MutationObserver(queue).observe(root,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['title','placeholder','aria-label','alt']});}process(root,lang);root.host.setAttribute('lang',lang);const shell=root.querySelector('#app')||root.querySelector('main')||root.querySelector('.app');if(shell)shell.dir=lang==='en'?'ltr':'rtl';});};
  function queue(){if(!queued){queued=true;requestAnimationFrame(scan);}}
  new MutationObserver(queue).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['lang']});queue();
+})();
+
+/* Idle preload of the educational series plates so swiping the series carousel never waits on the network. */
+(() => {
+ const plates=['XR36YW2X','EGJVQ6VC','4QQHBH5X','ZLWKNQWL','TIRZ4HI3','FLOLJUTR','I27ZNCHR','KYX3IO2Q','O3ILYMRB','3OKKLIJI','74XCYRBK'];
+ const run=()=>{let i=0;const step=()=>{if(i>=plates.length)return;const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{i++;step();};im.src='./assets/'+plates[i]+'.webp';};
+  if('requestIdleCallback' in window)requestIdleCallback(step,{timeout:4000});else setTimeout(step,1500);};
+ if(document.readyState==='complete')run();else window.addEventListener('load',run,{once:true});
 })();
