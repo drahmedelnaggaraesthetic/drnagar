@@ -23502,7 +23502,7 @@ react-router/dist/development/index.mjs:
   };
   const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
   addEventListener('scroll',schedule,{passive:true});
-  addEventListener('resize',()=>{last=Math.max(0,scrollY);travel=0;direction=0;},{passive:true});
+  let viewportWidth=innerWidth;addEventListener('resize',()=>{if(innerWidth!==viewportWidth){viewportWidth=innerWidth;last=Math.max(0,scrollY);travel=0;direction=0;}},{passive:true});
   nav.addEventListener('toggle',()=>{openAt=Math.max(0,scrollY);last=openAt;travel=0;direction=0;if(nav.open)hide(false);});
   header.addEventListener('focusin',()=>hide(false));
   addEventListener('hashchange',()=>{hide(false);travel=0;direction=0;last=Math.max(0,scrollY);});
