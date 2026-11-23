@@ -23356,7 +23356,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   ];
   var NAV_RECOVERY = { to: "/recovery", ar: "\u0628\u0639\u062F \u0627\u0644\u0639\u0645\u0644\u064A\u0629", en: "Recovery" };
   function App() {
-    const [lang, setLang] = (0, import_react44.useState)("ar");
+    const [lang, setLang] = (0, import_react44.useState)(window.__dreInitialLang === "en" ? "en" : "ar");
     dreUiLanguage=lang;
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
