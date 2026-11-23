@@ -21678,9 +21678,39 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
     ["prior_abd", "\u062C\u0631\u0627\u062D\u0627\u062A \u0633\u0627\u0628\u0642\u0629 \u0628\u0627\u0644\u0628\u0637\u0646 (\u0642\u064A\u0635\u0631\u064A\u0629 / \u0645\u0631\u0627\u0631\u0629 / \u062A\u0643\u0645\u064A\u0645)"]
   ];
   var STEP_LABELS2 = ["\u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u062D\u064A\u0648\u064A\u0629", "\u062A\u0627\u0631\u064A\u062E \u0627\u0644\u0648\u0632\u0646 \u0648\u0627\u0644\u0648\u0644\u0627\u062F\u0629", "\u0627\u0644\u0645\u0646\u0627\u0637\u0642 \u0648\u0627\u0644\u0623\u0646\u0633\u062C\u0629", "\u0627\u0644\u0623\u0645\u0627\u0646 \u0627\u0644\u0637\u0628\u064A", "\u0627\u0644\u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u0647\u0646\u062F\u0633\u064A"];
+  function BodyCaseSecond(){
+    const en=dreUiLanguage==='en';
+    const r=import_jsx_runtime41;
+    const t=(ar,english)=>en?english:ar;
+    return r.jsxs('section',{className:'dre-body-case-lead dre-body-case-second','aria-label':t('حالة أخرى · تنسيق القوام','Another case · Body contouring'),children:[
+      r.jsx('style',{children:'.dre-body-case-second .second-video{height:auto;max-height:580px;width:100%;object-fit:contain}.dre-body-case-second .second-wrap{max-width:420px;margin:0 auto}.dre-body-case-second .case-note{max-width:620px;margin:12px auto 0}@media(max-width:650px){.dre-body-case-second .second-video{max-height:550px}}'}),
+      r.jsx('div',{className:'case-eyebrow',children:t('حالة أخرى من العيادة','ANOTHER CASE FROM THE CLINIC')}),
+      r.jsx('h2',{children:t('تنسيق القوام · فيديو قبل وبعد','Body contouring · Before-and-after video')}),
+      r.jsx('div',{className:'second-wrap',children:r.jsx('video',{className:'second-video',src:'./assets/body-case-2.mp4?v=075',poster:'./assets/body-case-2-poster.jpg',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو حالة تنسيق القوام قبل وبعد','Body contouring case before-and-after video')})}),
+      r.jsx('p',{className:'case-note',children:t('يتضمن الفيديو لقطات بعد الإجراء مباشرة، وليست نتيجة نهائية بعد التعافي. النتائج فردية.','The video includes footage immediately after the procedure, not a final healed result. Results vary by patient.')})
+    ]});
+  }
+  function BodyCaseLead(){
+    const en=dreUiLanguage==='en';
+    const r=import_jsx_runtime41;
+    const t=(ar,english)=>en?english:ar;
+    return r.jsxs('section',{className:'dre-body-case-lead', 'aria-label':t('تنسيق القوام · قبل وبعد','Body contouring · Before and after'),children:[
+      r.jsx('style',{children:'.dre-body-case-lead{background:#080909!important;color:#eee6d4!important;border:1px solid #9b8151;margin-bottom:24px;padding:18px;box-shadow:0 18px 45px #0002}.dre-body-case-lead h2{color:#eee6d4!important;font-size:24px;font-weight:500;margin:4px 0 18px}.dre-body-case-lead .case-eyebrow{color:#c9b078!important;font-size:11px;letter-spacing:.08em}.dre-body-case-lead .case-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.dre-body-case-lead .case-label{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #8b754744;padding-bottom:8px;margin-bottom:10px;font-size:14px}.dre-body-case-lead .case-label span{font-size:10px;color:#c9b078!important}.dre-body-case-lead .case-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;direction:ltr}.dre-body-case-lead figure{margin:0;min-width:0}.dre-body-case-lead .case-photos img{width:100%;height:300px;object-fit:contain;background:#000;display:block}.dre-body-case-lead figcaption{font-size:10px;text-align:center;color:#bcb5a8!important;padding:6px 0}.dre-body-case-lead video{width:100%;height:300px;object-fit:contain;background:#000;display:block}.dre-body-case-lead video::-webkit-media-controls-mute-button,.dre-body-case-lead video::-webkit-media-controls-volume-slider{display:none!important}.dre-body-case-lead .case-note{font-size:10px;line-height:1.7;color:#bcb5a8!important;margin:10px 0 0}@media(max-width:650px){.dre-body-case-lead{padding:14px}.dre-body-case-lead h2{color:#eee6d4!important;font-size:22px;margin-bottom:14px}.dre-body-case-lead .case-layout{grid-template-columns:1fr;gap:14px}.dre-body-case-lead .case-photos img{height:170px}.dre-body-case-lead video{height:245px}}'}),
+      r.jsx('div',{className:'case-eyebrow',children:t('من حالات العيادة','FROM THE CLINIC')}),
+      r.jsx('h2',{children:t('تنسيق القوام · قبل وبعد','Body contouring · Before and after')}),
+      r.jsxs('div',{className:'case-layout',children:[
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('قبل','Before'),r.jsx('span',{children:t('٣ زوايا','3 VIEWS')})]}),r.jsx('div',{className:'case-photos',children:[['side','جانبي','Side'],['front','أمامي','Front'],['back','خلفي','Back']].map(([id,ar,label])=>r.jsxs('figure',{children:[r.jsx('img',{src:'./assets/body-case-'+id+'.png',alt:t('قبل تنسيق القوام · '+ar,'Before body contouring · '+label),loading:'eager'}),r.jsx('figcaption',{children:t(ar,label)})]},id))})]}),
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('بعد الإجراء','After the procedure'),r.jsx('span',{children:t('فيديو الحالة','CASE VIDEO')})]}),r.jsx('video',{src:'./assets/body-case-after.mp4',poster:'./assets/body-case-poster.jpg',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو الحالة بعد الإجراء','Case video after the procedure')}),r.jsx('p',{className:'case-note',children:t('الفيديو بعد الإجراء وليس نتيجة نهائية بعد التعافي.','The video is after the procedure, not a final healed result.')})]})
+      ]}),
+      r.jsx('p',{className:'case-note',children:t('الصور الأصلية قبل الإجراء مع فصل الخلفية فقط، دون تعديل شكل الجسم. النتائج فردية.','Original before photos with background removal only, without reshaping. Results vary by patient.')})
+    ]});
+  }
+
   function Body() {
     const [tab, setTab] = (0, import_react40.useState)("assess");
     return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+      (0, import_jsx_runtime41.jsx)(BodyCaseLead, {}),
+      (0, import_jsx_runtime41.jsx)(BodyCaseSecond, {}),
       /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("section", { className: "dre-panel", style: { marginBottom: 16 }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "dre-chapter-art", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(ClinicalDrawing, { kind: "body" }) }),
         /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "dre-kicker", children: "\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u0642\u0648\u0627\u0645 \u0648\u0645\u0627 \u0628\u0639\u062F \u0627\u0644\u062A\u062E\u0633\u064A\u0633" }),
