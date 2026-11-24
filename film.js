@@ -201,11 +201,17 @@ var pc=document.createElement('style');pc.textContent='.dre-root .dre-hero>div:h
   function buildC() {
     var d = document.createElement('div'); d.id = 'drexc'; d.setAttribute('aria-hidden', 'true');
     d.innerHTML = '<img alt="" decoding="async" src="' + RC.poster + '">';
-    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.dataset.src = RC.src;
-    v.addEventListener('playing', function () { d.classList.add('live'); });
+    var v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=false;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='auto';v.poster=RC.poster;v.disableRemotePlayback=true;
+    var visible=true,started=false,downloaded=false;
+    function ready(){if(!visible||started||!v.duration||!v.buffered.length)return;var buffered=v.buffered.end(v.buffered.length-1);if(downloaded&&v.readyState>=3){started=true;var play=v.play();if(play&&play.catch)play.catch(function(){started=false});}}
+    ['progress','canplaythrough','loadeddata','suspend'].forEach(function(t){v.addEventListener(t,ready)});
+    v.addEventListener('playing',function(){if('requestVideoFrameCallback' in v)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
     d.appendChild(v);
-    var cap=document.createElement('p'); cap.className='drexc-cap'; cap.textContent=(document.documentElement.lang||'').indexOf('en')===0?'A lymphatic massage session, one of the sessions needed after full body contouring.':'جلسة مساج ليمفاوي، من الجلسات الضرورية بعد عمليات النحت الكامل.'; d.appendChild(cap);
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { if (!v.isConnected) return; if (e[0].isIntersecting) { if(v.dataset.src&&!v.getAttribute('src')){v.src=v.dataset.src;}var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { threshold: .05 }).observe(d);
+    var cap=document.createElement('p');cap.className='drexc-cap';
+    function caption(){var en=document.documentElement.lang==='en';cap.dir=en?'ltr':'rtl';cap.innerHTML=en?'<strong>Lymphatic drainage massage</strong><span>Part of a personalised recovery plan after body contouring, as advised by your surgeon.</span>':'<strong>المساج الليمفاوي</strong><span>ضمن خطة التعافي بعد نحت القوام، بحسب تقييم الجرّاح وتوصياته.</span>';}
+    caption();new MutationObserver(caption).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});d.appendChild(cap);
+    var media=matchMedia('(max-width:600px)').matches?'/assets/rec-calm-mobile.mp4':RC.src;fetch(media+'?lease=').then(function(r){if(!r.ok)throw new Error('video');return r.blob()}).then(function(blob){if(!d.isConnected)return;downloaded=true;v.src=media;v.load()}).catch(function(){/* Keep the still poster when the connection fails. */});
+    if('IntersectionObserver' in window){var watch=new IntersectionObserver(function(e){visible=e[0].isIntersecting;if(visible){if(started){v.play().catch(function(){})}else ready()}else v.pause()},{threshold:.05});watch.observe(d);}
     return d;
   }
   function syncC() {
@@ -242,3 +248,14 @@ body:has(#drex-face-options) .dre-wafab{display:none!important}
 var faceDesktop=document.createElement('style');faceDesktop.textContent='@media(min-width:800px){.drex-face-options-host{display:grid!important;grid-template-columns:1fr 1.05fr!important;align-items:center!important;direction:ltr;gap:40px!important}.drex-face-options-host>div:not(#drex-face-options){grid-column:1;grid-row:1;padding:35px!important}#drex-face-options{grid-column:2;grid-row:1}.drex-fpair{padding:0}.drex-face-options-host .dre-h1{font-size:36px!important}html[lang=ar] .drex-face-options-host>div:not(#drex-face-options){direction:rtl;text-align:right}}';document.head.appendChild(faceDesktop);
 var voiceStyle=document.createElement('style');voiceStyle.textContent='.drexa-host .drex-voice-toggle{position:relative;z-index:5;pointer-events:auto;display:flex;width:max-content;margin:16px 0 0;align-items:center;gap:7px;min-height:40px;padding:8px 13px;border:1px solid rgba(94,76,42,.3);border-radius:22px;background:rgba(241,232,210,.9);color:#584525;font:inherit;font-size:12px;cursor:pointer;backdrop-filter:blur(8px)}.drexa-host .drex-voice-toggle svg{width:17px;height:17px}.drexa-host .drex-voice-toggle[aria-pressed=true]{background:#302719;color:#eee0bd}';document.head.appendChild(voiceStyle);
 })();
+
+/* Soft in-frame Recovery caption, without a separate card. */
+var drexRecoveryRefine=document.createElement('style');drexRecoveryRefine.textContent=`
+.dre-root .dre-panel.drexc-host{min-height:calc((100vw - 2px)*16/9)!important}
+#drexc{height:calc((100vw - 2px)*16/9)!important}
+#drexc img,#drexc video{height:100%!important}
+#drexc video{transition:none!important}
+#drexc:after{bottom:0!important;background:linear-gradient(180deg,#ece1c9 0%,rgba(236,225,201,.96) 14%,rgba(236,225,201,.90) 24%,rgba(236,225,201,.2) 33%,transparent 39%,transparent 72%,rgba(17,15,12,.16) 78%,rgba(17,15,12,.66) 91%,rgba(17,15,12,.86) 100%)!important}
+#drexc .drexc-cap{box-sizing:border-box;inset-inline:0!important;top:auto!important;bottom:0!important;padding:30px 24px 22px!important;margin:0!important;background:none!important;border:0!important;color:#fff5df!important;font-size:13px!important;line-height:1.8!important;text-align:start;white-space:normal!important;overflow-wrap:break-word;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+#drexc .drexc-cap strong{display:block;color:#fff5df;font-size:15px;font-weight:600;margin-bottom:5px}#drexc .drexc-cap span{display:block;max-width:46em}
+`;document.head.appendChild(drexRecoveryRefine);
