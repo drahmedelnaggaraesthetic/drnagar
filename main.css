@@ -40,6 +40,28 @@
 .drex-flag-eq u{width:2.4px}
 .drex-flag-eq u:nth-child(1){height:4px}.drex-flag-eq u:nth-child(2){height:8px}.drex-flag-eq u:nth-child(3){height:6px}
 .drex-cell.playing .drex-flag-eq{opacity:1}
+/* "plays a voice note" affordance - three quiet concepts, .drex-aff-a/b/c on .drex-stats */
+.drex-playb{display:none}
+.drex-hint{display:none}
+/* A: voice bars always visible inside the flag (static idle, animated when playing) */
+.drex-aff-a .drex-flag-eq{opacity:.55}
+.drex-aff-a .drex-cell.playing .drex-flag-eq{opacity:1}
+/* B: gold play bead pinned to the circle edge (like story apps); fades out while playing */
+.drex-aff-b .drex-playb{display:block;position:absolute;bottom:-2px;inset-inline-end:-2px;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#f2ddab,#c9a453 78%);box-shadow:0 1px 4px rgba(0,0,0,.5),0 0 0 1px rgba(20,16,10,.65);transition:opacity .3s ease,transform .3s ease;z-index:2}
+.drex-aff-b .drex-playb svg{position:absolute;inset:3px;fill:#231b0e}
+.drex-aff-b .drex-cell:active .drex-playb{transform:scale(.9)}
+.drex-aff-b .drex-cell.playing .drex-playb{opacity:0}
+/* C: hint line + a slow gold glow traveling across the circles */
+.drex-aff-c .drex-hint{display:block;text-align:center;font-size:10.5px;color:#bfa76f;opacity:.75;margin-top:9px;letter-spacing:.01em}
+@keyframes drexThumbHint{0%,100%{box-shadow:inset 0 1px rgba(255,255,255,.14),0 6px 16px rgba(0,0,0,.45),0 0 12px rgba(216,183,106,.35)}7%{box-shadow:inset 0 1px rgba(255,255,255,.14),0 6px 16px rgba(0,0,0,.45),0 0 24px rgba(230,207,158,.7)}14%{box-shadow:inset 0 1px rgba(255,255,255,.14),0 6px 16px rgba(0,0,0,.45),0 0 12px rgba(216,183,106,.35)}}
+.drex-aff-c .drex-thumb{animation:drexThumbHint 8.4s ease-in-out infinite}
+.drex-aff-c .drex-cell:nth-child(1) .drex-thumb{animation-delay:0s}
+.drex-aff-c .drex-cell:nth-child(2) .drex-thumb{animation-delay:1.2s}
+.drex-aff-c .drex-cell:nth-child(3) .drex-thumb{animation-delay:2.4s}
+.drex-aff-c .drex-cell:nth-child(4) .drex-thumb{animation-delay:3.6s}
+.drex-aff-c .drex-cell:nth-child(5) .drex-thumb{animation-delay:4.8s}
+.drex-aff-c .drex-cell:nth-child(6) .drex-thumb{animation-delay:6s}
+.drex-aff-c .drex-cell:nth-child(7) .drex-thumb{animation-delay:7.2s}
 /* Playing, two quiet luxury treatments (A: faint warm tint + champagne ring; B: hairline rim + breathing bezel only) */
 .drex-lux-a .drex-cell.playing .drex-thumb{border-color:rgba(230,207,158,.95);animation:drexThumbGlowA 3.2s ease-in-out infinite}
 .drex-lux-a .drex-cell.playing .drex-thumb::after{opacity:1}

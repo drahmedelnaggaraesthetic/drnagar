@@ -281,7 +281,7 @@
     }
     if (!wrap) {
       wrap = document.createElement('div');
-      wrap.className = 'drex-stats drex-tl-run drex-lux-a';
+      wrap.className = 'drex-stats drex-tl-run drex-lux-a drex-aff-a';
       wrap.__drexLang = isEn ? 'en' : 'ar';
       wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
       const L = (o) => isEn ? o.en : o.ar;
@@ -301,7 +301,7 @@
           ? '<i class="drex-flag">' + FLAG_SVGS[flagId] + '</i><i class="drex-mic-g drex-flag-eq"><u></u><u></u><u></u></i>'
           : '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
         return '<button type="button" class="drex-cell' + (s.home ? ' home' : '') + '" data-i="' + i + '" aria-label="' + L(s).n + '">' +
-          '<i class="drex-ring' + (s.at ? ' drex-r' + tlIndex(s) : '') + '"></i><i class="drex-thumb">' + glyph + '</i><span>' + L(s).n + '</span></button>';
+          '<i class="drex-ring' + (s.at ? ' drex-r' + tlIndex(s) : '') + '"></i><i class="drex-thumb">' + glyph + '<i class="drex-playb"><svg viewBox="0 0 24 24"><path d="M9.2 7.4l7.6 4.6-7.6 4.6z"/></svg></i></i><span>' + L(s).n + '</span></button>';
       }).join('');
       wrap.innerHTML =
         '<div class="drex-hear"><span class="drex-eq"><i></i><i></i><i></i><i></i></span>' + (isEn ? 'Hear our patients' : 'اسمع مرضانا') + '</div>' +
@@ -309,6 +309,7 @@
         '<i class="drex-cpulse" aria-hidden="true"></i></div>' +
         '<div class="drex-qstack">' + quotes + '</div>' +
         '<div class="drex-srow">' + cells + '</div>' +
+        '<div class="drex-hint">' + (isEn ? 'Tap a flag to hear their voice' : 'اضغط على العلم واسمع صوتهم') + '</div>' +
         '<div class="drex-stateline"><b dir="ltr">' + STORY_COUNTRIES + '</b><span>' + (isEn ? 'countries · patients worldwide' : 'دولة · مرضى من حول العالم') + '</span></div>' +
         '<div class="drex-fline">' +
         '<div class="f"><b dir="ltr">' + STATS_CFG.topics + '</b><span>' + (isEn ? 'medical topics' : 'موضوع طبي') + '</span></div><i class="sep"></i>' +
