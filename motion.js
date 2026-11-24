@@ -233,13 +233,25 @@
     { id: 'egypt', kind: 'audio', src: 'assets/patient-experiences/recording-2.mp3', home: true,
       ar: { n: 'مصر', sub: 'رسالة صوتية · متابعة', q: 'المتابعة بعد العملية، يوم بيوم' },
       en: { n: 'Egypt', sub: 'voice note · aftercare', q: 'Day-by-day aftercare follow-up' } },
-    { id: 'features', kind: 'audio', src: 'assets/patient-experiences/recording-3.mp3',
-      ar: { n: 'الملامح كما هي', sub: 'رسالة صوتية', q: 'الملامح كما هي' },
-      en: { n: 'Features kept natural', sub: 'voice note', q: 'My features, just as they are' } },
-    { id: 'rhino', kind: 'audio', src: 'assets/patient-experiences/recording-4.mp3',
-      ar: { n: 'تجربة تجميل الأنف', sub: 'رسالة صوتية', q: 'تجربة تجميل الأنف' },
-      en: { n: 'Rhinoplasty story', sub: 'voice note', q: 'A rhinoplasty story' } }
+    { id: 'features', kind: 'audio', flag: 'syria', src: 'assets/patient-experiences/recording-3.mp3',
+      ar: { n: 'سوريا', sub: 'رسالة صوتية', q: '' },
+      en: { n: 'Syria', sub: 'voice note', q: '' } },
+    { id: 'rhino', kind: 'audio', flag: 'tunisia', src: 'assets/patient-experiences/recording-4.mp3', at: [62.9, 17.9], lift: 3.5,
+      ar: { n: 'تونس', sub: 'رسالة صوتية', q: 'رسالة صوتية من تونس' },
+      en: { n: 'Tunisia', sub: 'voice note', q: 'A voice note from Tunisia' } }
   ];
+  /* Stories with a map position ride the 16s timeline (5 slots of 3.2s). */
+  const TL_STORIES = STORIES.filter(s => s.at);
+  const tlIndex = (s) => TL_STORIES.indexOf(s);
+  /* Hand-drawn circular flags (muted by CSS filter), no emoji fonts, zero requests. */
+  const FLAG_SVGS = {
+    morocco: '<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#c1272d"/><path d="M12 6.3l1.5 4.6h4.85l-3.92 2.85 1.5 4.6L12 15.5l-3.93 2.85 1.5-4.6-3.92-2.85h4.85z" fill="none" stroke="#006233" stroke-width="1.15" stroke-linejoin="round"/></svg>',
+    belgium: '<svg viewBox="0 0 24 24"><rect width="8" height="24" fill="#2d2926"/><rect x="8" width="8" height="24" fill="#fdda24"/><rect x="16" width="8" height="24" fill="#ef3340"/></svg>',
+    saudi: '<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#006c35"/><g fill="#ffffff"><rect x="6" y="7.6" width="12" height="1.4" rx=".7"/><rect x="7.6" y="10.2" width="8.8" height="1.2" rx=".6"/><rect x="6" y="14.8" width="12" height="1" rx=".5"/></g></svg>',
+    syria: '<svg viewBox="0 0 24 24"><rect width="24" height="8" fill="#007a3d"/><rect y="8" width="24" height="8" fill="#ffffff"/><rect y="16" width="24" height="8" fill="#000000"/><g fill="#ce1126"><path d="M6.4 10.9l.56 1.72h1.8l-1.45 1.06.55 1.72-1.46-1.06-1.45 1.06.55-1.72-1.45-1.06h1.8z"/><path d="M12 10.9l.55 1.72h1.8l-1.45 1.06.55 1.72L12 14.34l-1.45 1.06.55-1.72-1.45-1.06h1.8z"/><path d="M17.6 10.9l.55 1.72h1.8l-1.45 1.06.55 1.72-1.45-1.06-1.45 1.06.55-1.72-1.45-1.06h1.8z"/></g></svg>',
+    egypt: '<svg viewBox="0 0 24 24"><rect width="24" height="8" fill="#ce1126"/><rect y="8" width="24" height="8" fill="#ffffff"/><rect y="16" width="24" height="8" fill="#000000"/><path d="M12 9.1c-.7 0-1.3.2-1.8.6L8.6 9l.7 1.7c-.3.4-.4.8-.4 1.3h.9v1.6l-1 .9h6.4l-1-.9V12h.9c0-.5-.2-.9-.4-1.3l.7-1.7-1.6.7c-.5-.4-1.1-.6-1.8-.6z" fill="#c09300"/></svg>',
+    tunisia: '<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#e70013"/><circle cx="12" cy="12" r="6.4" fill="#ffffff"/><circle cx="12.7" cy="12" r="3.5" fill="#e70013"/><circle cx="13.6" cy="12" r="2.8" fill="#ffffff"/><path d="M11.2 10.2l.52 1.6h1.68l-1.36.99.52 1.6-1.36-.99-1.36.99.52-1.6-1.36-.99h1.68z" fill="#e70013"/></svg>'
+  };
   const CAIRO_AT = [70.3, 21.1];
   const beamPath = (a, b, lift, s) =>
     'M' + (a[0] * s).toFixed(1) + ',' + (a[1] * s).toFixed(1) +
@@ -273,16 +285,23 @@
       wrap.__drexLang = isEn ? 'en' : 'ar';
       wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
       const L = (o) => isEn ? o.en : o.ar;
-      const arcs = STORIES.filter(s => s.at).map(s =>
+      const arcs = TL_STORIES.map(s =>
         '<svg class="drex-arc" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden="true"><path d="M' + s.at[0] + ',' + s.at[1] +
         ' Q' + (s.at[0] + CAIRO_AT[0]) / 2 + ',' + ((s.at[1] + CAIRO_AT[1]) / 2 - s.lift) + ' ' + CAIRO_AT[0] + ',' + CAIRO_AT[1] + '"/></svg>').join('');
-      const beams = STORIES.map((s, i) => s.at ? '<i class="drex-beam drex-b' + i + '" aria-hidden="true"></i>' : '').join('');
-      const quotes = STORIES.filter(s => s.at).map((s, i) =>
-        '<div class="drex-q drex-q' + i + '" data-i="' + i + '"><p>' + L(s).q + '</p><small>' + L(s).n + ' · ' + L(s).sub + '</small></div>').join('');
+      const beams = TL_STORIES.map((s, i) => '<i class="drex-beam drex-b' + i + '" aria-hidden="true"></i>').join('');
+      const quotes = STORIES.map((s, si) => {
+        const t = tlIndex(s);
+        return '<div class="drex-q' + (t >= 0 ? ' drex-q' + t : '') + '" data-i="' + si + '">' +
+          (L(s).q ? '<p>' + L(s).q + '</p>' : '') +
+          '<small>' + L(s).n + ' · ' + L(s).sub + '</small></div>';
+      }).join('');
       const cells = STORIES.map((s, i) => {
-        const glyph = '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
+        const flagId = s.flag || (FLAG_SVGS[s.id] ? s.id : null);
+        const glyph = flagId
+          ? '<i class="drex-flag">' + FLAG_SVGS[flagId] + '</i><i class="drex-mic-g drex-flag-eq"><u></u><u></u><u></u></i>'
+          : '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
         return '<button type="button" class="drex-cell' + (s.home ? ' home' : '') + '" data-i="' + i + '" aria-label="' + L(s).n + '">' +
-          '<i class="drex-ring' + (s.at ? ' drex-r' + i : '') + '"></i><i class="drex-thumb">' + glyph + '</i><span>' + L(s).n + '</span></button>';
+          '<i class="drex-ring' + (s.at ? ' drex-r' + tlIndex(s) : '') + '"></i><i class="drex-thumb">' + glyph + '</i><span>' + L(s).n + '</span></button>';
       }).join('');
       wrap.innerHTML =
         '<div class="drex-hear"><span class="drex-eq"><i></i><i></i><i></i><i></i></span>' + (isEn ? 'Hear our patients' : 'اسمع مرضانا') + '</div>' +
@@ -314,12 +333,9 @@
     const layoutBeams = () => {
       if (!supportsPath || !mwrap) return;
       const s = mwrap.clientWidth / 120;
-      let bi = 0;
-      STORIES.forEach((st) => {
-        if (!st.at) return;
-        const el = wrap.querySelector('.drex-b' + STORIES.indexOf(st));
+      TL_STORIES.forEach((st, bi) => {
+        const el = wrap.querySelector('.drex-b' + bi);
         if (el) el.style.offsetPath = 'path("' + beamPath(st.at, CAIRO_AT, st.lift, s) + '")';
-        bi++;
       });
       const cp = wrap.querySelector('.drex-cpulse');
       if (cp) { cp.style.left = (CAIRO_AT[0] * s) + 'px'; cp.style.top = (CAIRO_AT[1] * s) + 'px'; }
@@ -351,7 +367,7 @@
       releaseQuote();
     };
     const jumpTo = (i) => {
-      wrap.style.setProperty('--drextl', (-i * 4) + 's');
+      wrap.style.setProperty('--drextl', (-i * 3.2) + 's');
       wrap.classList.remove('drex-tl-run');
       void wrap.offsetWidth;
       wrap.classList.add('drex-tl-run');
@@ -362,10 +378,10 @@
         const st = STORIES[i];
         if (playingCell === cell) { stopMedia(); return; }
         stopMedia();
-        if (st.at) jumpTo(STORIES.filter(s => s.at).indexOf(st));
+        if (st.at) jumpTo(tlIndex(st));
         playingCell = cell;
         cell.classList.add('playing');
-        holdQuote(st.at ? STORIES.filter(s => s.at).indexOf(st) : -1);
+        holdQuote(i);
         audio = new Audio(st.src);
         window.__drexAudio = audio;
         audio.preload = 'auto';

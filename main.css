@@ -32,6 +32,14 @@
 .drex-cell.playing .drex-mic-g{opacity:1}
 .drex-cell.playing .drex-mic-g u{background:#f0dca8;animation:drexEq 1.6s ease-in-out infinite}
 .drex-mic-g u:nth-child(1){height:6px}.drex-mic-g u:nth-child(2){height:11px;animation-delay:.25s}.drex-mic-g u:nth-child(3){height:8px;animation-delay:.5s}
+/* Country flag inside the story circle: small circular crop, thin gold bezel, muted colors */
+.drex-flag{position:absolute;inset:6px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px rgba(216,183,106,.6),0 1px 4px rgba(0,0,0,.4);transition:opacity .4s ease}
+.drex-flag svg{display:block;width:100%;height:100%;filter:saturate(.62) brightness(.95)}
+.drex-cell.playing .drex-flag{opacity:.45}
+.drex-flag-eq{position:absolute;left:50%;bottom:7px;transform:translateX(-50%);height:10px;gap:2px;opacity:0;transition:opacity .4s ease;filter:drop-shadow(0 1px 2px rgba(0,0,0,.65))}
+.drex-flag-eq u{width:2.4px}
+.drex-flag-eq u:nth-child(1){height:4px}.drex-flag-eq u:nth-child(2){height:8px}.drex-flag-eq u:nth-child(3){height:6px}
+.drex-cell.playing .drex-flag-eq{opacity:1}
 /* Playing, two quiet luxury treatments (A: faint warm tint + champagne ring; B: hairline rim + breathing bezel only) */
 .drex-lux-a .drex-cell.playing .drex-thumb{border-color:rgba(230,207,158,.95);animation:drexThumbGlowA 3.2s ease-in-out infinite}
 .drex-lux-a .drex-cell.playing .drex-thumb::after{opacity:1}
@@ -54,23 +62,71 @@
 .drex-avl.off i{background:#8a8578;box-shadow:none}
 /* 16s master timeline: beams out and back, quotes, circle rings, Cairo arrival pulse */
 .drex-tl-run .drex-beam,.drex-tl-run .drex-cpulse,.drex-tl-run .drex-q,.drex-tl-run .drex-ring[class*="drex-r"]{animation-duration:16s;animation-iteration-count:infinite;animation-delay:var(--drextl,0s)}
-.drex-tl-run .drex-b0{animation-name:drexBeam0}.drex-tl-run .drex-b1{animation-name:drexBeam1}.drex-tl-run .drex-b2{animation-name:drexBeam2}.drex-tl-run .drex-b3{animation-name:drexBeam3}
-@keyframes drexBeam0{0%{offset-distance:0%;opacity:0}1.5%{opacity:1}11%{offset-distance:100%}12.5%{offset-distance:100%;opacity:1}24%{offset-distance:0%;opacity:1}25.5%,100%{opacity:0}}
-@keyframes drexBeam1{0%,25%{offset-distance:0%;opacity:0}26.5%{opacity:1}36%{offset-distance:100%}37.5%{offset-distance:100%;opacity:1}49%{offset-distance:0%;opacity:1}50.5%,100%{opacity:0}}
-@keyframes drexBeam2{0%,50%{offset-distance:0%;opacity:0}51.5%{opacity:1}61%{offset-distance:100%}62.5%{offset-distance:100%;opacity:1}74%{offset-distance:0%;opacity:1}75.5%,100%{opacity:0}}
-@keyframes drexBeam3{0%,75%{offset-distance:0%;opacity:0}76.5%{opacity:1}86%{offset-distance:100%}87.5%{offset-distance:100%;opacity:1}99%{offset-distance:0%;opacity:1}100%{opacity:0}}
+.drex-tl-run .drex-b0{animation-name:drexBeam0}.drex-tl-run .drex-b1{animation-name:drexBeam1}.drex-tl-run .drex-b2{animation-name:drexBeam2}.drex-tl-run .drex-b3{animation-name:drexBeam3}.drex-tl-run .drex-b4{animation-name:drexBeam4}
+@keyframes drexBeam0{0%{offset-distance:0%;opacity:0}1.5%{opacity:1}9%{offset-distance:100%}10.5%{offset-distance:100%;opacity:1}18.5%{offset-distance:0%;opacity:1}20%,100%{opacity:0}}
+@keyframes drexBeam1{0%,20%{offset-distance:0%;opacity:0}21.5%{opacity:1}29%{offset-distance:100%}30.5%{offset-distance:100%;opacity:1}38.5%{offset-distance:0%;opacity:1}40%,100%{opacity:0}}
+@keyframes drexBeam2{0%,40%{offset-distance:0%;opacity:0}41.5%{opacity:1}49%{offset-distance:100%}50.5%{offset-distance:100%;opacity:1}58.5%{offset-distance:0%;opacity:1}60%,100%{opacity:0}}
+@keyframes drexBeam3{0%,60%{offset-distance:0%;opacity:0}61.5%{opacity:1}69%{offset-distance:100%}70.5%{offset-distance:100%;opacity:1}78.5%{offset-distance:0%;opacity:1}80%,100%{opacity:0}}
+@keyframes drexBeam4{0%,80%{offset-distance:0%;opacity:0}81.5%{opacity:1}89%{offset-distance:100%}90.5%{offset-distance:100%;opacity:1}98.5%{offset-distance:0%;opacity:1}100%{opacity:0}}
+@keyframes drexBeam0{0%{offset-distance:0%;opacity:0}1.5%{opacity:1}9%{offset-distance:100%}10.5%{offset-distance:100%;opacity:1}18.5%{offset-distance:0%;opacity:1}20%,100%{opacity:0}}
+@keyframes drexBeam1{0%,20%{offset-distance:0%;opacity:0}21.5%{opacity:1}29%{offset-distance:100%}30.5%{offset-distance:100%;opacity:1}38.5%{offset-distance:0%;opacity:1}40%,100%{opacity:0}}
+@keyframes drexBeam2{0%,40%{offset-distance:0%;opacity:0}41.5%{opacity:1}49%{offset-distance:100%}50.5%{offset-distance:100%;opacity:1}58.5%{offset-distance:0%;opacity:1}60%,100%{opacity:0}}
+@keyframes drexBeam3{0%,60%{offset-distance:0%;opacity:0}61.5%{opacity:1}69%{offset-distance:100%}70.5%{offset-distance:100%;opacity:1}78.5%{offset-distance:0%;opacity:1}80%,100%{opacity:0}}
+@keyframes drexBeam4{0%,80%{offset-distance:0%;opacity:0}81.5%{opacity:1}89%{offset-distance:100%}90.5%{offset-distance:100%;opacity:1}98.5%{offset-distance:0%;opacity:1}100%{opacity:0}}
+@keyframes drexBeam0{0%{offset-distance:0%;opacity:0}1.5%{opacity:1}9%{offset-distance:100%}10.5%{offset-distance:100%;opacity:1}18.5%{offset-distance:0%;opacity:1}20%,100%{opacity:0}}
+@keyframes drexBeam1{0%,20%{offset-distance:0%;opacity:0}21.5%{opacity:1}29%{offset-distance:100%}30.5%{offset-distance:100%;opacity:1}38.5%{offset-distance:0%;opacity:1}40%,100%{opacity:0}}
+@keyframes drexBeam2{0%,40%{offset-distance:0%;opacity:0}41.5%{opacity:1}49%{offset-distance:100%}50.5%{offset-distance:100%;opacity:1}58.5%{offset-distance:0%;opacity:1}60%,100%{opacity:0}}
+@keyframes drexBeam3{0%,60%{offset-distance:0%;opacity:0}61.5%{opacity:1}69%{offset-distance:100%}70.5%{offset-distance:100%;opacity:1}78.5%{offset-distance:0%;opacity:1}80%,100%{opacity:0}}
+@keyframes drexBeam4{0%,80%{offset-distance:0%;opacity:0}81.5%{opacity:1}89%{offset-distance:100%}90.5%{offset-distance:100%;opacity:1}98.5%{offset-distance:0%;opacity:1}100%{opacity:0}}
+@keyframes drexBeam0{0%{offset-distance:0%;opacity:0}1.5%{opacity:1}9%{offset-distance:100%}10.5%{offset-distance:100%;opacity:1}18.5%{offset-distance:0%;opacity:1}20%,100%{opacity:0}}
+@keyframes drexBeam1{0%,20%{offset-distance:0%;opacity:0}21.5%{opacity:1}29%{offset-distance:100%}30.5%{offset-distance:100%;opacity:1}38.5%{offset-distance:0%;opacity:1}40%,100%{opacity:0}}
+@keyframes drexBeam2{0%,40%{offset-distance:0%;opacity:0}41.5%{opacity:1}49%{offset-distance:100%}50.5%{offset-distance:100%;opacity:1}58.5%{offset-distance:0%;opacity:1}60%,100%{opacity:0}}
+@keyframes drexBeam3{0%,60%{offset-distance:0%;opacity:0}61.5%{opacity:1}69%{offset-distance:100%}70.5%{offset-distance:100%;opacity:1}78.5%{offset-distance:0%;opacity:1}80%,100%{opacity:0}}
+@keyframes drexBeam4{0%,80%{offset-distance:0%;opacity:0}81.5%{opacity:1}89%{offset-distance:100%}90.5%{offset-distance:100%;opacity:1}98.5%{offset-distance:0%;opacity:1}100%{opacity:0}}
 .drex-tl-run .drex-cpulse{animation-name:drexCp}
 @keyframes drexCp{0%,10.5%{opacity:0}12%{opacity:.95}15%,35.5%{opacity:0}37%{opacity:.95}40%,60.5%{opacity:0}62%{opacity:.95}65%,85.5%{opacity:0}87%{opacity:.95}90%,100%{opacity:0}}
-.drex-tl-run .drex-q0{animation-name:drexQw0}.drex-tl-run .drex-q1{animation-name:drexQw1}.drex-tl-run .drex-q2{animation-name:drexQw2}.drex-tl-run .drex-q3{animation-name:drexQw3}
-@keyframes drexQw0{0%,23%{opacity:1}25.5%,100%{opacity:0}}
-@keyframes drexQw1{0%,25%{opacity:0}26.5%,48%{opacity:1}50%,100%{opacity:0}}
-@keyframes drexQw2{0%,50%{opacity:0}51.5%,73%{opacity:1}75%,100%{opacity:0}}
-@keyframes drexQw3{0%,75%{opacity:0}76.5%,98%{opacity:1}100%{opacity:0}}
-.drex-tl-run .drex-r0{animation-name:drexHi0}.drex-tl-run .drex-r1{animation-name:drexHi1}.drex-tl-run .drex-r2{animation-name:drexHi2}.drex-tl-run .drex-r3{animation-name:drexHi3}
-@keyframes drexHi0{0%{opacity:1;transform:scale(1)}6%{opacity:1;transform:scale(1.06)}23%{opacity:1;transform:scale(1)}26%,100%{opacity:0}}
-@keyframes drexHi1{0%,25%{opacity:0}26.5%{opacity:1;transform:scale(1)}31%{opacity:1;transform:scale(1.06)}48%{opacity:1;transform:scale(1)}51%,100%{opacity:0}}
-@keyframes drexHi2{0%,50%{opacity:0}51.5%{opacity:1;transform:scale(1)}56%{opacity:1;transform:scale(1.06)}73%{opacity:1;transform:scale(1)}76%,100%{opacity:0}}
-@keyframes drexHi3{0%,75%{opacity:0}76.5%{opacity:1;transform:scale(1)}81%{opacity:1;transform:scale(1.06)}98%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.drex-tl-run .drex-q0{animation-name:drexQw0}.drex-tl-run .drex-q1{animation-name:drexQw1}.drex-tl-run .drex-q2{animation-name:drexQw2}.drex-tl-run .drex-q3{animation-name:drexQw3}.drex-tl-run .drex-q4{animation-name:drexQw4}
+@keyframes drexQw0{0%,18%{opacity:1}20%,100%{opacity:0}}
+@keyframes drexQw1{0%,20%{opacity:0}21.5%,38%{opacity:1}40%,100%{opacity:0}}
+@keyframes drexQw2{0%,40%{opacity:0}41.5%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes drexQw3{0%,60%{opacity:0}61.5%,78%{opacity:1}80%,100%{opacity:0}}
+@keyframes drexQw4{0%,80%{opacity:0}81.5%,98%{opacity:1}100%{opacity:0}}
+@keyframes drexQw0{0%,18%{opacity:1}20%,100%{opacity:0}}
+@keyframes drexQw1{0%,20%{opacity:0}21.5%,38%{opacity:1}40%,100%{opacity:0}}
+@keyframes drexQw2{0%,40%{opacity:0}41.5%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes drexQw3{0%,60%{opacity:0}61.5%,78%{opacity:1}80%,100%{opacity:0}}
+@keyframes drexQw4{0%,80%{opacity:0}81.5%,98%{opacity:1}100%{opacity:0}}
+@keyframes drexQw0{0%,18%{opacity:1}20%,100%{opacity:0}}
+@keyframes drexQw1{0%,20%{opacity:0}21.5%,38%{opacity:1}40%,100%{opacity:0}}
+@keyframes drexQw2{0%,40%{opacity:0}41.5%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes drexQw3{0%,60%{opacity:0}61.5%,78%{opacity:1}80%,100%{opacity:0}}
+@keyframes drexQw4{0%,80%{opacity:0}81.5%,98%{opacity:1}100%{opacity:0}}
+@keyframes drexQw0{0%,18%{opacity:1}20%,100%{opacity:0}}
+@keyframes drexQw1{0%,20%{opacity:0}21.5%,38%{opacity:1}40%,100%{opacity:0}}
+@keyframes drexQw2{0%,40%{opacity:0}41.5%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes drexQw3{0%,60%{opacity:0}61.5%,78%{opacity:1}80%,100%{opacity:0}}
+@keyframes drexQw4{0%,80%{opacity:0}81.5%,98%{opacity:1}100%{opacity:0}}
+.drex-tl-run .drex-r0{animation-name:drexHi0}.drex-tl-run .drex-r1{animation-name:drexHi1}.drex-tl-run .drex-r2{animation-name:drexHi2}.drex-tl-run .drex-r3{animation-name:drexHi3}.drex-tl-run .drex-r4{animation-name:drexHi4}
+@keyframes drexHi0{0%{opacity:1;transform:scale(1)}5%{opacity:1;transform:scale(1.06)}18%{opacity:1;transform:scale(1)}20.5%,100%{opacity:0}}
+@keyframes drexHi1{0%,20%{opacity:0}21.5%{opacity:1;transform:scale(1)}25%{opacity:1;transform:scale(1.06)}38%{opacity:1;transform:scale(1)}40.5%,100%{opacity:0}}
+@keyframes drexHi2{0%,40%{opacity:0}41.5%{opacity:1;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}58%{opacity:1;transform:scale(1)}60.5%,100%{opacity:0}}
+@keyframes drexHi3{0%,60%{opacity:0}61.5%{opacity:1;transform:scale(1)}65%{opacity:1;transform:scale(1.06)}78%{opacity:1;transform:scale(1)}80.5%,100%{opacity:0}}
+@keyframes drexHi4{0%,80%{opacity:0}81.5%{opacity:1;transform:scale(1)}85%{opacity:1;transform:scale(1.06)}98%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes drexHi0{0%{opacity:1;transform:scale(1)}5%{opacity:1;transform:scale(1.06)}18%{opacity:1;transform:scale(1)}20.5%,100%{opacity:0}}
+@keyframes drexHi1{0%,20%{opacity:0}21.5%{opacity:1;transform:scale(1)}25%{opacity:1;transform:scale(1.06)}38%{opacity:1;transform:scale(1)}40.5%,100%{opacity:0}}
+@keyframes drexHi2{0%,40%{opacity:0}41.5%{opacity:1;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}58%{opacity:1;transform:scale(1)}60.5%,100%{opacity:0}}
+@keyframes drexHi3{0%,60%{opacity:0}61.5%{opacity:1;transform:scale(1)}65%{opacity:1;transform:scale(1.06)}78%{opacity:1;transform:scale(1)}80.5%,100%{opacity:0}}
+@keyframes drexHi4{0%,80%{opacity:0}81.5%{opacity:1;transform:scale(1)}85%{opacity:1;transform:scale(1.06)}98%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes drexHi0{0%{opacity:1;transform:scale(1)}5%{opacity:1;transform:scale(1.06)}18%{opacity:1;transform:scale(1)}20.5%,100%{opacity:0}}
+@keyframes drexHi1{0%,20%{opacity:0}21.5%{opacity:1;transform:scale(1)}25%{opacity:1;transform:scale(1.06)}38%{opacity:1;transform:scale(1)}40.5%,100%{opacity:0}}
+@keyframes drexHi2{0%,40%{opacity:0}41.5%{opacity:1;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}58%{opacity:1;transform:scale(1)}60.5%,100%{opacity:0}}
+@keyframes drexHi3{0%,60%{opacity:0}61.5%{opacity:1;transform:scale(1)}65%{opacity:1;transform:scale(1.06)}78%{opacity:1;transform:scale(1)}80.5%,100%{opacity:0}}
+@keyframes drexHi4{0%,80%{opacity:0}81.5%{opacity:1;transform:scale(1)}85%{opacity:1;transform:scale(1.06)}98%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes drexHi0{0%{opacity:1;transform:scale(1)}5%{opacity:1;transform:scale(1.06)}18%{opacity:1;transform:scale(1)}20.5%,100%{opacity:0}}
+@keyframes drexHi1{0%,20%{opacity:0}21.5%{opacity:1;transform:scale(1)}25%{opacity:1;transform:scale(1.06)}38%{opacity:1;transform:scale(1)}40.5%,100%{opacity:0}}
+@keyframes drexHi2{0%,40%{opacity:0}41.5%{opacity:1;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}58%{opacity:1;transform:scale(1)}60.5%,100%{opacity:0}}
+@keyframes drexHi3{0%,60%{opacity:0}61.5%{opacity:1;transform:scale(1)}65%{opacity:1;transform:scale(1.06)}78%{opacity:1;transform:scale(1)}80.5%,100%{opacity:0}}
+@keyframes drexHi4{0%,80%{opacity:0}81.5%{opacity:1;transform:scale(1)}85%{opacity:1;transform:scale(1.06)}98%{opacity:1;transform:scale(1)}100%{opacity:0}}
 /* motion starts only when visible */
 .drex-stats:not(.drex-live) .drex-beam,.drex-stats:not(.drex-live) .drex-cpulse,.drex-stats:not(.drex-live) .drex-q,.drex-stats:not(.drex-live) .drex-ring,.drex-stats:not(.drex-live) .drex-eq i,.drex-stats:not(.drex-live) .drex-mic-g u{animation-play-state:paused}
 .drex-stats:not(.drex-live) .drex-q0{opacity:1}
