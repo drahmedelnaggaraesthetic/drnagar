@@ -281,7 +281,7 @@
     }
     if (!wrap) {
       wrap = document.createElement('div');
-      wrap.className = 'drex-stats drex-tl-run drex-lux-a drex-aff-a';
+      wrap.className = 'drex-stats drex-tl-run drex-lux-a';
       wrap.__drexLang = isEn ? 'en' : 'ar';
       wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
       const L = (o) => isEn ? o.en : o.ar;
@@ -309,7 +309,6 @@
         '<i class="drex-cpulse" aria-hidden="true"></i></div>' +
         '<div class="drex-qstack">' + quotes + '</div>' +
         '<div class="drex-srow">' + cells + '</div>' +
-        '<div class="drex-hint">' + (isEn ? 'Tap a flag to hear their voice' : 'اضغط على العلم واسمع صوتهم') + '</div>' +
         '<div class="drex-stateline"><b dir="ltr">' + STORY_COUNTRIES + '</b><span>' + (isEn ? 'countries · patients worldwide' : 'دولة · مرضى من حول العالم') + '</span></div>' +
         '<div class="drex-fline">' +
         '<div class="f"><b dir="ltr">' + STATS_CFG.topics + '</b><span>' + (isEn ? 'medical topics' : 'موضوع طبي') + '</span></div><i class="sep"></i>' +
