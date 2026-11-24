@@ -209,11 +209,44 @@
       document.querySelectorAll('details[open].dre-navigation, details[open].dre-navgroup').forEach((d) => { d.open = false; });
     }, { passive: true });
   }
+  /* Info strip: 316 topics, 3 Cairo clinics, reply within an hour;
+     availability by working hours; dotted patient-countries map. */
+  const STATS_CFG = { topics: 316, clinics: 3, openHour: 14, closeHour: 22, closedDay: 5 };
+  const AR_D = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  const EN_D = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const buildStats = (root) => {
+    const explore = root.querySelector('.dre-mo-explore');
+    if (!explore || root.querySelector('.drex-stats')) return;
+    if (!/^\/(en\/)?$/.test(location.pathname)) return;
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Cairo' }));
+    const day = now.getDay(); const h = now.getHours();
+    const open = day !== STATS_CFG.closedDay && h >= STATS_CFG.openHour && h < STATS_CFG.closeHour;
+    let nextDay, nextDayEn;
+    if (day !== STATS_CFG.closedDay && h < STATS_CFG.openHour) { nextDay = 'اليوم'; nextDayEn = 'today'; }
+    else { let nd = (day + 1) % 7; if (nd === STATS_CFG.closedDay) nd = (nd + 1) % 7; nextDay = AR_D[nd]; nextDayEn = EN_D[nd]; }
+    const wrap = document.createElement('div');
+    wrap.className = 'drex-stats';
+    wrap.setAttribute('dir', 'rtl');
+    wrap.innerHTML =
+      '<div class="drex-figures">' +
+      '<div class="drex-fig"><b dir="ltr">' + STATS_CFG.topics + '</b><span>موضوع طبي<small>medical topics</small></span></div>' +
+      '<i class="drex-sep"></i>' +
+      '<div class="drex-fig"><b dir="ltr">3</b><span>عيادات بالقاهرة<small>clinics in Cairo</small></span></div>' +
+      '<i class="drex-sep"></i>' +
+      '<div class="drex-fig"><b dir="ltr">1</b><span>رد خلال ساعة<small>reply within an hour</small></span></div>' +
+      '</div>' +
+      (open
+        ? '<div class="drex-avail"><i class="drex-dot"></i>متاح الآن <small>available now</small></div>'
+        : '<div class="drex-avail"><i class="drex-dot off"></i>يستقبل ' + nextDay + ' ٢ ظهرًا <small>opens ' + nextDayEn + ' 2 PM</small></div>') +
+      '<figure class="drex-stats-map"><img src="/stats-map.svg" alt="" loading="eager"><div class="drex-map-num"><b dir="ltr">11</b><span>دولة · مرضى من حول العالم<small>countries · patients worldwide</small></span></div></figure>';
+    explore.parentElement.insertBefore(wrap, explore.nextSibling);
+  };
   const boot = () => {
     const root = document.getElementById('root');
     if (!root || !root.hasChildNodes()) return;
     if (!reducedTitle) root.querySelectorAll('.dre7-title').forEach(buildMask);
     bootHeader(root);
+    buildStats(root);
     ensureMarquee();
     ensureExplore();
     if (!window.__dreCapture) root.querySelectorAll('.dre5-ba').forEach((b) => baIO.observe(b));
@@ -225,7 +258,7 @@
   new MutationObserver(() => {
     /* If the app just committed over the prerendered DOM, restore motion additions in the
        same frame so nothing visibly pops; otherwise keep the debounce. */
-    if (document.querySelector('.dre5') && (!document.querySelector('.dre-mo-mq') || !document.querySelector('.dre-mo-explore'))) { window.clearTimeout(t); boot(); return; }
+    if (document.querySelector('.dre5') && (!document.querySelector('.dre-mo-mq') || !document.querySelector('.dre-mo-explore') || !document.querySelector('.drex-stats'))) { window.clearTimeout(t); boot(); return; }
     window.clearTimeout(t);
     t = window.setTimeout(boot, 80);
   }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
