@@ -202,16 +202,20 @@ var pc=document.createElement('style');pc.textContent='.dre-root .dre-hero>div:h
     var d = document.createElement('div'); d.id = 'drexc'; d.setAttribute('aria-hidden', 'true');
     d.innerHTML = '<img alt="" decoding="async" src="' + RC.poster + '">';
     var v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=false;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='auto';v.poster=RC.poster;v.disableRemotePlayback=true;
-    var visible=true,started=false,downloaded=false;
-    function ready(){if(!visible||started||!v.duration||!v.buffered.length)return;var buffered=v.buffered.end(v.buffered.length-1);if(downloaded&&v.readyState>=3){started=true;var play=v.play();if(play&&play.catch)play.catch(function(){started=false});}}
-    ['progress','canplaythrough','loadeddata','suspend'].forEach(function(t){v.addEventListener(t,ready)});
-    v.addEventListener('playing',function(){if('requestVideoFrameCallback' in v)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
-    d.appendChild(v);
+    var visible=true,playing=false;
+    v.autoplay=true;v.setAttribute('autoplay','');
+    var retry=document.createElement('button');retry.type='button';retry.className='drexc-start';retry.textContent=document.documentElement.lang==='en'?'Play video':'تشغيل الفيديو';retry.setAttribute('aria-label',retry.textContent);retry.hidden=true;d.appendChild(v);
+    function begin(){if(!visible||document.hidden)return;var p=v.play();if(p&&p.catch)p.catch(function(){if(d.isConnected){retry.hidden=false;d.removeAttribute('aria-hidden')}})}
+    v.addEventListener('playing',function(){playing=true;retry.hidden=true;if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
+    ['loadeddata','canplay'].forEach(function(e){v.addEventListener(e,begin)});
+    retry.addEventListener('click',function(){v.muted=true;begin()});
+    ['pointerdown','touchend'].forEach(function(e){document.addEventListener(e,function(){if(d.isConnected&&!playing)begin()},{passive:true,once:true})});
+    document.addEventListener('visibilitychange',function(){if(d.isConnected){if(document.hidden)v.pause();else begin()}});
     var cap=document.createElement('p');cap.className='drexc-cap';
     function caption(){var en=document.documentElement.lang==='en';cap.dir=en?'ltr':'rtl';cap.innerHTML=en?'<strong>Lymphatic drainage massage</strong><span>Part of a personalised recovery plan after body contouring, as advised by your surgeon.</span>':'<strong>المساج الليمفاوي</strong><span>ضمن خطة التعافي بعد نحت القوام، بحسب تقييم الجرّاح وتوصياته.</span>';}
-    caption();new MutationObserver(caption).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});d.appendChild(cap);
-    var media=matchMedia('(max-width:600px)').matches?'/assets/rec-calm-mobile.mp4':RC.src;fetch(media+'?lease=').then(function(r){if(!r.ok)throw new Error('video');return r.blob()}).then(function(blob){if(!d.isConnected)return;downloaded=true;v.src=media+'?lease=';v.load()}).catch(function(){/* Keep the still poster when the connection fails. */});
-    if('IntersectionObserver' in window){var watch=new IntersectionObserver(function(e){visible=e[0].isIntersecting;if(visible){if(started){v.play().catch(function(){})}else ready()}else v.pause()},{threshold:.05});watch.observe(d);}
+    caption();d.appendChild(cap);d.appendChild(retry);
+    var media=matchMedia('(max-width:600px)').matches?'/assets/rec-calm-mobile.mp4':RC.src;v.src=media;v.load();setTimeout(function(){if(d.isConnected)begin()},0);
+    if('IntersectionObserver' in window){var watch=new IntersectionObserver(function(e){visible=e[0].isIntersecting;if(visible)begin();else v.pause()},{threshold:.05});watch.observe(d);}
     return d;
   }
   function syncC() {
@@ -261,3 +265,11 @@ var drexRecoveryRefine=document.createElement('style');drexRecoveryRefine.textCo
 `;document.head.appendChild(drexRecoveryRefine);
 
 var drexMatcherRead=document.createElement('style');drexMatcherRead.textContent='#drexa:after{background:linear-gradient(180deg,#ece1c9 0%,rgba(236,225,201,.98) 22%,rgba(236,225,201,.94) 35%,rgba(236,225,201,.82) 46%,rgba(236,225,201,.15) 57%,transparent 64%,transparent 90%,#ece1c9 100%)!important}#drexa video,#drexr video,#drexc video{transition:opacity .25s ease!important}';document.head.appendChild(drexMatcherRead);
+
+var drexPerfCSS=document.createElement('style');drexPerfCSS.textContent=`
+body:has(.dre-route-recovery) .dre-route-recovery{padding-inline:0!important;border-inline:0!important}
+.dre-route-recovery .dre-panel.drexc-host{margin-inline:0!important;border-radius:0!important;width:100%!important;min-height:calc(100vw * 16 / 9)!important;background:#100f0c!important}
+.dre-route-recovery #drexc{inset-inline:0!important;width:100%!important;height:calc(100vw * 16 / 9)!important;border-radius:0!important}
+.dre-root .dre-route-recovery .dre-panel.drexc-host{margin-bottom:0!important}.dre-route-recovery .dre-instrument{margin-top:0!important}.dre-route-recovery .drexc-host :is(.dre-h1,.dre-sub,.dre-eyebrow){margin-inline:20px!important}
+#drexc{pointer-events:auto!important}#drexc video{opacity:1!important;transition:none!important}#drexc .drexc-start{position:absolute;z-index:4;inset-inline-start:20px;top:55%;padding:10px 16px;border:1px solid #d6bf86;border-radius:24px;background:#15120ddd;color:#f2e3c2;font:inherit;font-size:13px;pointer-events:auto}#drexc .drexc-start[hidden]{display:none!important}
+`;document.head.appendChild(drexPerfCSS);

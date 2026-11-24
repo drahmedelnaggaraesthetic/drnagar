@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const reduced = true; // Keep unrelated magnetic and parallax effects quiet.
-  const reducedTitle = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedTitle = window.matchMedia('(prefers-reduced-motion: reduce), (max-width:767px)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   /* 1R. hero headline line-by-line mask reveal.
