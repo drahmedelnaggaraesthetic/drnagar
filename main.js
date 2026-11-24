@@ -23376,7 +23376,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
         /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("header", { className: "dre-masthead", children: [
           /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "dre-brandline", children: [
             /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Link, { to: "/", className: "dre-brandname", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("span", { className: "dre-wordmark", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { lang: "ar", children: "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631" }),
+              /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { lang: ar2 ? "ar" : "en", children: ar2 ? "\u062F. \u0623\u062D\u0645\u062F \u0627\u0644\u0646\u062C\u0627\u0631" : "Dr. Ahmed Elnajar" }),
               /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("small", { children: "AHMED ELNAGAR / CLINICS" })
             ] }) }),
             /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(LangToggle, {}),

@@ -145,3 +145,10 @@
  .drex-stats .drex-r0{opacity:1}
  .drex-stats .drex-eq i,.drex-stats .drex-mic-g u{animation:none!important}
 }
+/*drex-foot*/.dre6-foot-brand{display:none!important}.dre6-foot-meta span:not(:first-child){display:none!important}.dre6-foot{border-top:0;padding-top:18px;justify-content:center}.dre6-foot-meta{align-items:center!important;text-align:center}
+
+/*drex-tgl*/.dre-root .dre-masthead .dre-chips .dre-chip{width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;font-size:10px!important;padding:0!important;border-radius:0!important;margin:0!important;box-sizing:border-box!important;text-decoration:none}@media(max-width:767px){.dre-root .dre-masthead .dre-chips:has(.dre-chip:first-child[aria-pressed=true]):before{transform:translate(0)}.dre-root .dre-masthead .dre-chips .dre-chip{position:relative!important;z-index:1!important;flex:0 0 50px!important;display:flex!important;align-items:center!important;justify-content:center!important;order:0!important;border:0!important;background:transparent!important;border-radius:99px!important;width:50px!important;min-width:50px!important;height:44px!important;margin-top:-3px!important;color:#c0b698!important;font-size:11px!important}.dre-root .dre-masthead .dre-chips .dre-chip[aria-pressed=true]{color:#241f14!important;box-shadow:none!important}}
+
+/*drex-nm*/.dre-wordmark small{display:none!important}html[lang^=ar] .dre-h1[style*="font-size: 24px"]{display:none!important}
+
+/*drex-sig*/.dre-wordmark span[lang=en]{font-family:"Great Vibes","Alex Brush",cursive!important;font-size:25px!important;word-spacing:.3em!important;letter-spacing:0!important;line-height:1!important;position:relative;top:-3px;font-weight:400!important;white-space:nowrap}
