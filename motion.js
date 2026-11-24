@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const reduced = true; // Keep unrelated magnetic and parallax effects quiet.
-  const reducedTitle = window.matchMedia('(prefers-reduced-motion: reduce), (max-width:767px)').matches;
+  const reducedTitle = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   /* 1R. hero headline line-by-line mask reveal.
@@ -202,12 +202,14 @@
   if (!window.__dreScrollClose) {
     window.__dreScrollClose = true;
     let lastY = window.scrollY;
+    const openMenus = new Set();
+    document.addEventListener('toggle', e => { const d=e.target;if(d.matches?.('details.dre-navigation,details.dre-navgroup')){if(d.open)openMenus.add(d);else openMenus.delete(d)} },true);
+    document.querySelectorAll('details[open].dre-navigation,details[open].dre-navgroup').forEach(d=>openMenus.add(d));
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (Math.abs(y - lastY) < 4) return;
-      lastY = y;
-      document.querySelectorAll('details[open].dre-navigation, details[open].dre-navgroup').forEach((d) => { d.open = false; });
-    }, { passive: true });
+      const y=window.scrollY;if(Math.abs(y-lastY)<4)return;lastY=y;
+      if(!openMenus.size)return;
+      openMenus.forEach(d=>{if(d.isConnected)d.open=false});openMenus.clear();
+    }, {passive:true});
   }
   /* Info strip: 316 topics, 3 Cairo clinics, reply within an hour;
      availability by working hours; dotted patient-countries map. */
@@ -218,25 +220,25 @@
      seven tappable story circles (all audio voice notes, inline), one 16s master timeline. */
   const STORY_COUNTRIES = 12;
   const STORIES = [
-    { id: 'morocco', kind: 'audio', src: 'assets/stories/morocco.mp3', at: [57.6, 19.4], lift: 6,
+    { id: 'morocco', kind: 'audio', src: '/assets/stories/morocco.mp3', at: [57.6, 19.4], lift: 6,
       ar: { n: 'المغرب', sub: 'مامي ميك أوفر · رسالة صوتية', q: 'لو ضليت أشكرك كلش ما راح أوفي شكري' },
       en: { n: 'Morocco', sub: 'mommy makeover · voice note', q: '"No matter how much I thank you..."' } },
-    { id: 'belgium', kind: 'audio', src: 'assets/stories/belgium.mp3', at: [61.6, 13.1], lift: 5,
+    { id: 'belgium', kind: 'audio', src: '/assets/stories/belgium.mp3', at: [61.6, 13.1], lift: 5,
       ar: { n: 'بلجيكا', sub: 'رسالة صوتية', q: '«جينا من بلجيكا للقاهرة»' },
       en: { n: 'Belgium', sub: 'voice note', q: '"we came from Belgium to Cairo"' } },
-    { id: 'saudi', kind: 'audio', src: 'assets/stories/saudi.mp3', at: [75.0, 22.0], lift: 3,
+    { id: 'saudi', kind: 'audio', src: '/assets/stories/saudi.mp3', at: [75.0, 22.0], lift: 3,
       ar: { n: 'السعودية', sub: 'رحلة علاجية · رسالة صوتية', q: '«ما حسيت إني بعيد عن أهلي أبدًا»' },
       en: { n: 'Saudi Arabia', sub: 'treatment journey · voice note', q: '"I never felt far from my family"' } },
-    { id: 'syria', kind: 'audio', src: 'assets/patient-experiences/recording-1.mp3', at: [72.8, 18.4], lift: 2.5,
+    { id: 'syria', kind: 'audio', src: '/assets/patient-experiences/recording-1.mp3', at: [72.8, 18.4], lift: 2.5,
       ar: { n: 'سوريا', sub: 'رسالة صوتية · فيلر', q: 'أول تجربة فيلر... والنتيجة طبيعية' },
       en: { n: 'Syria', sub: 'voice note · filler', q: 'First-time filler... a natural result' } },
-    { id: 'egypt', kind: 'audio', src: 'assets/patient-experiences/recording-2.mp3', home: true,
+    { id: 'egypt', kind: 'audio', src: '/assets/patient-experiences/recording-2.mp3', home: true,
       ar: { n: 'مصر', sub: 'رسالة صوتية · متابعة', q: 'المتابعة بعد العملية، يوم بيوم' },
       en: { n: 'Egypt', sub: 'voice note · aftercare', q: 'Day-by-day aftercare follow-up' } },
-    { id: 'features', kind: 'audio', flag: 'syria', src: 'assets/patient-experiences/recording-3.mp3',
+    { id: 'features', kind: 'audio', flag: 'syria', src: '/assets/patient-experiences/recording-3.mp3',
       ar: { n: 'سوريا', sub: 'رسالة صوتية', q: '' },
       en: { n: 'Syria', sub: 'voice note', q: '' } },
-    { id: 'rhino', kind: 'audio', flag: 'tunisia', src: 'assets/patient-experiences/recording-4.mp3', at: [62.9, 17.9], lift: 3.5,
+    { id: 'rhino', kind: 'audio', flag: 'tunisia', src: '/assets/patient-experiences/recording-4.mp3', at: [62.9, 17.9], lift: 3.5,
       ar: { n: 'تونس', sub: 'رسالة صوتية', q: 'رسالة صوتية من تونس' },
       en: { n: 'Tunisia', sub: 'voice note', q: 'A voice note from Tunisia' } }
   ];
@@ -283,7 +285,7 @@
       wrap = document.createElement('div');
       wrap.className = 'drex-stats drex-tl-run drex-lux-a';
       wrap.__drexLang = isEn ? 'en' : 'ar';
-      wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+      if(wrap.getAttribute('dir')!==(isEn?'ltr':'rtl'))wrap.setAttribute('dir',isEn?'ltr':'rtl');
       const L = (o) => isEn ? o.en : o.ar;
       const arcs = TL_STORIES.map(s =>
         '<svg class="drex-arc" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden="true"><path d="M' + s.at[0] + ',' + s.at[1] +
@@ -318,7 +320,7 @@
         (open ? (isEn ? 'available now' : 'متاح الآن') : (isEn ? 'opens ' + nextDayEn + ' 2 PM' : 'يستقبل ' + nextDay + ' 2 ظهرًا')) + '</span></div>';
       explore.parentElement.insertBefore(wrap, explore.nextSibling);
     } else {
-      wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+      if(wrap.getAttribute('dir')!==(isEn?'ltr':'rtl'))wrap.setAttribute('dir',isEn?'ltr':'rtl');
       const avl = wrap.querySelector('.drex-avl');
       if (avl) { avl.classList.toggle('off', !open); }
     }

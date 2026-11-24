@@ -19078,7 +19078,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/hero-portrait.jpg
-  var hero_portrait_default = "./assets/JGDZ6EXT.webp";
+  var hero_portrait_default = "/assets/JGDZ6EXT.webp";
 
   // src/hero-photo.ts
   var HERO_COVER = hero_portrait_default;
@@ -19086,82 +19086,82 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var HERO_COVER_ALT_EN = "Dr. Ahmed Elnagar in his white coat before the Egyptian flag, the official portal portrait";
 
   // src/photos/temple-wall.jpg
-  var temple_wall_default = "./assets/QFEI37A2.webp";
+  var temple_wall_default = "/assets/QFEI37A2.webp";
 
   // src/photos/src-extract/tummy-01.jpg
-  var tummy_01_default = "./assets/PRYIPN2R.webp";
+  var tummy_01_default = "/assets/PRYIPN2R.webp";
 
   // src/photos/case-face-1.jpg
-  var case_face_1_default = "./assets/27EPABUW.webp";
+  var case_face_1_default = "/assets/27EPABUW.webp";
 
   // src/photos/case-face-2.jpg
-  var case_face_2_default = "./assets/IAZKFRIH.webp";
+  var case_face_2_default = "/assets/IAZKFRIH.webp";
 
   // src/photos/case-rhino-1.jpg
-  var case_rhino_1_default = "./assets/MOJBB5CB.webp";
+  var case_rhino_1_default = "/assets/MOJBB5CB.webp";
 
   // src/photos/case-rhino-2.jpg
-  var case_rhino_2_default = "./assets/QAMMJAKP.webp";
+  var case_rhino_2_default = "/assets/QAMMJAKP.webp";
 
   // src/photos/cases/filler-front.jpg
-  var filler_front_default = "./assets/ORU7V7KF.webp";
+  var filler_front_default = "/assets/ORU7V7KF.webp";
 
   // src/photos/cases/filler-lips-chin.jpg
-  var filler_lips_chin_default = "./assets/FAN2PI5J.webp";
+  var filler_lips_chin_default = "/assets/FAN2PI5J.webp";
 
   // src/photos/cases/filler-profile-1.jpg
-  var filler_profile_1_default = "./assets/6I7JDOLB.webp";
+  var filler_profile_1_default = "/assets/6I7JDOLB.webp";
 
   // src/photos/cases/filler-profile-2.jpg
-  var filler_profile_2_default = "./assets/TVTZVQI3.webp";
+  var filler_profile_2_default = "/assets/TVTZVQI3.webp";
 
   // src/photos/cases/lips-closeup.jpg
-  var lips_closeup_default = "./assets/3VLUUZVW.webp";
+  var lips_closeup_default = "/assets/3VLUUZVW.webp";
 
   // src/photos/cases/botox-forehead.jpg
-  var botox_forehead_default = "./assets/OT3O3CZF.webp";
+  var botox_forehead_default = "/assets/OT3O3CZF.webp";
 
   // src/photos/cases/neck-before.jpg
-  var neck_before_default = "./assets/ONL4XYAY.webp";
+  var neck_before_default = "/assets/ONL4XYAY.webp";
 
   // src/photos/cases/neck-marking.jpg
-  var neck_marking_default = "./assets/EYXGVZ5N.webp";
+  var neck_marking_default = "/assets/EYXGVZ5N.webp";
 
   // src/photos/cases/rhino-belgium.jpg
-  var rhino_belgium_default = "./assets/3LQJYGTT.webp";
+  var rhino_belgium_default = "/assets/3LQJYGTT.webp";
 
   // src/photos/cases/rhino-candid.jpg
-  var rhino_candid_default = "./assets/WBTVGCQI.webp";
+  var rhino_candid_default = "/assets/WBTVGCQI.webp";
 
   // src/photos/cases/jovena.jpg
-  var jovena_default = "./assets/PSTPBQX3.webp";
+  var jovena_default = "/assets/PSTPBQX3.webp";
 
   // src/photos/or-video.mp4
-  var or_video_default = "./assets/G3OI5XRX.mp4";
+  var or_video_default = "/assets/G3OI5XRX.mp4";
 
   // src/photos/cases/or-poster.jpg
-  var or_poster_default = "./assets/NWB6OIJB.webp";
+  var or_poster_default = "/assets/NWB6OIJB.webp";
 
   // src/photos/cases/review-acne-story.jpg
-  var review_acne_story_default = "./assets/N6UYPSOR.webp";
+  var review_acne_story_default = "/assets/N6UYPSOR.webp";
 
   // src/photos/cases/review-followup.jpg
-  var review_followup_default = "./assets/FO4ZPK5E.webp";
+  var review_followup_default = "/assets/FO4ZPK5E.webp";
 
   // src/photos/endo-laser.mp4
-  var endo_laser_default = "./assets/RQLJW4SI.mp4";
+  var endo_laser_default = "/assets/RQLJW4SI.mp4";
 
   // src/photos/cases/endo-poster.jpg
-  var endo_poster_default = "./assets/4PMA2CVD.webp";
+  var endo_poster_default = "/assets/4PMA2CVD.webp";
 
   // src/photos/or-montage.mp4
-  var or_montage_default = "./assets/EUUK2S3I.mp4";
+  var or_montage_default = "/assets/EUUK2S3I.mp4";
 
   // src/photos/cases/or2-poster.jpg
-  var or2_poster_default = "./assets/SK3TDOSZ.webp";
+  var or2_poster_default = "/assets/SK3TDOSZ.webp";
 
   // src/photos/team-elite.jpg
-  var team_elite_default = "./assets/VEGU7V2H.webp";
+  var team_elite_default = "/assets/VEGU7V2H.webp";
 
   // src/real-cases.tsx
   var import_jsx_runtime30 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -19670,7 +19670,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   var import_react35 = __toESM(require_react());
 
   // src/photos/portrait-consult.jpg
-  var portrait_consult_default = "./assets/SQ2TYPB3.webp";
+  var portrait_consult_default = "/assets/SQ2TYPB3.webp";
 
   // src/pages/Consultation.tsx
   var import_jsx_runtime33 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -20204,10 +20204,10 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/src-extract/test-01.jpg
-  var test_01_default = "./assets/LXBYC3LU.webp";
+  var test_01_default = "/assets/LXBYC3LU.webp";
 
   // src/photos/src-extract/recovery-01.jpg
-  var recovery_01_default = "./assets/6SKFFXOF.webp";
+  var recovery_01_default = "/assets/6SKFFXOF.webp";
 
   // src/photos/src-extract/index-01.jpg
 
@@ -20880,28 +20880,28 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/lifting-02-private.jpg
-  var lifting_02_private_default = "./assets/TAJGXRMF.webp";
+  var lifting_02_private_default = "/assets/TAJGXRMF.webp";
 
   // src/photos/lifting-03-private.jpg
-  var lifting_03_private_default = "./assets/IIHSRNNZ.webp";
+  var lifting_03_private_default = "/assets/IIHSRNNZ.webp";
 
   // src/photos/lifting-06-private.jpg
-  var lifting_06_private_default = "./assets/GXLED5QY.webp";
+  var lifting_06_private_default = "/assets/GXLED5QY.webp";
 
   // src/photos/lifting-07-private.jpg
-  var lifting_07_private_default = "./assets/YFHS7PRD.webp";
+  var lifting_07_private_default = "/assets/YFHS7PRD.webp";
 
   // src/photos/rhino-02-private.jpg
-  var rhino_02_private_default = "./assets/O5E42XG2.webp";
+  var rhino_02_private_default = "/assets/O5E42XG2.webp";
 
   // src/photos/rhino-03-private.jpg
-  var rhino_03_private_default = "./assets/VHIEOLEH.webp";
+  var rhino_03_private_default = "/assets/VHIEOLEH.webp";
 
   // src/photos/rhino-04-private.jpg
-  var rhino_04_private_default = "./assets/ZDDRCLEL.webp";
+  var rhino_04_private_default = "/assets/ZDDRCLEL.webp";
 
   // src/photos/rhino-05-private.jpg
-  var rhino_05_private_default = "./assets/7NYFVZGT.webp";
+  var rhino_05_private_default = "/assets/7NYFVZGT.webp";
 
   // src/source-galleries.tsx
   var import_jsx_runtime37 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -20916,7 +20916,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { className: "dre-panel", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("h3", { className: "dre-h3", children: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0645\u0646 \u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0623\u0635\u0644\u064A" }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "dre-small", children: "\u0627\u0644\u0635\u0648\u0631 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 \u0643\u0627\u0645\u0644\u0629 \u0628\u062f\u0648\u0646 \u0642\u0635. \u0644\u0627 \u0646\u0636\u064a\u0641 \u0645\u062f\u062f \u0645\u062a\u0627\u0628\u0639\u0629 \u0623\u0648 \u0648\u0639\u0648\u062f \u0646\u062a\u0627\u0626\u062c \u063a\u064a\u0631 \u0645\u0630\u0643\u0648\u0631\u0629 \u0645\u0639 \u0627\u0644\u0635\u0648\u0631\u0629." }),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(on, { label: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A\u0629", items: ["./assets/rhino-original-06.webp", "./assets/rhino-original-07.webp"].map((src, i) => ({ src, alt: `\u0635\u0648\u0631\u0629 \u0645\u0631\u062C\u0639\u064A\u0629 ${i + 1} \u0645\u0646 \u062F\u0644\u064A\u0644 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A`, fit: "contain" })) })
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(on, { label: "\u0635\u0648\u0631 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A\u0629", items: ["/assets/rhino-original-06.webp", "/assets/rhino-original-07.webp"].map((src, i) => ({ src, alt: `\u0635\u0648\u0631\u0629 \u0645\u0631\u062C\u0639\u064A\u0629 ${i + 1} \u0645\u0646 \u062F\u0644\u064A\u0644 \u0627\u0644\u0623\u0646\u0641 \u0627\u0644\u0623\u0635\u0644\u064A`, fit: "contain" })) })
     ] });
   }
 
@@ -20985,7 +20985,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
   }
 
   // src/photos/lifting-portrait.jpg
-  var lifting_portrait_default = "./assets/JJ5L2PH5.webp";
+  var lifting_portrait_default = "/assets/JJ5L2PH5.webp";
 
   // src/pages/Face.tsx
   var import_jsx_runtime39 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -21490,37 +21490,37 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react39 = __toESM(require_react());
 
   // src/photos/editorial/clinical-blueprint.jpg
-  var clinical_blueprint_default = "./assets/XR36YW2X.webp";
+  var clinical_blueprint_default = "/assets/XR36YW2X.webp";
 
   // src/photos/editorial/prep-window.jpg
-  var prep_window_default = "./assets/EGJVQ6VC.webp";
+  var prep_window_default = "/assets/EGJVQ6VC.webp";
 
   // src/photos/editorial/winter-planning.jpg
-  var winter_planning_default = "./assets/4QQHBH5X.webp";
+  var winter_planning_default = "/assets/4QQHBH5X.webp";
 
   // src/photos/editorial/strategic-timing.jpg
-  var strategic_timing_default = "./assets/ZLWKNQWL.webp";
+  var strategic_timing_default = "/assets/ZLWKNQWL.webp";
 
   // src/photos/editorial/aesthetic-timeline.jpg
-  var aesthetic_timeline_default = "./assets/TIRZ4HI3.webp";
+  var aesthetic_timeline_default = "/assets/TIRZ4HI3.webp";
 
   // src/photos/editorial/neuromodulation.jpg
-  var neuromodulation_default = "./assets/FLOLJUTR.webp";
+  var neuromodulation_default = "/assets/FLOLJUTR.webp";
 
   // src/photos/editorial/lymphatic-flow.jpg
-  var lymphatic_flow_default = "./assets/I27ZNCHR.webp";
+  var lymphatic_flow_default = "/assets/I27ZNCHR.webp";
 
   // src/photos/editorial/fluid-dynamics.jpg
-  var fluid_dynamics_default = "./assets/KYX3IO2Q.webp";
+  var fluid_dynamics_default = "/assets/KYX3IO2Q.webp";
 
   // src/photos/editorial/recovery-comfort.jpg
-  var recovery_comfort_default = "./assets/O3ILYMRB.webp";
+  var recovery_comfort_default = "/assets/O3ILYMRB.webp";
 
   // src/photos/editorial/collagen-maturation.jpg
-  var collagen_maturation_default = "./assets/3OKKLIJI.webp";
+  var collagen_maturation_default = "/assets/3OKKLIJI.webp";
 
   // src/photos/editorial/discreet-healing.jpg
-  var discreet_healing_default = "./assets/74XCYRBK.webp";
+  var discreet_healing_default = "/assets/74XCYRBK.webp";
 
   // src/editorial-carousel.tsx
   var import_jsx_runtime40 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -21588,10 +21588,10 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   }
 
   // src/photos/body-compare-before.svg
-  var body_compare_before_default = "./assets/2RRSHES5.svg";
+  var body_compare_before_default = "/assets/2RRSHES5.svg";
 
   // src/photos/body-compare-after.svg
-  var body_compare_after_default = "./assets/ATEWAVQ3.svg";
+  var body_compare_after_default = "/assets/ATEWAVQ3.svg";
 
   // src/pages/Body.tsx
   var import_jsx_runtime41 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -21671,7 +21671,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
       r.jsx('style',{children:'.dre-body-case-second .second-video{height:auto;max-height:580px;width:100%;object-fit:contain}.dre-body-case-second .second-wrap{max-width:420px;margin:0 auto}.dre-body-case-second .case-note{max-width:620px;margin:12px auto 0}@media(max-width:650px){.dre-body-case-second .second-video{max-height:550px}}'}),
       r.jsx('div',{className:'case-eyebrow',children:t('حالة أخرى من العيادة','ANOTHER CASE FROM THE CLINIC')}),
       r.jsx('h2',{children:t('تنسيق القوام · فيديو قبل وبعد','Body contouring · Before-and-after video')}),
-      r.jsx('div',{className:'second-wrap',children:r.jsx('video',{className:'second-video',src:'./assets/body-case-2.mp4?v=075',poster:'./assets/body-case-2-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو حالة تنسيق القوام قبل وبعد','Body contouring case before-and-after video')})}),
+      r.jsx('div',{className:'second-wrap',children:r.jsx('video',{className:'second-video',src:'/assets/body-case-2.mp4?v=075',poster:'/assets/body-case-2-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو حالة تنسيق القوام قبل وبعد','Body contouring case before-and-after video')})}),
       r.jsx('p',{className:'case-note',children:t('يتضمن الفيديو لقطات بعد الإجراء مباشرة، وليست نتيجة نهائية بعد التعافي. النتائج فردية.','The video includes footage immediately after the procedure, not a final healed result. Results vary by patient.')})
     ]});
   }
@@ -21684,8 +21684,8 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
       r.jsx('div',{className:'case-eyebrow',children:t('من حالات العيادة','FROM THE CLINIC')}),
       r.jsx('h2',{children:t('تنسيق القوام · قبل وبعد','Body contouring · Before and after')}),
       r.jsxs('div',{className:'case-layout',children:[
-        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('قبل','Before'),r.jsx('span',{children:t('٣ زوايا','3 VIEWS')})]}),r.jsx('div',{className:'case-photos',children:[['side','جانبي','Side'],['front','أمامي','Front'],['back','خلفي','Back']].map(([id,ar,label])=>r.jsxs('figure',{children:[r.jsx('img',{src:'./assets/body-case-'+id+'.webp',alt:t('قبل تنسيق القوام · '+ar,'Before body contouring · '+label),loading:'eager',decoding:'async',fetchpriority:'high'}),r.jsx('figcaption',{children:t(ar,label)})]},id))})]}),
-        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('بعد الإجراء','After the procedure'),r.jsx('span',{children:t('فيديو الحالة','CASE VIDEO')})]}),r.jsx('video',{src:'./assets/body-case-after.mp4',poster:'./assets/body-case-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو الحالة بعد الإجراء','Case video after the procedure')}),r.jsx('p',{className:'case-note',children:t('الفيديو بعد الإجراء وليس نتيجة نهائية بعد التعافي.','The video is after the procedure, not a final healed result.')})]})
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('قبل','Before'),r.jsx('span',{children:t('٣ زوايا','3 VIEWS')})]}),r.jsx('div',{className:'case-photos',children:[['side','جانبي','Side'],['front','أمامي','Front'],['back','خلفي','Back']].map(([id,ar,label])=>r.jsxs('figure',{children:[r.jsx('img',{src:'/assets/body-case-'+id+'.webp',alt:t('قبل تنسيق القوام · '+ar,'Before body contouring · '+label),loading:'eager',decoding:'async',fetchpriority:'high'}),r.jsx('figcaption',{children:t(ar,label)})]},id))})]}),
+        r.jsxs('div',{children:[r.jsxs('div',{className:'case-label',children:[t('بعد الإجراء','After the procedure'),r.jsx('span',{children:t('فيديو الحالة','CASE VIDEO')})]}),r.jsx('video',{src:'/assets/body-case-after.mp4',poster:'/assets/body-case-poster.webp',controls:true,playsInline:true,preload:'metadata','aria-label':t('فيديو الحالة بعد الإجراء','Case video after the procedure')}),r.jsx('p',{className:'case-note',children:t('الفيديو بعد الإجراء وليس نتيجة نهائية بعد التعافي.','The video is after the procedure, not a final healed result.')})]})
       ]}),
       r.jsx('p',{className:'case-note',children:t('الصور الأصلية قبل الإجراء مع فصل الخلفية فقط، دون تعديل شكل الجسم. النتائج فردية.','Original before photos with background removal only, without reshaping. Results vary by patient.')})
     ]});
@@ -22371,7 +22371,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react41 = __toESM(require_react());
 
   // src/photos/rhino-portrait.jpg
-  var rhino_portrait_default = "./assets/BKOM2CL3.webp";
+  var rhino_portrait_default = "/assets/BKOM2CL3.webp";
 
   // src/pages/Rhino.tsx
   var import_jsx_runtime42 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -22863,28 +22863,28 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   var import_react42 = __toESM(require_react());
 
   // src/photos/portrait-travel.jpg
-  var portrait_travel_default = "./assets/M4SQ7PEA.webp";
+  var portrait_travel_default = "/assets/M4SQ7PEA.webp";
 
   // src/photos/hotel-entrance.jpg
-  var hotel_entrance_default = "./assets/AX4RHTO6.webp";
+  var hotel_entrance_default = "/assets/AX4RHTO6.webp";
 
   // src/photos/hotel-lobby.jpg
-  var hotel_lobby_default = "./assets/X2DT36O3.webp";
+  var hotel_lobby_default = "/assets/X2DT36O3.webp";
 
   // src/photos/hotel-room.jpg
-  var hotel_room_default = "./assets/QLS63EYT.webp";
+  var hotel_room_default = "/assets/QLS63EYT.webp";
 
   // src/photos/hotel-spa.jpg
-  var hotel_spa_default = "./assets/2GDO4YZL.webp";
+  var hotel_spa_default = "/assets/2GDO4YZL.webp";
 
   // src/photos/src-extract/egypt-05.jpg
-  var egypt_05_default = "./assets/HF33D6CY.webp";
+  var egypt_05_default = "/assets/HF33D6CY.webp";
 
   // src/photos/src-extract/egypt-07.jpg
-  var egypt_07_default = "./assets/CR2CLQFW.webp";
+  var egypt_07_default = "/assets/CR2CLQFW.webp";
 
   // src/photos/src-extract/egypt-08.jpg
-  var egypt_08_default = "./assets/7UOL75YJ.webp";
+  var egypt_08_default = "/assets/7UOL75YJ.webp";
 
   // src/pages/Travel.tsx
   var import_jsx_runtime43 = dreAppRuntime(__toESM(require_jsx_runtime()));
@@ -25522,9 +25522,9 @@ react-router/dist/development/index.mjs:
   document.querySelectorAll('.dre7-journey-links a,.dre-navigation nav a,.dre-desktop-nav a').forEach(a=>{
    const u=new URL(a.href,location.href),route=u.hash.startsWith('#/')?u.hash.slice(1).split('?')[0]:u.pathname;
    const yes=u.origin===location.origin&&routes.has(route)&&a.getAttribute('aria-disabled')!=='true';
-   if(yes&&a.dataset.sectionAvailable!=='true'){a.dataset.sectionAvailable='true';}if(yes){a.title=document.documentElement.lang.startsWith('ar')?'القسم متاح للتصفح':'Section available to explore';}
+   if(yes&&a.dataset.sectionAvailable!=='true'){a.dataset.sectionAvailable='true';}if(yes){const title=document.documentElement.lang.startsWith('ar')?'القسم متاح للتصفح':'Section available to explore';if(a.title!==title)a.title=title;}
   });
-  document.querySelectorAll('.dre7-journey').forEach(e=>{const h=e.querySelector('h3');if(h&&e.querySelector('a[data-section-available="true"]'))h.dataset.sectionAvailable='true';});
+  document.querySelectorAll('.dre7-journey').forEach(e=>{const h=e.querySelector('h3');if(h&&h.dataset.sectionAvailable!=='true'&&e.querySelector('a[data-section-available="true"]'))h.dataset.sectionAvailable='true';});
  };
  new MutationObserver(scan).observe(document.getElementById('root')||document.body,{childList:true,subtree:true});new MutationObserver(scan).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});scan();
 })();
@@ -25680,7 +25680,7 @@ function phoneTabGridKeys(event) {
 /* Idle preload of the educational series plates so swiping the series carousel never waits on the network. */
 (() => {
  const plates=['XR36YW2X','EGJVQ6VC','4QQHBH5X','ZLWKNQWL','TIRZ4HI3','FLOLJUTR','I27ZNCHR','KYX3IO2Q','O3ILYMRB','3OKKLIJI','74XCYRBK'];
- const run=()=>{let i=0;const step=()=>{if(i>=plates.length)return;const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{i++;step();};im.src='./assets/'+plates[i]+'.webp';};
+ const run=()=>{let i=0;const step=()=>{if(i>=plates.length)return;const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{i++;step();};im.src='/assets/'+plates[i]+'.webp';};
   if('requestIdleCallback' in window)requestIdleCallback(step,{timeout:4000});else setTimeout(step,1500);};
  if(document.readyState==='complete')run();else window.addEventListener('load',run,{once:true});
 })();

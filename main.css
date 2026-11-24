@@ -179,9 +179,12 @@ body:has(.dre-route-library) .dre-wafab{display:none!important}
 .dre-root .dre-rail-track li{opacity:1!important;visibility:visible!important;animation:none!important;transform:none!important}.dre-root .dre-route :is(.dre-panel,.dre-hero,.dre-consultation,.dre-instrument){content-visibility:visible!important;contain:none!important}
 
 /* Mobile: keep content responsive and quiet instead of compositing ornamental loops. */
-@media(max-width:767px){.dre-root *:not(video):not(.dre-masthead),.dre-root *:before,.dre-root *:after{animation:none!important;scroll-behavior:auto!important}.dre-root :is(.dre-panel,.dre-panel-dark,.dre-panel-soft,.dre-instrument,.dre-rail,.dre5-ba,.dre7-cover-wall,.drex-stats,.dre-wafab,.dre7-title,.dre5-hero-figure){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}.dre-root :is(.dre-panel,.dre-panel-dark,.dre-panel-soft,.dre-instrument,.dre-rail){box-shadow:none!important}.dre-root .dre-rail-track li{opacity:1!important;transform:none!important}.dre-root .dre7-title.mo-src{color:inherit!important}.dre-root .dre-mo-title{display:none!important}.dre-root .dre7-title:not(.dre-mo-title){opacity:1!important;transform:none!important}}
+@media(max-width:767px){.dre-root :is(.dre-panel,.dre-panel-dark,.dre-panel-soft,.dre-instrument,.dre-rail,.dre5-ba,.dre7-cover-wall,.drex-stats,.dre-wafab,.dre7-title,.dre5-hero-figure){backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}.dre-root :is(.dre-panel,.dre-panel-dark,.dre-panel-soft,.dre-instrument,.dre-rail){box-shadow:none!important}.dre-root .dre-rail-track li{opacity:1!important;transform:none!important}}
 
 @media(max-width:767px){.dre-root *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 
-@media(max-width:767px){.dre-root .dre5-mq-track{animation:none!important;transform:none!important}}
+
 .dre-route-recovery .dre-panel.drexc-host{margin-bottom:0!important}.dre-route-recovery .drexc-host .dre-h1,.dre-route-recovery .drexc-host .dre-sub,.dre-route-recovery .drexc-host .dre-eyebrow{margin-inline:20px!important}.dre-route-recovery .drexc-host+*{margin-top:0!important}
+
+@media(min-width:768px){.dre-root *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+@media(min-width:768px){.dre-root .drex-motion-offscreen,.dre-root .drex-motion-offscreen:before,.dre-root .drex-motion-offscreen:after{animation-play-state:paused!important}}
