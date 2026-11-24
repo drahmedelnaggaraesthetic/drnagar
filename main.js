@@ -23550,46 +23550,6 @@ react-router/dist/development/index.mjs:
    *)
 */
 
-/* Mobile masthead: transform-only hide/reveal, never resize while scrolling. */
-(() => {
- const init=()=>{
-  const header=document.querySelector('.dre-masthead');if(!header)return false;
-  const nav=header.querySelector('.dre-navigation');let last=scrollY,travel=0,direction=0,queued=false,openAt=scrollY,settling=false;
-  const hide=value=>header.classList.toggle('dre-mh-away',value);
-  const update=()=>{
-   queued=false;
-   const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);
-   const raw=scrollY,y=Math.max(0,Math.min(raw,max));
-   if(!matchMedia('(max-width:767px)').matches){hide(false);last=y;travel=0;return;}
-   if(settling){last=y;return;}
-   if(nav.open){
-    hide(false);
-    if(Math.abs(y-openAt)>8){
-     nav.open=false;settling=true;travel=0;direction=0;
-     requestAnimationFrame(()=>{last=Math.max(0,scrollY);settling=false;});
-    }
-    last=y;return;
-   }
-   // Ignore Safari rubber-band excursions, viewport-bar resize is handled separately.
-   if(raw<0||raw>max){last=y;travel=0;return;}
-   const delta=y-last;last=y;
-   if(y<=80){hide(false);travel=0;direction=0;return;}
-   if(Math.abs(delta)<1)return;
-   const next=delta>0?1:-1;if(next!==direction){travel=0;direction=next;}
-   travel+=Math.abs(delta);
-   if(direction===1&&travel>=28&&y>170)hide(true);
-   if(direction===-1&&travel>=20)hide(false);
-  };
-  const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
-  addEventListener('scroll',schedule,{passive:true});
-  let viewportWidth=innerWidth;addEventListener('resize',()=>{if(innerWidth!==viewportWidth){viewportWidth=innerWidth;last=Math.max(0,scrollY);travel=0;direction=0;}},{passive:true});
-  nav.addEventListener('toggle',()=>{openAt=Math.max(0,scrollY);last=openAt;travel=0;direction=0;if(nav.open)hide(false);});
-  header.addEventListener('focusin',()=>hide(false));
-  addEventListener('hashchange',()=>{hide(false);travel=0;direction=0;last=Math.max(0,scrollY);});
-  return true;
- };
- if(!init()){const observer=new MutationObserver(()=>{if(init())observer.disconnect();});observer.observe(document.documentElement,{childList:true,subtree:true});}
-})();
 /* portal index v2: staggered reveal + tap-to-expand preview rows */
 (() => {
   const PREV = {
@@ -25575,7 +25535,7 @@ react-router/dist/development/index.mjs:
  const groups=[{"ar": "الوجه والرقبة", "en": "Face & Neck", "items": [{"id": 2, "ar": "الجانب الخفي لتعافي النانو-فات", "en": "The Yellow Phase", "thumb": "carousel-02/slide-01-cover.webp", "slides": ["carousel-02/slide-01.webp", "carousel-02/slide-02.webp", "carousel-02/slide-03.webp", "carousel-02/slide-04.webp", "carousel-02/slide-05.webp"]}, {"id": 5, "ar": "ما لا تتوقعينه بعد حقن البوتوكس", "en": "Transient Asymmetry", "thumb": "carousel-05/slide-01-cover.webp", "slides": ["carousel-05/slide-01.webp", "carousel-05/slide-02.webp", "carousel-05/slide-03.webp", "carousel-05/slide-04.webp", "carousel-05/slide-05.webp", "carousel-05/slide-06.webp"]}, {"id": 12, "ar": "الفارق بين الحشو السطحي وبناء الكولاجين العميق", "en": "Neck Restructuring", "thumb": "carousel-12/slide-01-cover.webp", "slides": ["carousel-12/slide-01.webp", "carousel-12/slide-02.webp", "carousel-12/slide-03.webp", "carousel-12/slide-04.webp", "carousel-12/slide-05.webp", "carousel-12/slide-06.webp", "carousel-12/slide-07.webp", "carousel-12/slide-08.webp", "carousel-12/slide-09.webp", "carousel-12/slide-10.webp"]}, {"id": 20, "ar": "كيف نعالج الابتسامة اللثوية دون المساس بحيوية الشفة العلوية؟", "en": "Micro-Myomodulation", "thumb": "carousel-20/slide-01-cover.webp", "slides": ["carousel-20/slide-01.webp", "carousel-20/slide-02.webp", "carousel-20/slide-03.webp", "carousel-20/slide-04.webp", "carousel-20/slide-05.webp", "carousel-20/slide-06.webp", "carousel-20/slide-07.webp", "carousel-20/slide-08.webp", "carousel-20/slide-09.webp"]}]}, {"ar": "الصدر", "en": "Chest", "items": [{"id": 3, "ar": "التشنج العضلي الدفاعي المؤقت لإمساك حشوة السيليكون في الأعلى كاستجابة طبيعية", "en": "MUSCLE SPASM", "thumb": "carousel-03/slide-01-cover.webp", "slides": ["carousel-03/slide-01.webp", "carousel-03/slide-02.webp", "carousel-03/slide-03.webp", "carousel-03/slide-04.webp", "carousel-03/slide-05.webp", "carousel-03/slide-06.webp", "carousel-03/slide-07.webp"]}, {"id": 11, "ar": "هبوط الحشوة", "en": "Implant Bottoming Out", "thumb": "carousel-11/slide-01-cover.webp", "slides": ["carousel-11/slide-01.webp", "carousel-11/slide-02.webp", "carousel-11/slide-03.webp", "carousel-11/slide-04.webp", "carousel-11/slide-05.webp", "carousel-11/slide-06.webp", "carousel-11/slide-07.webp", "carousel-11/slide-08.webp", "carousel-11/slide-09.webp", "carousel-11/slide-10.webp"]}, {"id": 23, "ar": "تشوه التثدي العكسي (الحفرة الغائرة): عندما يدمر الشفط العشوائي هيبة الصدر الذكوري", "en": null, "thumb": "carousel-23/slide-01-cover.webp", "slides": ["carousel-23/slide-01.webp", "carousel-23/slide-02.webp", "carousel-23/slide-03.webp", "carousel-23/slide-04.webp", "carousel-23/slide-05.webp", "carousel-23/slide-06.webp", "carousel-23/slide-07.webp"]}]}, {"ar": "شد البطن ونحت الجسم", "en": "Tummy & Body", "items": [{"id": 8, "ar": "السلامة الحرارية", "en": "Thermal Safety", "thumb": "carousel-08/slide-01-cover.webp", "slides": ["carousel-08/slide-01.webp", "carousel-08/slide-02.webp", "carousel-08/slide-03.webp", "carousel-08/slide-04.webp", "carousel-08/slide-05.webp", "carousel-08/slide-06.webp", "carousel-08/slide-07.webp"]}, {"id": 10, "ar": "المساج الخشبي العنيف", "en": "Aggressive Wood Therapy", "thumb": "carousel-10/slide-01-cover.webp", "slides": ["carousel-10/slide-01.webp", "carousel-10/slide-02.webp", "carousel-10/slide-03.webp", "carousel-10/slide-04.webp", "carousel-10/slide-05.webp", "carousel-10/slide-06.webp"]}, {"id": 13, "ar": "جسدك لا يقبل القوالب التجميلية الجاهزة والمكررة", "en": "Bespoke Aesthetics", "thumb": "carousel-13/slide-01-cover.webp", "slides": ["carousel-13/slide-01.webp", "carousel-13/slide-02.webp", "carousel-13/slide-03.webp", "carousel-13/slide-04.webp", "carousel-13/slide-05.webp", "carousel-13/slide-06.webp", "carousel-13/slide-07.webp"]}, {"id": 16, "ar": "الوقوف المستقيم المبكر يضع إجهاداً شديداً على جرح شد البطن", "en": "Mechanical Overload", "thumb": "carousel-16/slide-01-cover.webp", "slides": ["carousel-16/slide-01.webp", "carousel-16/slide-02.webp", "carousel-16/slide-03.webp", "carousel-16/slide-04.webp", "carousel-16/slide-05.webp"]}, {"id": 21, "ar": "امتى أرجع الجيم بعد عملية شد البطن؟", "en": "The Internal Corset", "thumb": "carousel-21/slide-01-cover.webp", "slides": ["carousel-21/slide-01.webp", "carousel-21/slide-02.webp", "carousel-21/slide-03.webp", "carousel-21/slide-04.webp", "carousel-21/slide-05.webp", "carousel-21/slide-06.webp"]}]}, {"ar": "الدهون والـBBL", "en": "Fat Transfer & BBL", "items": [{"id": 15, "ar": "الحجم المبالغ فيه بعد الحقن مباشرة ليس نتيجة نهائية بل رد فعل طبيعي للأنسجة", "en": "The Temporary Illusion", "thumb": "carousel-15/slide-01-cover.webp", "slides": ["carousel-15/slide-01.webp", "carousel-15/slide-02.webp", "carousel-15/slide-03.webp", "carousel-15/slide-04.webp", "carousel-15/slide-05.webp"]}, {"id": 22, "ar": "حقن الدهون الذاتية: الهندسة الطبية لضمان سلامة الأنسجة العميقة", "en": "Ultrasound-Guided Transfer", "thumb": "carousel-22/slide-01-cover.webp", "slides": ["carousel-22/slide-01.webp", "carousel-22/slide-02.webp", "carousel-22/slide-03.webp", "carousel-22/slide-04.webp", "carousel-22/slide-05.webp", "carousel-22/slide-06.webp", "carousel-22/slide-07.webp", "carousel-22/slide-08.webp", "carousel-22/slide-09.webp"]}]}, {"ar": "الندبات والبشرة", "en": "Scars & Skin", "items": [{"id": 6, "ar": "ما لم يخبرك به أحد عن تقطيع الألياف", "en": "Subcision Reality", "thumb": "carousel-06/slide-01-cover.webp", "slides": ["carousel-06/slide-01.webp", "carousel-06/slide-02.webp", "carousel-06/slide-03.webp", "carousel-06/slide-04.webp", "carousel-06/slide-05.webp"]}, {"id": 9, "ar": "التوقيت الذهبي", "en": "The Golden Laser Window", "thumb": "carousel-09/slide-01-cover.webp", "slides": ["carousel-09/slide-01.webp", "carousel-09/slide-02.webp", "carousel-09/slide-03.webp", "carousel-09/slide-04.webp", "carousel-09/slide-05.webp", "carousel-09/slide-06.webp", "carousel-09/slide-07.webp"]}, {"id": 14, "ar": "شفط الظهر العنيف والمشدات القاسية السبب المخفي للحروق والتليفات الدائمة", "en": "Friction Burns & Fibrosis", "thumb": "carousel-14/slide-01-cover.webp", "slides": ["carousel-14/slide-01.webp", "carousel-14/slide-02.webp", "carousel-14/slide-03.webp", "carousel-14/slide-04.webp", "carousel-14/slide-05.webp", "carousel-14/slide-06.webp", "carousel-14/slide-07.webp"]}, {"id": 18, "ar": "تصبغ الجروح", "en": "Pigment Prevention", "thumb": "carousel-18/slide-01-cover.webp", "slides": ["carousel-18/slide-01.webp", "carousel-18/slide-02.webp", "carousel-18/slide-03.webp", "carousel-18/slide-04.webp", "carousel-18/slide-05.webp", "carousel-18/slide-06.webp"]}]}];
  const digits=(v,ar)=>ar?String(v).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]):String(v);
  const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
- const asset=p=>new URL('assets/recovery-guides/'+p,document.baseURI).href;
+ const asset=p=>new URL('/assets/recovery-guides/'+p,document.baseURI).href;
  class RecoveryGuides extends HTMLElement {
   connectedCallback(){
    if(this.firstChild)return;
