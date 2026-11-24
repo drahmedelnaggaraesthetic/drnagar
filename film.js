@@ -58,7 +58,7 @@
         v.addEventListener('pause', function () { d.classList.remove('playing'); });
         v.addEventListener('ended', function () { reset(); });
         v.addEventListener('playing', function () { d.classList.add('live'); });
-        v.addEventListener('click', function () { toggle(); });
+        v.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
         if ('IntersectionObserver' in window) { io2 = new IntersectionObserver(function (e) { if (!e[0].isIntersecting && v && !v.paused) v.pause(); }, { threshold: .25 }); io2.observe(d); }
         var vv = v, again = function () { if (v !== vv) return; var q = vv.play(); if (q && q.catch) q.catch(function () { if (v === vv) reset(); }); }, pr = vv.play(); if (pr && pr.catch) pr.catch(function (er) { if (er && er.name === 'AbortError' && v === vv) { if (vv.readyState >= 2) again(); else vv.addEventListener('loadeddata', again, { once: true }); } else if (v === vv) reset(); });
         return;
@@ -129,7 +129,7 @@
   var rq = false; function queueR() { if (!rq) { rq = true; requestAnimationFrame(function () { rq = false; syncR(); }); } }
   (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueR).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueR); queueR(); })();
   /* Assessment: soft muted ambient video behind the panel, veiled in cream so the title stays legible. */
-  var AS = { hash: /^#\/assessment\/?$/, src: '/assets/assess-light.mp4', poster: '/assets/assess-loop-poster.webp' };
+  var AS = { hash: /^#\/assessment\/?$/, src: '/assets/assess-clean-v2.mp4', poster: '/assets/assess-clean-v2-poster.webp' };
   var acss = '#drexa{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none;background:#ece1c9}' +
     '#drexa img,#drexa video{position:absolute;left:0;top:-50%;width:100%;height:150%;object-fit:cover;object-position:50% 50%;filter:saturate(.9) contrast(1)}' +
     '#drexa video{opacity:0;transition:opacity 1.6s ease}#drexa.live video{opacity:1}' +
