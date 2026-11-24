@@ -869,13 +869,13 @@ Please assist in scheduling my online video assessment.</pre><a class="dre-btn d
  let scriptAttempts = 0;
  const loadScript = () => {
    const script = document.createElement('script');
-   script.src = assetURL('main.js?v=20261124v8'); script.crossOrigin = 'anonymous';
+   script.src = assetURL('main.js?v=20261124v9'); script.crossOrigin = 'anonymous';
    script.onload = () => { void waitForContent().then(() => { if (document.documentElement.hasAttribute('data-instinct-full-screen')) send('full-screen', null); send('ready', null); metric('ready'); watchHeight(); }).catch(() => send('load-failed', null)); };
    script.onerror = () => { script.remove(); if (++scriptAttempts < 3) setTimeout(loadScript, 1000 * scriptAttempts); else send('load-failed', null); };
    document.body.append(script);
  };
  const preload = document.createElement('link');
- preload.rel = 'preload'; preload.as = 'script'; preload.crossOrigin = 'anonymous'; preload.href = assetURL('main.js?v=20261124v8');
+ preload.rel = 'preload'; preload.as = 'script'; preload.crossOrigin = 'anonymous'; preload.href = assetURL('main.js?v=20261124v9');
  document.head.append(preload);
  void loadStyles().then(loadScript).catch(() => send('load-failed', null));
  const motionScript = document.createElement('script');
