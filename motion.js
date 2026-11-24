@@ -269,7 +269,7 @@
     }
     if (!wrap) {
       wrap = document.createElement('div');
-      wrap.className = 'drex-stats drex-tl-run';
+      wrap.className = 'drex-stats drex-tl-run drex-lux-a';
       wrap.__drexLang = isEn ? 'en' : 'ar';
       wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
       const L = (o) => isEn ? o.en : o.ar;
