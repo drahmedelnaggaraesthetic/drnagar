@@ -1,0 +1,1 @@
+import{m as t}from"./chunk-3YNGBPOB.js";function a(n,r){try{return new Intl.DateTimeFormat(t==="en"?"en-GB":"ar-EG-u-nu-latn",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(n)}catch{return n.toISOString().split("T")[0]}}export{a};

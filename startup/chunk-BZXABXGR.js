@@ -1,0 +1,1 @@
+import{q as e}from"./chunk-3YNGBPOB.js";function n({kicker:r,title:s,sub:i}){return(0,e.jsxs)("div",{style:{marginBottom:14},children:[r?(0,e.jsx)("div",{className:"dre-kicker",children:r}):null,(0,e.jsx)("div",{className:"dre-h2",children:s}),i?(0,e.jsx)("p",{className:"dre-sub",children:i}):null]})}export{n as a};
