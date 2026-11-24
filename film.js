@@ -188,4 +188,37 @@ var faceClear=document.createElement('style');faceClear.textContent='.dre-root .
 
 var faceQuiet=document.createElement('style');faceQuiet.textContent='.dre-root .dre-panel:has(#drexfb){margin-inline:0!important;width:100%!important;background:transparent!important}.drexfb-host{display:block!important}.drexfb-host>div:not(#drexfb){padding:18px 0 8px!important}.drexfb-host .dre-h1{font-size:28px!important}.drexfb-host .dre-sub{font-size:14px!important}#drexfb{width:min(100%,224px)!important;margin:12px auto 26px!important;padding:0!important;position:relative}#drexfb img{width:100%!important;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}#drexfb img+img{display:none!important}#drexfb:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#ece1c9,transparent 7%,transparent 94%,#ece1c9)}@media(min-width:800px){.drexfb-host{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)!important;align-items:center!important;gap:50px!important}.drexfb-host>div:not(#drexfb){padding:25px 0!important}#drexfb{width:270px!important;margin:20px auto!important}}';document.head.appendChild(faceQuiet);
 var faceFloat=document.createElement('style');faceFloat.textContent='body:has(#drexfb) .dre-wafab{display:none!important}';document.head.appendChild(faceFloat);
+  /* Recovery: soft muted ambient video behind the panel, veiled in cream so the title stays legible. */
+  var RC = { hash: /^#\/recovery\/?$/, src: '/assets/rec-calm.mp4', poster: '/assets/rec-calm-poster.webp' };
+  var ccss = '#drexc{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none;background:#ece1c9}' +
+    '#drexc img,#drexc video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:saturate(.9) contrast(1)}' +
+    '#drexc video{opacity:0;transition:opacity 1.6s ease}#drexc.live video{opacity:1}' +
+    '#drexc:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(236,225,201,.96) 0%,rgba(236,225,201,.55) 22%,rgba(236,225,201,.46) 55%,rgba(236,225,201,.62) 80%,rgba(236,225,201,.97) 100%)}' +
+    '#drexc .drexc-cap{position:absolute;inset-inline:16px;bottom:10px;margin:0;font-size:11px;line-height:1.5;color:#5a4a2e;z-index:2}.drexc-host{position:relative;overflow:hidden}.drexc-host>*:not(#drexc){position:relative;z-index:1}' +
+    '@media(prefers-reduced-motion:reduce){#drexc video{display:none}}';
+  var cst = document.createElement('style'); cst.textContent = ccss; document.head.appendChild(cst);
+  function buildC() {
+    var d = document.createElement('div'); d.id = 'drexc'; d.setAttribute('aria-hidden', 'true');
+    d.innerHTML = '<img alt="" decoding="async" src="' + RC.poster + '">';
+    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.dataset.src = RC.src;
+    v.addEventListener('playing', function () { d.classList.add('live'); });
+    d.appendChild(v);
+    var cap=document.createElement('p'); cap.className='drexc-cap'; cap.textContent=(document.documentElement.lang||'').indexOf('en')===0?'A lymphatic massage session, one of the sessions needed after full body contouring.':'جلسة مساج ليمفاوي، من الجلسات الضرورية بعد عمليات النحت الكامل.'; d.appendChild(cap);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { if (!v.isConnected) return; if (e[0].isIntersecting) { if(v.dataset.src&&!v.getAttribute('src')){v.src=v.dataset.src;}var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { threshold: .05 }).observe(d);
+    return d;
+  }
+  function syncC() {
+    var root = document.getElementById('root'); if (!root) return;
+    var cur = document.getElementById('drexc');
+    if (!RC.hash.test(location.hash)) { if (cur) cur.remove(); return; }
+    var panel = root.querySelector('.dre-panel'); if (!panel) return;
+    if (cur && cur.parentNode === panel) return;
+    if (cur) cur.remove();
+    panel.classList.add('drexc-host'); panel.insertBefore(buildC(), panel.firstChild);
+  }
+  var cq = false; function queueC() { if (!cq) { cq = true; requestAnimationFrame(function () { cq = false; syncC(); }); } }
+  (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueC).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueC); queueC(); })();
+
+var recoveryPreview=document.createElement('style');recoveryPreview.textContent='.dre-root .dre-panel.drexc-host{position:relative!important;min-height:calc((100vw - 2px)*16/9)!important;padding:0!important;border:0!important;box-shadow:none!important;background:transparent!important;isolation:isolate}.dre-route-recovery>.dre-route-banner{display:none!important}#drexc{position:absolute!important;inset:0 -17px!important;width:calc(100% + 34px)!important;height:calc((100vw - 2px)*16/9)!important;z-index:-1!important}#drexc img,#drexc video{object-fit:contain!important;object-position:top center!important;filter:none!important}#drexc:after{background:linear-gradient(180deg,rgba(236,225,201,.96),rgba(236,225,201,.86) 23%,rgba(236,225,201,.4) 40%,transparent 52%,transparent 89%,#ece1c9 100%)!important}.drexc-host>div:last-child{padding:20px 18px 0!important}.drexc-host .dre-h1{font-size:30px!important;line-height:1.28!important}.drexc-host .dre-sub{font-size:14px!important;line-height:1.65!important}#drexc .drexc-cap{bottom:5px!important}.drexc-host .dre-chapter-art{display:none!important}';document.head.appendChild(recoveryPreview);
+var rEdge=document.createElement('style');rEdge.textContent='#drexc:after{background:linear-gradient(180deg,rgba(236,225,201,.98),rgba(236,225,201,.9) 26%,rgba(236,225,201,.32) 46%,transparent 58%,transparent 88%,#ece1c9 100%),linear-gradient(90deg,#ece1c9,transparent 8%,transparent 92%,#ece1c9)!important}';document.head.appendChild(rEdge);
 })();
