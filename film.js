@@ -140,7 +140,7 @@
   function buildA() {
     var d = document.createElement('div'); d.id = 'drexa'; 
     d.innerHTML = '<img alt="" decoding="async" src="' + AS.poster + '">';
-    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = false; v.autoplay = false; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.dataset.src=matchMedia('(max-width:600px)').matches?'/assets/assessment-mobile.mp4':AS.src;
+    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = false; v.autoplay = true; v.setAttribute('autoplay',''); v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.poster=AS.poster;v.dataset.src=matchMedia('(max-width:600px)').matches?'/assets/assessment-mobile.mp4':AS.src;
     v.addEventListener('playing',function(){if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
     d.appendChild(v);
     var en=(document.documentElement.lang||'').indexOf('en')===0;
@@ -149,7 +149,7 @@
     function voiceLabel(){btn.innerHTML=voiceIcon+'<span>'+(v.ended?(en?"Replay doctor voice":'اسمع الدكتور من الأول'):(en?"Doctor's voice":'صوت الدكتور'))+'</span>';btn.setAttribute('aria-pressed',String(!v.muted));btn.setAttribute('aria-label',v.muted?(en?'Turn on doctor voice':'تشغيل صوت الدكتور'):(en?'Mute doctor voice':'كتم صوت الدكتور'));}
     var heard=false;btn.addEventListener('click',function(){if(v.ended){v.currentTime=0;v.muted=false;}else{v.muted=!v.muted;if(!heard&&!v.muted){v.currentTime=0;heard=true;}}if(!v.muted)document.querySelectorAll('audio,video').forEach(function(other){if(other!==v)other.pause()});voiceLabel();var play=v.play();if(play&&play.catch)play.catch(function(){});});v.addEventListener('ended',voiceLabel);voiceLabel();d.appendChild(btn);
 
-    var loaded=false,visible=true;function begin(){if(visible&&loaded&&!v.ended&&v.readyState>=3)v.play().catch(function(){})}['canplay','canplaythrough'].forEach(function(e){v.addEventListener(e,begin)});loaded=true;v.src=v.dataset.src+'?lease=';v.load();if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)begin();else v.pause()},{threshold:.05}).observe(d);
+    var loaded=false,visible=true;function begin(){if(visible&&loaded&&!v.ended)v.play().catch(function(){})}['loadeddata','canplay','canplaythrough'].forEach(function(e){v.addEventListener(e,begin)});loaded=true;v.src=v.dataset.src;v.load();setTimeout(begin,0);if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)begin();else v.pause()},{threshold:.05}).observe(d);
     return d;
   }
   function syncA() {
@@ -162,7 +162,7 @@
     panel.classList.add('drexa-host'); var band=buildA();panel.insertBefore(band, panel.firstChild);var voice=band.querySelector('.drex-voice-toggle'),sub=panel.querySelector('.dre-sub');if(sub&&voice)sub.after(voice);
   }
   var aq = false; function queueA() { if (!aq) { aq = true; requestAnimationFrame(function () { aq = false; syncA(); }); } }
-  (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueA).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueA); queueA(); })();
+  (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueA).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueA);window.addEventListener('drex-locationchange',queueA);window.addEventListener('popstate',queueA);window.addEventListener('pageshow',queueA);queueA(); })();
 function bodyEntry(){if(!/^#\/body\/?$/.test(location.hash))return;var host=document.querySelector('.dre-panel');if(!host)return;var en=(document.documentElement.lang||'').indexOf('en')===0;var x=document.getElementById('drex-gyno-body');if(!x){x=document.createElement('a');x.id='drex-gyno-body';x.className='drex-gyno-inside';host.after(x)}var text=en?'Gynecomastia & chest sculpting':'علاج التثدي ونحت الصدر للرجال';if(x.dataset.l===(en?'en':'ar'))return;x.dataset.l=en?'en':'ar';x.href=(en?'/en':'')+'/library/topics/b-gynecomastia/';x.innerHTML='<span><b>'+text+'</b><small>'+(en?'Treatment guide · Before & after film':'دليل الإجراء · فيلم قبل وبعد')+'</small></span><span aria-hidden="true">↗</span>'}
 var bgq=false;new MutationObserver(function(){if(bgq)return;bgq=true;requestAnimationFrame(function(){bgq=false;bodyEntry()})}).observe(document.getElementById('root')||document.body,{childList:true,subtree:true});window.addEventListener('hashchange',bodyEntry);window.addEventListener('drex-locationchange',bodyEntry);window.addEventListener('popstate',bodyEntry);window.addEventListener('pageshow',bodyEntry);bodyEntry();
 
