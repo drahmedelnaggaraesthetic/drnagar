@@ -214,9 +214,40 @@
   const STATS_CFG = { topics: 316, clinics: 3, openHour: 14, closeHour: 22, closedDay: 5 };
   const AR_D = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
   const EN_D = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  /* Patient-story strip: flat live dotted map, sequential light beams to Cairo,
+     seven tappable story circles (3 video, 4 audio), one 16s master timeline. */
+  const STORY_COUNTRIES = 12;
+  const STORIES = [
+    { id: 'morocco', kind: 'video', src: 'assets/stories/morocco.mp4', at: [57.6, 19.4], lift: 6,
+      ar: { n: 'المغرب', sub: 'مامي ميك أوفر · فيديو', q: 'لو ضليت أشكرك كلش ما راح أوفي شكري' },
+      en: { n: 'Morocco', sub: 'mommy makeover · video', q: '"No matter how much I thank you..."' } },
+    { id: 'belgium', kind: 'video', src: 'assets/stories/belgium.mp4', at: [61.6, 13.1], lift: 5,
+      ar: { n: 'بلجيكا', sub: 'قصة بالفيديو', q: '"we came from Belgium to Cairo"' },
+      en: { n: 'Belgium', sub: 'video story', q: '"we came from Belgium to Cairo"' } },
+    { id: 'saudi', kind: 'video', src: 'assets/stories/saudi.mp4', at: [75.0, 22.0], lift: 3,
+      ar: { n: 'السعودية', sub: 'رحلة علاجية · فيديو', q: '«ما حسيت إني بعيد عن أهلي أبدًا»' },
+      en: { n: 'Saudi Arabia', sub: 'treatment journey · video', q: '"I never felt far from my family"' } },
+    { id: 'syria', kind: 'audio', src: 'assets/patient-experiences/recording-1.mp3', at: [72.8, 18.4], lift: 2.5,
+      ar: { n: 'سوريا', sub: 'رسالة صوتية · فيلر', q: 'أول تجربة فيلر... والنتيجة طبيعية' },
+      en: { n: 'Syria', sub: 'voice note · filler', q: 'First-time filler... a natural result' } },
+    { id: 'egypt', kind: 'audio', src: 'assets/patient-experiences/recording-2.mp3', home: true,
+      ar: { n: 'مصر', sub: 'رسالة صوتية · متابعة', q: 'المتابعة بعد العملية، يوم بيوم' },
+      en: { n: 'Egypt', sub: 'voice note · aftercare', q: 'Day-by-day aftercare follow-up' } },
+    { id: 'features', kind: 'audio', src: 'assets/patient-experiences/recording-3.mp3',
+      ar: { n: 'الملامح كما هي', sub: 'رسالة صوتية', q: 'الملامح كما هي' },
+      en: { n: 'Features kept natural', sub: 'voice note', q: 'My features, just as they are' } },
+    { id: 'rhino', kind: 'audio', src: 'assets/patient-experiences/recording-4.mp3',
+      ar: { n: 'تجربة تجميل الأنف', sub: 'رسالة صوتية', q: 'تجربة تجميل الأنف' },
+      en: { n: 'Rhinoplasty story', sub: 'voice note', q: 'A rhinoplasty story' } }
+  ];
+  const CAIRO_AT = [70.3, 21.1];
+  const beamPath = (a, b, lift, s) =>
+    'M' + (a[0] * s).toFixed(1) + ',' + (a[1] * s).toFixed(1) +
+    ' Q' + ((a[0] + b[0]) / 2 * s).toFixed(1) + ',' + (((a[1] + b[1]) / 2 - lift) * s).toFixed(1) +
+    ' ' + (b[0] * s).toFixed(1) + ',' + (b[1] * s).toFixed(1);
   const buildStats = (root) => {
     const explore = root.querySelector('.dre-mo-explore');
-    if (!explore || root.querySelector('.drex-stats')) return;
+    if (!explore) return;
     if (!/^\/(en\/)?$/.test(location.pathname)) return;
     const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Cairo' }));
     const day = now.getDay(); const h = now.getHours();
@@ -224,22 +255,128 @@
     let nextDay, nextDayEn;
     if (day !== STATS_CFG.closedDay && h < STATS_CFG.openHour) { nextDay = 'اليوم'; nextDayEn = 'today'; }
     else { let nd = (day + 1) % 7; if (nd === STATS_CFG.closedDay) nd = (nd + 1) % 7; nextDay = AR_D[nd]; nextDayEn = EN_D[nd]; }
-    const wrap = document.createElement('div');
-    wrap.className = 'drex-stats';
-    wrap.setAttribute('dir', 'rtl');
-    wrap.innerHTML =
-      '<div class="drex-figures">' +
-      '<div class="drex-fig"><b dir="ltr">' + STATS_CFG.topics + '</b><span>موضوع طبي<small>medical topics</small></span></div>' +
-      '<i class="drex-sep"></i>' +
-      '<div class="drex-fig"><b dir="ltr">3</b><span>عيادات بالقاهرة<small>clinics in Cairo</small></span></div>' +
-      '<i class="drex-sep"></i>' +
-      '<div class="drex-fig"><b dir="ltr">1</b><span>رد خلال ساعة<small>reply within an hour</small></span></div>' +
-      '</div>' +
-      (open
-        ? '<div class="drex-avail"><i class="drex-dot"></i>متاح الآن <small>available now</small></div>'
-        : '<div class="drex-avail"><i class="drex-dot off"></i>يستقبل ' + nextDay + ' ٢ ظهرًا <small>opens ' + nextDayEn + ' 2 PM</small></div>') +
-      '<figure class="drex-stats-map"><img src="/stats-map.svg" alt="" loading="eager"><div class="drex-map-num"><b dir="ltr">11</b><span>دولة · مرضى من حول العالم<small>countries · patients worldwide</small></span></div></figure>';
-    explore.parentElement.insertBefore(wrap, explore.nextSibling);
+    const isEn = window.__dreInitialLang === 'en' || /^\/en\//.test(location.pathname);
+    let wrap = root.querySelector('.drex-stats');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.className = 'drex-stats drex-tl-run';
+      wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+      const L = (o) => isEn ? o.en : o.ar;
+      const arcs = STORIES.filter(s => s.at).map(s =>
+        '<svg class="drex-arc" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden="true"><path d="M' + s.at[0] + ',' + s.at[1] +
+        ' Q' + (s.at[0] + CAIRO_AT[0]) / 2 + ',' + ((s.at[1] + CAIRO_AT[1]) / 2 - s.lift) + ' ' + CAIRO_AT[0] + ',' + CAIRO_AT[1] + '"/></svg>').join('');
+      const beams = STORIES.map((s, i) => s.at ? '<i class="drex-beam drex-b' + i + '" aria-hidden="true"></i>' : '').join('');
+      const quotes = STORIES.filter(s => s.at).map((s, i) =>
+        '<div class="drex-q drex-q' + i + '" data-i="' + i + '"><p>' + L(s).q + '</p><small>' + L(s).n + ' · ' + L(s).sub + '</small></div>').join('');
+      const cells = STORIES.map((s, i) => {
+        const glyph = s.kind === 'video' ? '<i class="drex-play-g"></i>' : '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
+        return '<button type="button" class="drex-cell' + (s.home ? ' home' : '') + '" data-i="' + i + '" aria-label="' + L(s).n + '">' +
+          '<i class="drex-ring' + (s.at ? ' drex-r' + i : '') + '"></i><i class="drex-thumb">' + glyph + '</i><span>' + L(s).n + '</span></button>';
+      }).join('');
+      wrap.innerHTML =
+        '<div class="drex-hear"><span class="drex-eq"><i></i><i></i><i></i><i></i></span>' + (isEn ? 'Hear our patients' : 'اسمع مرضانا') + '</div>' +
+        '<div class="drex-mwrap"><img src="/stats-map-alive.svg" alt="" loading="lazy">' + arcs + beams +
+        '<i class="drex-cpulse" aria-hidden="true"></i></div>' +
+        '<div class="drex-qstack">' + quotes + '</div>' +
+        '<div class="drex-srow">' + cells + '</div>' +
+        '<div class="drex-stateline"><b dir="ltr">' + STORY_COUNTRIES + '</b><span>' + (isEn ? 'countries · patients worldwide' : 'دولة · مرضى من حول العالم') + '</span></div>' +
+        '<div class="drex-fline">' +
+        '<div class="f"><b dir="ltr">' + STATS_CFG.topics + '</b><span>' + (isEn ? 'medical topics' : 'موضوع طبي') + '</span></div><i class="sep"></i>' +
+        '<div class="f"><b dir="ltr">3</b><span>' + (isEn ? 'clinics in Cairo' : 'عيادات بالقاهرة') + '</span></div><i class="sep"></i>' +
+        '<div class="f"><b dir="ltr">1</b><span>' + (isEn ? 'reply within an hour' : 'رد خلال ساعة') + '</span></div></div>' +
+        '<div class="drex-avl' + (open ? '' : ' off') + '"><i></i><span>' +
+        (open ? (isEn ? 'available now' : 'متاح الآن') : (isEn ? 'opens ' + nextDayEn + ' 2 PM' : 'يستقبل ' + nextDay + ' 2 ظهرًا')) + '</span></div>';
+      explore.parentElement.insertBefore(wrap, explore.nextSibling);
+    } else {
+      wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+      const avl = wrap.querySelector('.drex-avl');
+      if (avl) { avl.classList.toggle('off', !open); }
+    }
+    hydrateStats(wrap, isEn);
+  };
+  const hydrateStats = (wrap, isEn) => {
+    if (wrap.__drexHydrated) return;
+    wrap.__drexHydrated = true;
+    const mwrap = wrap.querySelector('.drex-mwrap');
+    const beams = wrap.querySelectorAll('.drex-beam');
+    const supportsPath = CSS.supports('offset-path', 'path("M0,0 L1,1")');
+    const layoutBeams = () => {
+      if (!supportsPath || !mwrap) return;
+      const s = mwrap.clientWidth / 120;
+      let bi = 0;
+      STORIES.forEach((st) => {
+        if (!st.at) return;
+        const el = wrap.querySelector('.drex-b' + STORIES.indexOf(st));
+        if (el) el.style.offsetPath = 'path("' + beamPath(st.at, CAIRO_AT, st.lift, s) + '")';
+        bi++;
+      });
+      const cp = wrap.querySelector('.drex-cpulse');
+      if (cp) { cp.style.left = (CAIRO_AT[0] * s) + 'px'; cp.style.top = (CAIRO_AT[1] * s) + 'px'; }
+    };
+    layoutBeams();
+    window.addEventListener('resize', layoutBeams, { passive: true });
+    /* start all motion only when the strip scrolls into view */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((es, io) => {
+        if (es.some(e => e.isIntersecting)) { wrap.classList.add('drex-live'); io.disconnect(); }
+      }, { threshold: 0.12 }).observe(wrap);
+    } else wrap.classList.add('drex-live');
+    /* one shared audio element; videos play in the floating overlay */
+    let audio = null, playingCell = null, overlay = null;
+    const qstack = wrap.querySelector('.drex-qstack');
+    const holdQuote = (i) => {
+      if (!qstack) return;
+      qstack.classList.add('drex-hold');
+      qstack.querySelectorAll('.drex-q').forEach(q => q.classList.toggle('on', +q.dataset.i === i));
+    };
+    const releaseQuote = () => {
+      if (!qstack) return;
+      qstack.classList.remove('drex-hold');
+      qstack.querySelectorAll('.drex-q').forEach(q => q.classList.remove('on'));
+    };
+    const stopMedia = () => {
+      if (audio) { audio.pause(); audio = null; }
+      if (playingCell) { playingCell.classList.remove('playing'); playingCell = null; }
+      if (overlay) { const v = overlay.querySelector('video'); if (v) v.pause(); overlay.remove(); overlay = null; document.body.style.overflow = ''; }
+      releaseQuote();
+    };
+    const jumpTo = (i) => {
+      wrap.style.setProperty('--drextl', (-i * 4) + 's');
+      wrap.classList.remove('drex-tl-run');
+      void wrap.offsetWidth;
+      wrap.classList.add('drex-tl-run');
+    };
+    wrap.querySelectorAll('.drex-cell').forEach((cell) => {
+      cell.addEventListener('click', () => {
+        const i = +cell.dataset.i;
+        const st = STORIES[i];
+        if (playingCell === cell) { stopMedia(); return; }
+        stopMedia();
+        if (st.at) jumpTo(STORIES.filter(s => s.at).indexOf(st));
+        playingCell = cell;
+        cell.classList.add('playing');
+        holdQuote(st.at ? STORIES.filter(s => s.at).indexOf(st) : -1);
+        if (st.kind === 'video') {
+          overlay = document.createElement('div');
+          overlay.className = 'drex-player';
+          overlay.setAttribute('dir', isEn ? 'ltr' : 'rtl');
+          overlay.innerHTML = '<div class="drex-player-frame"><video src="' + st.src + '" playsinline autoplay controls></video>' +
+            '<button type="button" class="drex-player-x" aria-label="' + (isEn ? 'Close' : 'إغلاق') + '">×</button></div>' +
+            '<p class="drex-player-cap">' + (isEn ? st.en.n + ' · ' + st.en.sub : st.ar.n + ' · ' + st.ar.sub) + '</p>';
+          document.body.appendChild(overlay);
+          document.body.style.overflow = 'hidden';
+          const v = overlay.querySelector('video');
+          v.addEventListener('ended', stopMedia);
+          overlay.querySelector('.drex-player-x').addEventListener('click', stopMedia);
+          overlay.addEventListener('click', (e) => { if (e.target === overlay) stopMedia(); });
+        } else {
+          audio = new Audio(st.src);
+          audio.preload = 'auto';
+          audio.addEventListener('ended', stopMedia);
+          audio.play().catch(() => stopMedia());
+        }
+      });
+    });
   };
   const boot = () => {
     const root = document.getElementById('root');
