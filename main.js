@@ -25627,7 +25627,7 @@ react-router/dist/development/index.mjs:
  };
  const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(update);}};
  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});addEventListener('focusin',schedule);addEventListener('focusout',()=>setTimeout(schedule,100));visualViewport?.addEventListener('resize',schedule);
- new MutationObserver(schedule).observe(document.getElementById('root'),{childList:true,subtree:true,attributes:true,attributeFilter:['open']});schedule();
+ let slow=0;new MutationObserver(()=>{if(slow)return;slow=setTimeout(()=>{slow=0;schedule()},350)}).observe(document.getElementById('root'),{childList:true,subtree:true,attributes:true,attributeFilter:['open']});schedule();
 })();
 
 // Keyboard movement follows the phone grid, and the reading direction on wider screens.
