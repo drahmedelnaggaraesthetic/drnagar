@@ -204,16 +204,14 @@ var pc=document.createElement('style');pc.textContent='.dre-root .dre-hero>div:h
     var v=document.createElement('video');v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=false;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.preload='auto';v.poster=RC.poster;v.disableRemotePlayback=true;
     var visible=true,playing=false;
     v.autoplay=true;v.setAttribute('autoplay','');
-    var retry=document.createElement('button');retry.type='button';retry.className='drexc-start';retry.textContent=document.documentElement.lang==='en'?'Play video':'تشغيل الفيديو';retry.setAttribute('aria-label',retry.textContent);retry.hidden=true;d.appendChild(v);
-    function begin(){if(!visible||document.hidden)return;var p=v.play();if(p&&p.catch)p.catch(function(){if(d.isConnected){retry.hidden=false;d.removeAttribute('aria-hidden')}})}
-    v.addEventListener('playing',function(){playing=true;retry.hidden=true;if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
+    d.appendChild(v);
+    function begin(){if(!visible||document.hidden)return;var p=v.play();if(p&&p.catch)p.catch(function(){})}
+    v.addEventListener('playing',function(){playing=true;if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){d.classList.add('live')});else d.classList.add('live')});
     ['loadeddata','canplay'].forEach(function(e){v.addEventListener(e,begin)});
-    retry.addEventListener('click',function(){v.muted=true;begin()});
-    ['pointerdown','touchend'].forEach(function(e){document.addEventListener(e,function(){if(d.isConnected&&!playing)begin()},{passive:true,once:true})});
     document.addEventListener('visibilitychange',function(){if(d.isConnected){if(document.hidden)v.pause();else begin()}});
     var cap=document.createElement('p');cap.className='drexc-cap';
     function caption(){var en=document.documentElement.lang==='en';cap.dir=en?'ltr':'rtl';cap.innerHTML=en?'<strong>Lymphatic drainage massage</strong><span>Part of a personalised recovery plan after body contouring, as advised by your surgeon.</span>':'<strong>المساج الليمفاوي</strong><span>ضمن خطة التعافي بعد نحت القوام، بحسب تقييم الجرّاح وتوصياته.</span>';}
-    caption();d.appendChild(cap);d.appendChild(retry);
+    caption();d.appendChild(cap);
     var media=matchMedia('(max-width:600px)').matches?'/assets/rec-calm-mobile.mp4':RC.src;v.src=media;v.load();setTimeout(function(){if(d.isConnected)begin()},0);
     if('IntersectionObserver' in window){var watch=new IntersectionObserver(function(e){visible=e[0].isIntersecting;if(visible)begin();else v.pause()},{threshold:.05});watch.observe(d);}
     return d;
@@ -273,3 +271,6 @@ body:has(.dre-route-recovery) .dre-route-recovery{padding-inline:0!important;bor
 .dre-root .dre-route-recovery .dre-panel.drexc-host{margin-bottom:0!important}.dre-route-recovery .dre-instrument{margin-top:0!important}.dre-route-recovery .drexc-host :is(.dre-h1,.dre-sub,.dre-eyebrow){margin-inline:20px!important}
 #drexc{pointer-events:auto!important}#drexc video{opacity:1!important;transition:none!important}#drexc .drexc-start{position:absolute;z-index:4;inset-inline-start:20px;top:55%;padding:10px 16px;border:1px solid #d6bf86;border-radius:24px;background:#15120ddd;color:#f2e3c2;font:inherit;font-size:13px;pointer-events:auto}#drexc .drexc-start[hidden]{display:none!important}
 `;document.head.appendChild(drexPerfCSS);
+
+/* Ambient films retry silently. Intentional tap-to-play case films retain their existing controls. */
+(function(){var selector='#drexc video,#drexa video,#drexr video';function retry(){if(document.hidden)return;document.querySelectorAll(selector).forEach(function(v){if(!v.paused||v.ended||!v.isConnected)return;var r=v.getBoundingClientRect();if(r.bottom<=0||r.top>=innerHeight)return;v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute('playsinline','');v.setAttribute('muted','');v.autoplay=true;v.setAttribute('autoplay','');var q=v.play();if(q&&q.catch)q.catch(function(){})})}['touchstart','touchend','pointerdown','click','keydown','scroll','wheel'].forEach(function(e){document.addEventListener(e,retry,{passive:true,capture:true})});document.addEventListener('visibilitychange',retry);window.addEventListener('pageshow',retry);[250,750,1500,3000].forEach(function(ms){setTimeout(retry,ms)});})();
