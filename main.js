@@ -23407,7 +23407,7 @@ if(en)drexTranslate(root);},[lang]);return import_jsx_runtime45.jsx('div',{class
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("nav", { className: "file-nav dre-desktop-nav", "aria-label": "Portal sections", children: [
             /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(NavLink, { to: "/", end: true, children: ar2 ? "\u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629" : "Home" }),
-            NAV_GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("details", { className: "dre-navgroup", open: openGroup === g.id, children: [
+            NAV_GROUPS.map((g) => ({...g, links:g.links.map(l => l.to === "/facelift" ? NAV_GROUPS[0].links.find(x => x.to === "/body") : l.to === "/body" ? NAV_GROUPS[0].links.find(x => x.to === "/facelift") : l)})).map((g) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("details", { className: "dre-navgroup", open: openGroup === g.id, children: [
               /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("summary", { "aria-expanded": openGroup === g.id, onClick: (e2) => {
                 e2.preventDefault();
                 setOpenGroup(openGroup === g.id ? "" : g.id);
@@ -23434,7 +23434,7 @@ if(en)drexTranslate(root);},[lang]);return import_jsx_runtime45.jsx('div',{class
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("i", { className: "dre-drawer-n", "aria-hidden": "true", children: next() }),
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { children: [ar2 ? "\u0627\u0644\u0631\u0626\u064A\u0633\u064A\u0629" : "Home", menuDescription("/", ar2)] })
                 ] }),
-                NAV_GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(import_react44.default.Fragment, { children: [
+                NAV_GROUPS.map((g) => ({...g, links:g.links.map(l => l.to === "/facelift" ? NAV_GROUPS[0].links.find(x => x.to === "/body") : l.to === "/body" ? NAV_GROUPS[0].links.find(x => x.to === "/facelift") : l)})).map((g) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(import_react44.default.Fragment, { children: [
                   /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "dre-navhead", children: ar2 ? g.ar : g.en }),
                   g.links.map((l2) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(NavLink, { to: l2.to, children: [
                     /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("i", { className: "dre-drawer-n", "aria-hidden": "true", children: next() }),
