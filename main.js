@@ -23357,6 +23357,7 @@ function isolateClinicalLatin(value){return String(value).split(/(\([A-Za-z0-9][
   function App() {
     const [lang, setLang] = (0, import_react44.useState)(window.__dreInitialLang === "en" ? "en" : "ar");
     dreUiLanguage=lang;
+    try { sessionStorage.setItem("dre-lang", lang); } catch (e) {}
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     const ctx = (0, import_react44.useMemo)(() => ({ lang, setLang }), [lang]);
