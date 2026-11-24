@@ -215,18 +215,18 @@
   const AR_D = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
   const EN_D = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   /* Patient-story strip: flat live dotted map, sequential light beams to Cairo,
-     seven tappable story circles (3 video, 4 audio), one 16s master timeline. */
+     seven tappable story circles (all audio voice notes, inline), one 16s master timeline. */
   const STORY_COUNTRIES = 12;
   const STORIES = [
-    { id: 'morocco', kind: 'video', src: 'assets/stories/morocco.mp4', at: [57.6, 19.4], lift: 6,
-      ar: { n: 'المغرب', sub: 'مامي ميك أوفر · فيديو', q: 'لو ضليت أشكرك كلش ما راح أوفي شكري' },
-      en: { n: 'Morocco', sub: 'mommy makeover · video', q: '"No matter how much I thank you..."' } },
-    { id: 'belgium', kind: 'video', src: 'assets/stories/belgium.mp4', at: [61.6, 13.1], lift: 5,
-      ar: { n: 'بلجيكا', sub: 'قصة بالفيديو', q: '"we came from Belgium to Cairo"' },
-      en: { n: 'Belgium', sub: 'video story', q: '"we came from Belgium to Cairo"' } },
-    { id: 'saudi', kind: 'video', src: 'assets/stories/saudi.mp4', at: [75.0, 22.0], lift: 3,
-      ar: { n: 'السعودية', sub: 'رحلة علاجية · فيديو', q: '«ما حسيت إني بعيد عن أهلي أبدًا»' },
-      en: { n: 'Saudi Arabia', sub: 'treatment journey · video', q: '"I never felt far from my family"' } },
+    { id: 'morocco', kind: 'audio', src: 'assets/stories/morocco.mp3', at: [57.6, 19.4], lift: 6,
+      ar: { n: 'المغرب', sub: 'مامي ميك أوفر · رسالة صوتية', q: 'لو ضليت أشكرك كلش ما راح أوفي شكري' },
+      en: { n: 'Morocco', sub: 'mommy makeover · voice note', q: '"No matter how much I thank you..."' } },
+    { id: 'belgium', kind: 'audio', src: 'assets/stories/belgium.mp3', at: [61.6, 13.1], lift: 5,
+      ar: { n: 'بلجيكا', sub: 'رسالة صوتية', q: '«جينا من بلجيكا للقاهرة»' },
+      en: { n: 'Belgium', sub: 'voice note', q: '"we came from Belgium to Cairo"' } },
+    { id: 'saudi', kind: 'audio', src: 'assets/stories/saudi.mp3', at: [75.0, 22.0], lift: 3,
+      ar: { n: 'السعودية', sub: 'رحلة علاجية · رسالة صوتية', q: '«ما حسيت إني بعيد عن أهلي أبدًا»' },
+      en: { n: 'Saudi Arabia', sub: 'treatment journey · voice note', q: '"I never felt far from my family"' } },
     { id: 'syria', kind: 'audio', src: 'assets/patient-experiences/recording-1.mp3', at: [72.8, 18.4], lift: 2.5,
       ar: { n: 'سوريا', sub: 'رسالة صوتية · فيلر', q: 'أول تجربة فيلر... والنتيجة طبيعية' },
       en: { n: 'Syria', sub: 'voice note · filler', q: 'First-time filler... a natural result' } },
@@ -255,11 +255,22 @@
     let nextDay, nextDayEn;
     if (day !== STATS_CFG.closedDay && h < STATS_CFG.openHour) { nextDay = 'اليوم'; nextDayEn = 'today'; }
     else { let nd = (day + 1) % 7; if (nd === STATS_CFG.closedDay) nd = (nd + 1) % 7; nextDay = AR_D[nd]; nextDayEn = EN_D[nd]; }
-    const isEn = window.__dreInitialLang === 'en' || /^\/en\//.test(location.pathname);
+    /* Live language: React sets <html lang> synchronously on every toggle; the prerendered
+       page carries the right lang from first paint. __dreInitialLang/pathname are only fallbacks. */
+    const htmlLang = (document.documentElement.lang || '').toLowerCase();
+    const isEn = htmlLang ? htmlLang.startsWith('en') : (window.__dreInitialLang === 'en' || /^\/en\//.test(location.pathname));
     let wrap = root.querySelector('.drex-stats');
+    if (wrap && wrap.__drexLang && wrap.__drexLang !== (isEn ? 'en' : 'ar')) {
+      /* Language toggled: texts are baked at build time, so rebuild the strip fresh
+         in the new language; stop any story still playing first. */
+      if (window.__drexAudio) { try { window.__drexAudio.pause(); } catch (e) {} window.__drexAudio = null; }
+      wrap.remove();
+      wrap = null;
+    }
     if (!wrap) {
       wrap = document.createElement('div');
       wrap.className = 'drex-stats drex-tl-run';
+      wrap.__drexLang = isEn ? 'en' : 'ar';
       wrap.setAttribute('dir', isEn ? 'ltr' : 'rtl');
       const L = (o) => isEn ? o.en : o.ar;
       const arcs = STORIES.filter(s => s.at).map(s =>
@@ -269,7 +280,7 @@
       const quotes = STORIES.filter(s => s.at).map((s, i) =>
         '<div class="drex-q drex-q' + i + '" data-i="' + i + '"><p>' + L(s).q + '</p><small>' + L(s).n + ' · ' + L(s).sub + '</small></div>').join('');
       const cells = STORIES.map((s, i) => {
-        const glyph = s.kind === 'video' ? '<i class="drex-play-g"></i>' : '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
+        const glyph = '<i class="drex-mic-g"><u></u><u></u><u></u></i>';
         return '<button type="button" class="drex-cell' + (s.home ? ' home' : '') + '" data-i="' + i + '" aria-label="' + L(s).n + '">' +
           '<i class="drex-ring' + (s.at ? ' drex-r' + i : '') + '"></i><i class="drex-thumb">' + glyph + '</i><span>' + L(s).n + '</span></button>';
       }).join('');
@@ -321,8 +332,8 @@
         if (es.some(e => e.isIntersecting)) { wrap.classList.add('drex-live'); io.disconnect(); }
       }, { threshold: 0.12 }).observe(wrap);
     } else wrap.classList.add('drex-live');
-    /* one shared audio element; videos play in the floating overlay */
-    let audio = null, playingCell = null, overlay = null;
+    /* one shared audio element; every story plays inline */
+    let audio = null, playingCell = null;
     const qstack = wrap.querySelector('.drex-qstack');
     const holdQuote = (i) => {
       if (!qstack) return;
@@ -335,9 +346,8 @@
       qstack.querySelectorAll('.drex-q').forEach(q => q.classList.remove('on'));
     };
     const stopMedia = () => {
-      if (audio) { audio.pause(); audio = null; }
+      if (audio) { audio.pause(); audio = null; window.__drexAudio = null; }
       if (playingCell) { playingCell.classList.remove('playing'); playingCell = null; }
-      if (overlay) { const v = overlay.querySelector('video'); if (v) v.pause(); overlay.remove(); overlay = null; document.body.style.overflow = ''; }
       releaseQuote();
     };
     const jumpTo = (i) => {
@@ -356,25 +366,11 @@
         playingCell = cell;
         cell.classList.add('playing');
         holdQuote(st.at ? STORIES.filter(s => s.at).indexOf(st) : -1);
-        if (st.kind === 'video') {
-          overlay = document.createElement('div');
-          overlay.className = 'drex-player';
-          overlay.setAttribute('dir', isEn ? 'ltr' : 'rtl');
-          overlay.innerHTML = '<div class="drex-player-frame"><video src="' + st.src + '" playsinline autoplay controls></video>' +
-            '<button type="button" class="drex-player-x" aria-label="' + (isEn ? 'Close' : 'إغلاق') + '">×</button></div>' +
-            '<p class="drex-player-cap">' + (isEn ? st.en.n + ' · ' + st.en.sub : st.ar.n + ' · ' + st.ar.sub) + '</p>';
-          document.body.appendChild(overlay);
-          document.body.style.overflow = 'hidden';
-          const v = overlay.querySelector('video');
-          v.addEventListener('ended', stopMedia);
-          overlay.querySelector('.drex-player-x').addEventListener('click', stopMedia);
-          overlay.addEventListener('click', (e) => { if (e.target === overlay) stopMedia(); });
-        } else {
-          audio = new Audio(st.src);
-          audio.preload = 'auto';
-          audio.addEventListener('ended', stopMedia);
-          audio.play().catch(() => stopMedia());
-        }
+        audio = new Audio(st.src);
+        window.__drexAudio = audio;
+        audio.preload = 'auto';
+        audio.addEventListener('ended', stopMedia);
+        audio.play().catch(() => stopMedia());
       });
     });
   };
