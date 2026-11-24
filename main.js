@@ -25677,12 +25677,13 @@ function phoneTabGridKeys(event) {
  new MutationObserver(queue).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['lang']});queue();
 })();
 
-/* Idle preload of the educational series plates so swiping the series carousel never waits on the network. */
+/* Warm educational plates only while their carousel is mounted. */
 (() => {
  const plates=['XR36YW2X','EGJVQ6VC','4QQHBH5X','ZLWKNQWL','TIRZ4HI3','FLOLJUTR','I27ZNCHR','KYX3IO2Q','O3ILYMRB','3OKKLIJI','74XCYRBK'];
- const run=()=>{let i=0;const step=()=>{if(i>=plates.length)return;const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{i++;step();};im.src='/assets/'+plates[i]+'.webp';};
-  if('requestIdleCallback' in window)requestIdleCallback(step,{timeout:4000});else setTimeout(step,1500);};
- if(document.readyState==='complete')run();else window.addEventListener('load',run,{once:true});
+ let index=0,busy=false,queued=false;
+ const step=()=>{busy=false;if(index>=plates.length||!document.querySelector('.dre-edcar'))return;busy=true;const im=new Image();im.decoding='async';im.onload=im.onerror=()=>{index++;step()};im.src='/assets/'+plates[index]+'.webp'};
+ const check=()=>{if(busy||queued||index>=plates.length||!document.querySelector('.dre-edcar'))return;queued=true;const run=()=>{queued=false;step()};if('requestIdleCallback' in window)requestIdleCallback(run,{timeout:1500});else setTimeout(run,100)};
+ new MutationObserver(check).observe(document.body,{subtree:true,childList:true});check();
 })();
 
 /* Facelift studio is fetched only for its route. No visitor choices leave the page. */
