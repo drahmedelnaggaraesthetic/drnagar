@@ -129,7 +129,7 @@
   var rq = false; function queueR() { if (!rq) { rq = true; requestAnimationFrame(function () { rq = false; syncR(); }); } }
   (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueR).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueR); queueR(); })();
   /* Assessment: soft muted ambient video behind the panel, veiled in cream so the title stays legible. */
-  var AS = { hash: /^#\/assessment\/?$/, src: '/assets/assess-clean-v2.mp4', poster: '/assets/assess-clean-v2-poster.webp' };
+  var AS = { hash: /^#\/assessment\/?$/, src: '/assets/assessment-voice-v3.mp4', poster: '/assets/assessment-voice-v3-poster.webp' };
   var acss = '#drexa{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:0;pointer-events:none;background:#ece1c9}' +
     '#drexa img,#drexa video{position:absolute;left:0;top:-50%;width:100%;height:150%;object-fit:cover;object-position:50% 50%;filter:saturate(.9) contrast(1)}' +
     '#drexa video{opacity:0;transition:opacity 1.6s ease}#drexa.live video{opacity:1}' +
@@ -138,12 +138,18 @@
     '@media(prefers-reduced-motion:reduce){#drexa video{display:none}}';
   var ast = document.createElement('style'); ast.textContent = acss; document.head.appendChild(ast);
   function buildA() {
-    var d = document.createElement('div'); d.id = 'drexa'; d.setAttribute('aria-hidden', 'true');
+    var d = document.createElement('div'); d.id = 'drexa'; 
     d.innerHTML = '<img alt="" decoding="async" src="' + AS.poster + '">';
-    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.dataset.src=AS.src;
+    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = false; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.dataset.src=AS.src;
     v.addEventListener('playing', function () { d.classList.add('live'); });
     d.appendChild(v);
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { if (!v.isConnected) return; if (e[0].isIntersecting) { if(v.dataset.src&&!v.getAttribute('src')){v.src=v.dataset.src;}var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { threshold: .05 }).observe(d); else { v.src=AS.src; }
+    var en=(document.documentElement.lang||'').indexOf('en')===0;
+    var btn=document.createElement('button');btn.type='button';btn.className='drex-voice-toggle';btn.setAttribute('aria-pressed','false');
+    var voiceIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10v4h4l5 4V6l-5 4z"/><path d="M16 9a5 5 0 0 1 0 6M19 6a9 9 0 0 1 0 12"/></svg>';
+    function voiceLabel(){btn.innerHTML=voiceIcon+'<span>'+(v.ended?(en?"Replay doctor voice":'اسمع الدكتور من الأول'):(en?"Doctor's voice":'صوت الدكتور'))+'</span>';btn.setAttribute('aria-pressed',String(!v.muted));btn.setAttribute('aria-label',v.muted?(en?'Turn on doctor voice':'تشغيل صوت الدكتور'):(en?'Mute doctor voice':'كتم صوت الدكتور'));}
+    var heard=false;btn.addEventListener('click',function(){if(v.ended){v.currentTime=0;v.muted=false;}else{v.muted=!v.muted;if(!heard&&!v.muted){v.currentTime=0;heard=true;}}if(!v.muted)document.querySelectorAll('audio,video').forEach(function(other){if(other!==v)other.pause()});voiceLabel();var play=v.play();if(play&&play.catch)play.catch(function(){});});v.addEventListener('ended',voiceLabel);voiceLabel();d.appendChild(btn);
+
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { if (!v.isConnected) return; if (e[0].isIntersecting && !v.ended) { if(v.dataset.src&&!v.getAttribute('src')){v.src=v.dataset.src;}var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { threshold: .05 }).observe(d); else { v.src=AS.src; }
     return d;
   }
   function syncA() {
@@ -153,7 +159,7 @@
     var panel = root.querySelector('.dre-panel'); if (!panel) return;
     if (cur && cur.parentNode === panel) return;
     if (cur) cur.remove();
-    panel.classList.add('drexa-host'); panel.insertBefore(buildA(), panel.firstChild);
+    panel.classList.add('drexa-host'); var band=buildA();panel.insertBefore(band, panel.firstChild);var voice=band.querySelector('.drex-voice-toggle'),sub=panel.querySelector('.dre-sub');if(sub&&voice)sub.after(voice);
   }
   var aq = false; function queueA() { if (!aq) { aq = true; requestAnimationFrame(function () { aq = false; syncA(); }); } }
   (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueA).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueA); queueA(); })();
@@ -233,4 +239,5 @@ var fos=document.createElement('style');fos.textContent=`
 body:has(#drex-face-options) .dre-wafab{display:none!important}
 `+FACE_OPTION_CSS;document.head.appendChild(fos);
 var faceDesktop=document.createElement('style');faceDesktop.textContent='@media(min-width:800px){.drex-face-options-host{display:grid!important;grid-template-columns:1fr 1.05fr!important;align-items:center!important;direction:ltr;gap:40px!important}.drex-face-options-host>div:not(#drex-face-options){grid-column:1;grid-row:1;padding:35px!important}#drex-face-options{grid-column:2;grid-row:1}.drex-fpair{padding:0}.drex-face-options-host .dre-h1{font-size:36px!important}html[lang=ar] .drex-face-options-host>div:not(#drex-face-options){direction:rtl;text-align:right}}';document.head.appendChild(faceDesktop);
+var voiceStyle=document.createElement('style');voiceStyle.textContent='.drexa-host .drex-voice-toggle{position:relative;z-index:5;pointer-events:auto;display:flex;width:max-content;margin:16px 0 0;align-items:center;gap:7px;min-height:40px;padding:8px 13px;border:1px solid rgba(94,76,42,.3);border-radius:22px;background:rgba(241,232,210,.9);color:#584525;font:inherit;font-size:12px;cursor:pointer;backdrop-filter:blur(8px)}.drexa-host .drex-voice-toggle svg{width:17px;height:17px}.drexa-host .drex-voice-toggle[aria-pressed=true]{background:#302719;color:#eee0bd}';document.head.appendChild(voiceStyle);
 })();
