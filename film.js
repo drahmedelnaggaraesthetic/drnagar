@@ -88,4 +88,37 @@
   new MutationObserver(queue).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   window.addEventListener('hashchange', queue);
   queue();
+  /* Rhinoplasty opening: quiet ambient loop (muted, no controls) replacing the portrait. */
+  var RH = { hash: /^#\/rhino\/?$/, src: '/assets/rhino-hero.mp4', poster: '/assets/rhino-hero-poster.webp' };
+  var rcss = '#drexr{position:relative;display:block;height:400px;overflow:hidden;background:#0a0805;border-radius:inherit;margin-bottom:6px}' +
+    '#drexr img,#drexr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}' +
+    '#drexr img{filter:saturate(.85) brightness(1)}' +
+    '#drexr video{opacity:0;transition:opacity 1.4s ease;filter:saturate(.9) brightness(1)}' +
+    '#drexr.live video{opacity:1}' +
+    '#drexr:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,5,.35) 0%,rgba(10,8,5,0) 30%,rgba(236,225,201,0) 55%,#ece1c9 99%);pointer-events:none}' +
+    '.dre-hero .dre-portrait.drexr-gone{display:none}' +
+    '@media(prefers-reduced-motion:reduce){#drexr video{display:none}}';
+  var rst = document.createElement('style'); rst.textContent = rcss; document.head.appendChild(rst);
+  function buildR(panel) {
+    var cs = getComputedStyle(panel), d = document.createElement('div'); d.id = 'drexr'; d.setAttribute('aria-hidden', 'true');
+    d.style.marginInline = '-' + cs.paddingLeft + ' -' + cs.paddingRight; d.style.marginInline = ''; d.style.marginLeft = '-' + cs.paddingLeft; d.style.marginRight = '-' + cs.paddingRight; d.style.marginTop = '-' + cs.paddingTop;
+    d.innerHTML = '<img alt="" decoding="async" src="' + RH.poster + '">';
+    var v = document.createElement('video'); v.muted = true; v.defaultMuted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.disableRemotePlayback = true; v.setAttribute('disableremoteplayback', ''); v.src = RH.src;
+    v.addEventListener('playing', function () { d.classList.add('live'); });
+    d.appendChild(v);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { if (!v.isConnected) return; if (e[0].isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { threshold: .1 }).observe(d);
+    return d;
+  }
+  function syncR() {
+    var root = document.getElementById('root'); if (!root) return;
+    var cur = document.getElementById('drexr');
+    if (!RH.hash.test(location.hash)) { if (cur) cur.remove(); return; }
+    var panel = root.querySelector('.dre-panel'); if (!panel) return;
+    var por = panel.querySelector('.dre-portrait'); if (por) por.classList.add('drexr-gone');
+    if (cur && cur.parentNode === panel) return;
+    if (cur) cur.remove();
+    panel.insertBefore(buildR(panel), panel.firstChild);
+  }
+  var rq = false; function queueR() { if (!rq) { rq = true; requestAnimationFrame(function () { rq = false; syncR(); }); } }
+  (function () { var r = document.getElementById('root'); if (r) new MutationObserver(queueR).observe(r, { childList: true, subtree: true }); window.addEventListener('hashchange', queueR); queueR(); })();
 })();
