@@ -19,18 +19,24 @@
 .drex-q small{display:block;font-size:9.5px;opacity:.55;margin-top:3px}
 .drex-qstack.drex-hold .drex-q{animation-play-state:paused;opacity:0}
 .drex-qstack.drex-hold .drex-q.on{animation:none;opacity:1}
-.drex-srow{display:flex;gap:12px;margin-top:10px;width:100%;overflow-x:auto;scrollbar-width:none;padding:4px 18px 6px;justify-content:safe center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}.drex-srow::-webkit-scrollbar{display:none}
-.drex-cell{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit}
-.drex-cell>span{font-size:8.5px;opacity:.85;max-width:56px;text-align:center;line-height:1.35}
-.drex-ring{position:absolute;top:-5px;bottom:auto;inset-inline:-5px;height:50px;border-radius:50%;border:1.5px solid #ffd98a;box-shadow:0 0 12px rgba(255,217,138,.75);opacity:0;pointer-events:none}
-.drex-cell.home .drex-ring{opacity:.35;border-color:rgba(216,183,106,.8);box-shadow:none}
-.drex-thumb{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1px solid rgba(236,211,152,.9);background:radial-gradient(circle at 34% 28%,#2c2418,#0d0c0a 74%);box-shadow:0 0 9px rgba(216,183,106,.5)}
-.drex-mic-g{display:flex;align-items:flex-end;gap:2.5px;height:14px}
-.drex-mic-g u{width:2.2px;background:#ecd398;transform-origin:bottom;animation:drexEq 1s ease-in-out infinite}
+.drex-srow{display:flex;gap:10px;margin-top:-8px;width:100%;overflow-x:auto;scrollbar-width:none;padding:22px 16px 12px;justify-content:safe center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}.drex-srow::-webkit-scrollbar{display:none}
+.drex-cell{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.drex-cell>span{font-size:9px;opacity:.95;max-width:60px;text-align:center;line-height:1.35;transition:opacity .3s ease}
+.drex-ring{position:absolute;top:-6px;bottom:auto;inset-inline:-6px;height:54px;border-radius:50%;border:1px solid rgba(216,183,106,.55);box-shadow:none;opacity:.22;pointer-events:none;transition:opacity .45s ease,border-color .45s ease,box-shadow .45s ease}
+.drex-cell.home .drex-ring{opacity:.4;border-color:rgba(216,183,106,.85)}
+.drex-thumb{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(236,211,152,.9);background:radial-gradient(circle at 34% 28%,#2c2418,#0d0c0a 74%);box-shadow:inset 0 1px rgba(255,255,255,.14),0 6px 16px rgba(0,0,0,.45),0 0 12px rgba(216,183,106,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:transform .18s ease,border-color .45s ease,box-shadow .45s ease}
+.drex-thumb::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(140deg,#e6c987,#b98f4e);box-shadow:inset 0 1px rgba(255,255,255,.38);opacity:0;transition:opacity .45s ease;pointer-events:none}
+.drex-cell:active .drex-thumb{transform:scale(.93)}
+.drex-mic-g{position:relative;z-index:1;display:flex;align-items:flex-end;gap:2.5px;height:14px;opacity:.85;transition:opacity .3s ease}
+.drex-mic-g u{width:2.2px;background:#ecd398;transform-origin:bottom;transition:background .45s ease}
+.drex-cell.playing .drex-mic-g{opacity:1}
+.drex-cell.playing .drex-mic-g u{background:#1a130a;animation:drexEq 1.3s ease-in-out infinite}
 .drex-mic-g u:nth-child(1){height:6px}.drex-mic-g u:nth-child(2){height:11px;animation-delay:.25s}.drex-mic-g u:nth-child(3){height:8px;animation-delay:.5s}
-.drex-cell.playing .drex-thumb{border-color:#ffd98a;box-shadow:0 0 16px rgba(255,217,138,.65)}
-.drex-cell.playing .drex-ring{opacity:1;animation:drexRingPulse 1.6s ease-in-out infinite}
-@keyframes drexRingPulse{50%{transform:scale(1.07);opacity:.6}}
+.drex-cell.playing .drex-thumb{border-color:#e6c987;animation:drexThumbGlow 2.4s ease-in-out infinite}
+.drex-cell.playing .drex-thumb::after{opacity:1}
+.drex-cell.playing .drex-ring{opacity:1;border:1.75px solid #ffd98a;box-shadow:0 0 14px rgba(255,217,138,.8);animation:drexRingPulse 2.4s ease-in-out infinite}
+@keyframes drexRingPulse{50%{transform:scale(1.045)}}
+@keyframes drexThumbGlow{50%{box-shadow:inset 0 1px rgba(255,255,255,.14),0 6px 16px rgba(0,0,0,.45),0 0 26px rgba(255,217,138,.85)}}
 .drex-stateline{display:flex;align-items:baseline;gap:8px;margin-top:12px}
 .drex-stateline b{font-size:34px;opacity:.32}
 .drex-stateline .ct,.drex-stateline span{font-size:11.5px;color:#ecd398}
@@ -69,7 +75,7 @@
  .drex-stats .drex-beam,.drex-stats .drex-cpulse{display:none}
  .drex-stats .drex-q{animation:none!important}
  .drex-stats .drex-q0{opacity:1}
- .drex-stats .drex-ring{animation:none!important}
+ .drex-stats .drex-ring,.drex-stats .drex-thumb{animation:none!important}
  .drex-stats .drex-r0{opacity:1}
  .drex-stats .drex-eq i,.drex-stats .drex-mic-g u{animation:none!important}
 }
