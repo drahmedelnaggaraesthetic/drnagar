@@ -25684,3 +25684,6 @@ function phoneTabGridKeys(event) {
   if('requestIdleCallback' in window)requestIdleCallback(step,{timeout:4000});else setTimeout(step,1500);};
  if(document.readyState==='complete')run();else window.addEventListener('load',run,{once:true});
 })();
+
+/* Facelift studio is fetched only for its route. No visitor choices leave the page. */
+(()=>{let loaded=false;const check=()=>{const route=location.hash?location.hash.slice(1):location.pathname.replace(/^\/en(?=\/)/,'').replace(/\/$/,'');if(route==='/facelift'&&!loaded){loaded=true;const s=document.createElement('script');s.src='/facelift-studio.js?v=20261124v8';s.onerror=()=>{loaded=false;s.remove()};document.body.append(s)}};for(const method of ['pushState','replaceState']){const original=history[method];history[method]=function(...args){const result=original.apply(this,args);check();return result}}addEventListener('hashchange',check);addEventListener('popstate',check);check()})();
