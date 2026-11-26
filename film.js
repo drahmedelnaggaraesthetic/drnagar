@@ -256,17 +256,19 @@ var voiceStyle=document.createElement('style');voiceStyle.textContent='.drexa-ho
     ar: { cap: 'تجربة مريضة من هولندا', on: 'تشغيل صوت المريضة', off: 'كتم الصوت' },
     en: { cap: 'A patient from the Netherlands', on: 'Play the patient\u2019s voice', off: 'Mute' }
   };
-  var ncss = '#drexn-sec{margin-inline:calc(50% - 50vw);opacity:0;transform:translateY(14px);transition:opacity 1.2s ease,transform 1.2s ease}' +
+  var ncss = '#drexn-sec{margin-inline:calc(50% - 50vw);opacity:0;transform:translateY(14px);transition:opacity 1.2s ease,transform 1.2s ease;background:linear-gradient(180deg,#14110d 0,#0d120b 160px,#0d120b calc(100% - 130px),rgba(13,18,11,0) 100%);padding-bottom:80px}' +
     '#drexn-sec.drexn-in{opacity:1;transform:none}' +
+    '.dre-route-consultation .dre-panel-dark{margin-bottom:0!important}' +
     '#drexn-sec .drexn-stage{position:relative;width:100%;aspect-ratio:720/1280;overflow:hidden;background:#0d120b}' +
+    '#drexn-sec .drexn-stage:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(20,17,13,.85),rgba(20,17,13,0) 9%,rgba(13,18,11,0) 90%,rgba(13,18,11,.95))}' +
     '#drexn-sec video,#drexn-sec .drexn-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.96)}' +
     '#drexn-sec video{opacity:0;transition:opacity 1.6s ease}#drexn-sec.live video{opacity:1}' +
-    '#drexn-sec .drexn-bar{display:flex;align-items:center;gap:10px;padding:12px 18px 2px;border-top:1px solid rgba(184,146,76,.4)}' +
-    '#drexn-sec .drexn-cap{margin:0;flex:1;font-size:12px;letter-spacing:.05em;line-height:1.6;color:#8a6d3b}' +
-    '#drexn-sec .drexn-snd{pointer-events:auto;flex:none;width:32px;height:32px;border-radius:50%;border:1px solid rgba(138,109,59,.55);background:transparent;color:#8a6d3b;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}' +
+    '#drexn-sec .drexn-bar{position:relative;z-index:3;display:flex;align-items:center;gap:10px;padding:14px 20px 0;border-top:1px solid rgba(184,146,76,.35)}' +
+    '#drexn-sec .drexn-cap{margin:0;flex:1;font-size:12px;letter-spacing:.05em;line-height:1.6;color:#c9b283}' +
+    '#drexn-sec .drexn-snd{pointer-events:auto;flex:none;width:32px;height:32px;border-radius:50%;border:1px solid rgba(211,186,133,.5);background:transparent;color:#c9b283;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}' +
     '#drexn-sec .drexn-snd svg{width:15px;height:15px;display:block}' +
     '#drexn-sec .drexn-snd .ic-on{display:none}#drexn-sec.snd-on .drexn-snd .ic-on{display:block}#drexn-sec.snd-on .drexn-snd .ic-off{display:none}' +
-    '@media(min-width:800px){#drexn-sec .drexn-stage{aspect-ratio:auto;height:min(88vh,900px);background:transparent}#drexn-sec video,#drexn-sec .drexn-still{object-fit:contain;object-position:50% 50%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}#drexn-sec .drexn-bar{position:relative;width:calc(min(88vh,900px)*0.5625);margin-inline:auto;border-top:none}#drexn-sec .drexn-bar:before{content:"";position:absolute;top:0;inset-inline:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,76,.5),transparent)}}' +
+    '@media(min-width:800px){#drexn-sec .drexn-stage{aspect-ratio:auto;height:min(88vh,900px);background:transparent}#drexn-sec video,#drexn-sec .drexn-still{object-fit:contain;object-position:50% 50%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}#drexn-sec .drexn-bar{width:calc(min(88vh,900px)*0.5625);margin-inline:auto;border-top:none}#drexn-sec .drexn-bar:before{content:"";position:absolute;top:0;inset-inline:0;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,76,.5),transparent)}}' +
     '@media(prefers-reduced-motion:reduce){#drexn-sec video{display:none}#drexn-sec{opacity:1;transform:none;transition:none}}';
   var nst = document.createElement('style'); nst.textContent = ncss; document.head.appendChild(nst);
   var NL_IC_OFF = '<svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path d="M16 9.7l4.6 4.6M20.6 9.7L16 14.3"/></svg>';
